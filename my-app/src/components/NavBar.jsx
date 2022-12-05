@@ -1,4 +1,4 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   return (
@@ -30,7 +30,6 @@ const NavBar = () => {
 
         <div className="login">Profile/Login</div>
       </nav>
-      <Outlet />
     </>
   );
 };
