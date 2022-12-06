@@ -1,5 +1,11 @@
+import ComplexList from "./ComplexList";
+
 const Home = () => {
-  return <div>Home</div>;
+  return (
+    <>
+      <ComplexList />
+    </>
+  );
 };
 
 export default Home;
