@@ -6,6 +6,7 @@ import AboutUs from "./components/AboutUs";
 import ContactUs from "./components/ContactUs";
 import LayOut from "./components/LayOut";
 import Error404 from "./components/Error404";
+import SearchCity from "./components/SearchCity";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="about" element={<AboutUs />} />
         <Route path="contact-us" element={<ContactUs />} />
         <Route path="*" element={<Error404 />} />
+        <Route path="search" element={<SearchCity />} />
       </Route>
     </Routes>
   );
