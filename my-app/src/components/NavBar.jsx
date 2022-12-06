@@ -13,6 +13,7 @@ const NavBar = () => {
         </div>
 
         <div className="hidden md:flex gap-10">
+          <Link to="/">Home</Link>
           <Link to="about">About us</Link>
           <Link to="contact-us">Contact us</Link>
           <Link to="pricing">Pricing</Link>
