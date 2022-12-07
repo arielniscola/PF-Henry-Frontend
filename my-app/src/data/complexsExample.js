@@ -52,11 +52,11 @@ export const complexs = [
     id: 6,
     name: "Salon eventos",
     event: "Bautizo",
-    address: "Colombres 1154, Buenos Aires",
+    address: "Colombres 1154, Carlos Paz",
     image:
       "https://infodeportes.com.ar/wp-content/uploads/2021/12/Innovador-complejo-de-canchas-de-futbol-que-promete-revolucionar-la-forma-de-compartir-y-entretenerse.png",
     rating: 1,
-    city: "Buenos Aires"
+    city: "Carlos Paz"
   },
   {
     id: 7,
