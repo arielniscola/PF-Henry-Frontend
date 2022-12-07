@@ -1,5 +1,18 @@
+import React from "react";
+import Header from "./Header";
+import ComplexList from "./ComplexList";
+
+
 const Home = () => {
-  return <div>Home</div>;
-};
+  return (
+    <>
+  <Header />
+  <ComplexList />
+    </>
+  )
+}
 
 export default Home;
+
+
+
