@@ -1,7 +1,7 @@
 import * as actions from '../actionTypes'
 
 const initialState = {
-    allComplex: [],
+    allComplexs: [],
     complexs: [],
     detail:{}
 
@@ -10,19 +10,33 @@ const initialState = {
 const rootReducer = (state = initialState, action) =>{
     switch (action.type) {
     case actions.GET_ALL_COMPLEX:
-            return{
-                ...state,
-                allComplex: action.payload,
-                complexs: action.payload
-            }
+        return{
+            ...state,
+            allComplexs: action.payload,
+            complexs: action.payload
+        }
     case actions.GET_COMPLEX_DETAIL:
         return{
             ...state,
-            detail: action.payload
+            complexs: action.payload
         }
-        default: return state
+    case actions.FILTER_BY_SPORT:
+        return{
+            ...state,
+            complexs: action.payload
+        }
+    case actions.FILTER_BY_SERVICE:
+        return{
+            ...state,
+            complexs: action.payload
+        }
+    case actions.FILTER_BY_AZ:
+        return{
+            ...state,
+            complexs: action.payload
+        }
+            default: return state
     }
-
 }
 
 export default rootReducer
