@@ -99,3 +99,14 @@ export const orderFav = (array) => dispatch =>{
     payload: [...ordered]
   })
 }
+
+export const searchCity = (city, array) => dispatch =>{
+
+  const filtered = array.filter(e => e.name === city)
+  const complexs = filtered[0].events
+
+  dispatch({
+    type: actions.SEARCH_BY_CITY,
+    payload: complexs
+  })
+}

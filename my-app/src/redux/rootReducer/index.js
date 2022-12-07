@@ -35,6 +35,11 @@ const rootReducer = (state = initialState, action) =>{
             ...state,
             complexs: action.payload
         }
+    case actions.SEARCH_BY_CITY:
+    return{
+        ...state,
+        complexs: action.payload
+    }
             default: return state
     }
 }
