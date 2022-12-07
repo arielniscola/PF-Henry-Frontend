@@ -91,7 +91,7 @@ const OwnerDashboard = () => {
                             <div className="flex-shrink-0">
                               <Link
                                 to={`/complex/${complex.id}`}
-                                className="relative block"
+                                className="relative block object-contain"
                               >
                                 <img
                                   alt="profil"
