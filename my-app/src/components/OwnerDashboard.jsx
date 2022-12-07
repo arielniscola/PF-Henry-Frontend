@@ -8,6 +8,7 @@ const complexList = [
     logo: "https://logodownload.org/wp-content/uploads/2018/06/estudiantes-logo-escudo.png",
     address: "Buenos Aires, La Plata",
     isActive: true,
+    events: "Cumpleanios , bautizo",
   },
   {
     id: 2,
@@ -16,6 +17,7 @@ const complexList = [
     logo: "https://logodownload.org/wp-content/uploads/2018/06/estudiantes-logo-escudo.png",
     address: "Buenos Aires, La Plata",
     isActive: true,
+    events: "Futbol, paddle, tenis",
   },
   {
     id: 3,
@@ -24,6 +26,7 @@ const complexList = [
     logo: "https://logodownload.org/wp-content/uploads/2018/06/estudiantes-logo-escudo.png",
     address: "Buenos Aires, La Plata",
     isActive: true,
+    events: "Futbol, paddle, tenis",
   },
   {
     id: 4,
@@ -32,6 +35,7 @@ const complexList = [
     logo: "https://logodownload.org/wp-content/uploads/2018/06/estudiantes-logo-escudo.png",
     address: "Buenos Aires, La Plata",
     isActive: true,
+    events: "Futbol, paddle, tenis",
   },
 ];
 
@@ -58,7 +62,7 @@ const OwnerDashboard = () => {
                       scope="col"
                       className="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200"
                     >
-                      Role
+                      Active events
                     </th>
                     <th
                       scope="col"
@@ -105,7 +109,7 @@ const OwnerDashboard = () => {
                         </td>
                         <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
                           <p className="text-gray-900 whitespace-no-wrap">
-                            Admin
+                            {complex.events}
                           </p>
                         </td>
                         <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
