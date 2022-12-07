@@ -7,6 +7,7 @@ const NavBar = () => {
   // const [currentUser, setCurrentUser] = useState(false);
   const [currentUser, setCurrentUser] = useState({
     image: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
+    isOwner: false,
   });
 
   return (
@@ -29,7 +30,7 @@ const NavBar = () => {
                 </Link>
                 <Link
                   className="px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-800 dark:hover:text-white"
-                  to="/about-us"
+                  to="/about"
                 >
                   About us
                 </Link>
@@ -54,7 +55,11 @@ const NavBar = () => {
                       id="options-menu"
                     >
                       {currentUser ? (
-                        <img src={currentUser.image} alt="" className="w-10" />
+                        <img
+                          src={currentUser.image}
+                          alt="userphoto"
+                          className="w-10"
+                        />
                       ) : (
                         <svg
                           width="20"
