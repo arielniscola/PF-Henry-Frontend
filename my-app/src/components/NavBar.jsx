@@ -27,7 +27,6 @@ const NavBar = () => {
           <Link to="about">About us</Link>
           <Link to="contact-us">Contact us</Link>
         </div>
-
         <div className="login">Profile/Login</div>
       </nav>
     </>
