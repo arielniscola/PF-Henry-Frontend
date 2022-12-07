@@ -91,12 +91,12 @@ const OwnerDashboard = () => {
                             <div className="flex-shrink-0">
                               <Link
                                 to={`/complex/${complex.id}`}
-                                className="relative block object-contain"
+                                className="relative block"
                               >
                                 <img
                                   alt="profil"
                                   src={complex.logo}
-                                  className="object-cover w-10 h-10 mx-auto rounded-full "
+                                  className="w-10 h-10 mx-auto rounded-full object-contain "
                                 />
                               </Link>
                             </div>
