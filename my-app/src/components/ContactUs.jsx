@@ -2,16 +2,16 @@ import { useState } from "react";
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
-    fullName: "",
+    name: "",
     complex: "",
     events: "",
     city: "",
     email: "",
     phone: "",
-    moreInfo: "",
+    comments: "",
   });
 
-  const { fullName, complex, events, city, email, phone, moreInfo } = formData;
+  const { name, complex, city, email, phone, comments } = formData;
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -22,100 +22,119 @@ const ContactUs = () => {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "col",
-        textAlign: "center",
-        justifyContent: "space-around",
-      }}
-    >
-      <div style={{ maxWidth: "600px" }}>
-        <h2>Do you want to try our app in your events complex?</h2>
-        <p>
+    <div className="flex flex-col m-16 md:flex-row place-content-evenly">
+      <div className="self-center max-w-xl">
+        <h2 className="mb-5 text-4xl font-bold text-blue-700">
+          Do you want to try our app in your events complex?
+        </h2>
+        <p className="mt-10 text-2xl font-medium">
           We show you the benefits of having an online channel to manage your
-          complex that allows users to book online. Leave us your contact
-          details so we can get in touch with you.
+          complex that allows users to book online.
+        </p>
+        <p className="mt-10 text-2xl font-medium ">
+          Leave us your contact details so we can get in touch with you.
         </p>
       </div>
 
-      <div>
-        <h2>Contact data</h2>
-        <form onSubmit={handleFormSubmit}>
-          <div>
-            <label htmlFor="fullName" />
-            <input
-              type="text"
-              name="fullName"
-              placeholder="Name and Last name"
-              value={fullName}
-              onChange={(e) => handleInputChange(e)}
-            />
+      <form
+        className="flex self-center w-full max-w-sm space-x-3"
+        onSubmit={handleFormSubmit}
+      >
+        <div className="w-full max-w-2xl px-5 py-10 m-auto mt-10 bg-white rounded-lg shadow dark:bg-gray-800">
+          <div className="mb-6 text-3xl font-light text-center text-gray-800 dark:text-white">
+            Contact us !
           </div>
-          <div>
-            <label htmlFor="complex" />
-            <input
-              type="text"
-              name="complex"
-              placeholder="Complex name"
-              value={complex}
-              onChange={(e) => handleInputChange(e)}
-            />
-          </div>{" "}
-          <div>
-            <label htmlFor="events" />
-            <input
-              type="text"
-              name="events"
-              placeholder="Events"
-              value={events}
-              onChange={(e) => handleInputChange(e)}
-            />
-            <div>
-              <label htmlFor="city" />
-              <input
-                type="text"
-                name="city"
-                placeholder="City"
-                value={city}
-                onChange={(e) => handleInputChange(e)}
-              />
+          <div className="grid max-w-xl grid-cols-2 gap-4 m-auto">
+            <div className="col-span-2 lg:col-span-1">
+              <div className="relative ">
+                <input
+                  type="text"
+                  id="contact-form-name"
+                  className="flex-1 w-full px-4 py-2 text-base text-gray-700 placeholder-gray-400 bg-white border border-transparent border-gray-300 rounded-lg shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                  placeholder="Name"
+                  value={name}
+                  name="name"
+                  onChange={(e) => handleInputChange(e)}
+                />
+              </div>
             </div>
-            <div>
-              <label htmlFor="email" />
-              <input
-                type="text"
-                name="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => handleInputChange(e)}
-              />
+            <div className="col-span-2 lg:col-span-1">
+              <div className="relative ">
+                <input
+                  type="text"
+                  id="contact-form-email"
+                  className="flex-1 w-full px-4 py-2 text-base text-gray-700 placeholder-gray-400 bg-white border border-transparent border-gray-300 rounded-lg shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                  placeholder="Email"
+                  value={email}
+                  name="email"
+                  onChange={(e) => handleInputChange(e)}
+                />
+              </div>
             </div>
-            <div>
-              <label htmlFor="phone" />
-              <input
-                type="text"
-                name="phone"
-                placeholder="Phone"
-                value={phone}
-                onChange={(e) => handleInputChange(e)}
-              />
+            <div className="col-span-2 lg:col-span-1">
+              <div className="relative ">
+                <input
+                  type="text"
+                  id="contact-form-name"
+                  className="flex-1 w-full px-4 py-2 text-base text-gray-700 placeholder-gray-400 bg-white border border-transparent border-gray-300 rounded-lg shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                  placeholder="Complex"
+                  value={complex}
+                  name="complex"
+                  onChange={(e) => handleInputChange(e)}
+                />
+              </div>
             </div>
-            <div>
-              <label htmlFor="moreInfo" />
-              <textarea
-                type="text"
-                name="moreInfo"
-                placeholder="More info"
-                value={moreInfo}
-                onChange={(e) => handleInputChange(e)}
-              />
+            <div className="col-span-2 lg:col-span-1">
+              <div className="relative ">
+                <input
+                  type="number"
+                  id="contact-form-phone"
+                  className="flex-1 w-full px-4 py-2 text-base text-gray-700 placeholder-gray-400 bg-white border border-transparent border-gray-300 rounded-lg shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                  placeholder="Phone"
+                  name="phone"
+                  value={phone}
+                  onChange={(e) => handleInputChange(e)}
+                />
+              </div>
             </div>
-
-            <button type="submit">Send</button>
+            <div className="col-span-2 lg:col-span-2">
+              <div className="relative ">
+                <input
+                  type="text"
+                  id="contact-form-city"
+                  className="flex-1 w-full px-4 py-2 text-base text-gray-700 placeholder-gray-400 bg-white border border-transparent border-gray-300 rounded-lg shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                  placeholder="City"
+                  name="city"
+                  value={city}
+                  onChange={(e) => handleInputChange(e)}
+                />
+              </div>
+            </div>
+            <div className="col-span-2">
+              <label className="text-gray-700" for="name">
+                <textarea
+                  className="flex-1 w-full px-4 py-2 text-base text-gray-700 placeholder-gray-400 bg-white border border-gray-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                  id="comment"
+                  placeholder="Enter your comment"
+                  name="comments"
+                  rows="5"
+                  cols="40"
+                  value={comments}
+                  onChange={(e) => handleInputChange(e)}
+                ></textarea>
+              </label>
+            </div>
+            <div className="col-span-2 text-right">
+              <button
+                type="submit"
+                className="w-full px-4 py-2 text-base font-semibold text-center text-white transition duration-200 ease-in bg-indigo-600 rounded-lg shadow-md hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 "
+              >
+                Send
+              </button>
+            </div>
           </div>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
   );
 };
