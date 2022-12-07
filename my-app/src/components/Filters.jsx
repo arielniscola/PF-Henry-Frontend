@@ -25,16 +25,17 @@ const handleService = (e) =>{
 }
 
   return (
-    <section>
-        
-        <div>
-            <select onChange={(e) => handleOrder(e)}>
+    <section class='flex flex-row m-0 w-full items-center gap-10 p-4'>
+        <div class='flex relative w-36 h-10 rounded-full overflow-hidden border-2 border-blue-900'>
+            <select class=' appearance-none outline-0 border-0 flex jistify-center py-0 px-14 bg-transparent text-blue-900 cursor-pointer text-base hover:shadow-inner hover:shadow-slate-400 focus:shadow-inner focus:shadow-slate-400' onChange={(e) => handleOrder(e)}>
+                <option>Order</option>
                 <option value='az'>A-Z</option>
                 <option value='fav'>Favorites</option>
             </select>
         </div>
-        <div>
-            <select onChange={(e) => handleSports(e)}>
+        <div class='flex relative w-36 h-10 rounded-full overflow-hidden border-2 border-blue-900'>
+            <select class=' appearance-none outline-0 border-0 flex jistify-center py-0 px-14 bg-transparent text-blue-900 cursor-pointer text-base hover:shadow-inner hover:shadow-slate-400 focus:shadow-inner focus:shadow-slate-400' onChange={(e) => handleSports(e)}>
+            <option>Sports</option>        
             {
                 data.sports?.map((s,index) =>{
                     return <option key={index} value={s}>{s}</option>
@@ -42,8 +43,9 @@ const handleService = (e) =>{
             }
             </select>
         </div>
-        <div>
-            <select onChange={(e) => handleService(e)}>
+        <div class='flex relative w-36 h-10 rounded-full overflow-hidden border-2 border-blue-900'>
+            <select class='appearance-none outline-0 border-0 flex jistify-center py-0 px-12 bg-transparent text-blue-900 cursor-pointer text-base hover:shadow-inner hover:shadow-slate-400 focus:shadow-inner focus:shadow-slate-400' onChange={(e) => handleService(e)}>
+            <option>Services</option>
             {
                 data.services?.map((s,index) =>{
                     return <option key={index} value={s}a>{s}</option>
