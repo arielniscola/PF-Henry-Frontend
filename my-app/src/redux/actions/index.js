@@ -1,6 +1,6 @@
 import * as actions from '../actionTypes'
 // import axios from 'axios'
-import data from '../../utils/data'
+import {complexs} from '../../data/complexsExample'
 
 
 export const getAllComplex = () => async(dispatch)=>{
@@ -16,7 +16,7 @@ export const getAllComplex = () => async(dispatch)=>{
   // }
   dispatch({
     type: actions.GET_ALL_COMPLEX,
-    payload: data.api
+    payload: complexs.api
   })
 }
 
