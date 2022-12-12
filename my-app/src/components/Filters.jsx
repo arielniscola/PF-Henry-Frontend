@@ -1,9 +1,11 @@
 import React from 'react'
-import {complexs} from '../data/complexsExample'
+import {complexs} from '../data/complexsExample.js'
 import {useDispatch, useSelector} from 'react-redux'
 import {filterServices, filterSports, orderAZ,orderFav} from '../redux/actions'
 
+
 function Filters() {
+
 
 const elements = useSelector(state =>  state.complexs)
 const dispatch = useDispatch()

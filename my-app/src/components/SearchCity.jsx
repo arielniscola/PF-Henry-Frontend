@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { complexs } from "../data/complexsExample";
+import { complexs } from "../data/complexsExample.js";
 import ComplexCard from "./ComplexCard";
 import { Link } from "react-router-dom";
 import Filters from "./Filters";

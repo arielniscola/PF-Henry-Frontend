@@ -1,6 +1,6 @@
 import * as actions from '../actionTypes'
 // import axios from 'axios'
-import {complexs} from '../../data/complexsExample'
+import {complexs} from '../../data/complexsExample.js'
 
 
 export const getAllComplex = () => async(dispatch)=>{
