@@ -6,9 +6,9 @@ const ComplexCard = ({ complexDetails }) => {
         <img className="max-w-[200px] rounded-lg" src={image} alt={name} />
 
         <div className="mx-5">
-          <p className="text-lg font-bold text-gray-500">{event}</p>
+          <p className="text-lg font-bold text-black-500">{event}</p>
           <p className="text-2xl mb-2 py-2">{name}</p>
-          <p className="text-gray-400 mb-2">{address}</p>
+          <p className="text-black-400 mb-2">{address}</p>
           <span className="p-2 w-9 rounded-2xl border-gray-500 border">
             $500
           </span>

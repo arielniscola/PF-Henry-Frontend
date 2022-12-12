@@ -35,6 +35,7 @@ const handleService = (e) =>{
     <section className='flex flex-row m-0 w-full items-center gap-10 p-4'>
         <div className='flex relative w-36 h-10 rounded-full overflow-hidden border-2 border-blue-900'>
             <select className=' appearance-none outline-0 border-0 flex jistify-center py-0 px-14 bg-transparent text-blue-900 cursor-pointer text-base hover:shadow-inner hover:shadow-slate-400 focus:shadow-inner focus:shadow-slate-400' onChange={(e) => handleOrder(e)}>
+
                 <option>Order</option>
                 <option value='az'>A-Z</option>
                 <option value='fav'>Favorites</option>

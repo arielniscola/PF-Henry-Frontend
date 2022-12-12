@@ -4,7 +4,6 @@ import {searchCity} from '../redux/actions'
 import {useDispatch, useSelector} from 'react-redux'
 
 
-
 const SearchCity = () => {
   const dispatch = useDispatch()
   const cities = useSelector(state => state.allComplexs)
@@ -45,52 +44,3 @@ export default SearchCity;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-const SearchCity = () => {
-  const [city, setCity] = useState("");
-  const [complex, setComplex] = useState(null);
-
-  const handleSearch = () => {
-    const complexFound = complexs.find((complex) => complex.city === city);
-    if (complexFound) {
-      setComplex(complexFound);
-    } else {
-      alert("No se encontro la ciudad");
-    }
-  };
-
-  return (
-    <div>
-      <input
-        type="text"
-        value={city}
-        onChange={(e) => setCity(e.target.value)}
-      />
-      <button onClick={handleSearch}>Buscar</button>
-      {complex && <ComplexCard complexDetails={complex} />}
-    </div>
-  );
-}
-
-export default SearchCity;
-*/
