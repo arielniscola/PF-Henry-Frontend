@@ -4,9 +4,11 @@ import AboutUs from "./components/AboutUs";
 import ContactUs from "./components/ContactUs";
 import LayOut from "./components/LayOut";
 import Error404 from "./components/Error404";
-import SearchCity from "./components/SearchCity";
+// import SearchCity from "./components/SearchCity";
 import Account from "./components/Account";
 import ComplexDetails from "./components/ComplexDetails";
+import ComplexContainer from "./components/complexContainer";
+
 
 function App() {
   return (
@@ -17,7 +19,8 @@ function App() {
         <Route path="contact-us" element={<ContactUs />} />
         <Route path="account" element={<Account />} />
         <Route path="*" element={<Error404 />} />
-        <Route path="search/:city" element={<ComplexDetails />} />
+        <Route path="search" element={<ComplexContainer/>} />
+        <Route path="search/:id" element={<ComplexDetails />} />
       </Route>
     </Routes>
   );
