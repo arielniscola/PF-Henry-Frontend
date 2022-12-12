@@ -4,7 +4,7 @@ const valUser = ({
     password2,
     email,
     phone
-  },setError,setLargo) =>{
+  },setError) =>{
     let validated = true
     let error = {
         fullName:true,
@@ -75,7 +75,6 @@ const valUser = ({
       ///////////////////////////////////////////////////
 
     // gmail
-    const largo = email.split("@")
     if(email.match(/^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i)){
         error = {...error, email: true}
       } else{

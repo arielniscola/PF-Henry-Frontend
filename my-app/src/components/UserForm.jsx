@@ -1,4 +1,5 @@
 import React,{useState} from 'react'
+import { createUser } from '../redux/actions'
 import valUser from './valUser'
 
 const initalState ={
@@ -13,7 +14,6 @@ const initalState ={
 function UserForm() {
 
   const [form, setForm] = useState(initalState)
-  const [largo, setLargo] = useState([])
   const [error, setError] = useState({
     fullName:false,
     password:false,
@@ -26,15 +26,13 @@ function UserForm() {
       ...form,
       [e.target.name]: e.target.value}
       )
-      valUser(form,setError,setLargo)
-      console.log(error)
-      console.log(form)
-      largo.length && console.log(largo)
+      valUser(form,setError)
   }
 
   const handleSubmit = (e) =>{
     e.preventDefault()
-    
+    createUser(form)
+    setForm(initalState)
   }
 
 

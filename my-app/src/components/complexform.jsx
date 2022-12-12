@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import valComplex from './valComplex'
+import {createComplex} from '../redux/actions'
 
 const initalState ={
     complexName:"",
@@ -30,6 +31,7 @@ function ComplexForm() {
 
   const handleSubmit = (e) =>{
     e.preventDefault()
+    createComplex()
   }
 
 

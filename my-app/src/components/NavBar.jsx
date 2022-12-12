@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -5,10 +6,13 @@ const NavBar = () => {
   const [userModal, setUserModal] = useState(false);
   const [menuModal, setMenuModal] = useState(false);
   // const [currentUser, setCurrentUser] = useState(false);
-  const [currentUser, setCurrentUser] = useState({
-    image: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
-    isOwner: false,
-  });
+  const [currentUser, setCurrentUser] = useState({});
+  useEffect(()=>{
+    setCurrentUser({
+      image: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
+      isOwner: false,
+    })
+  },[])
 
   return (
     <nav className="bg-white shadow dark:bg-gray-800 ">

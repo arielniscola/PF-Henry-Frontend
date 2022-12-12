@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { complexs } from "../data/complexsExample";
+import {getComplexDetails} from '../redux/actions'
 
 
 const ComplexDetails = () => {
-    const { city } = useParams();
-    const complex = complexs.find((complex) => complex.city === city);
+  const dispatch = useDispatch()
+  const complexs = useSelector(state => state.allComplexs)
+  const complex = useSelector(state => state.detail)
+  const id = useParams().id
+
+  useEffect(() =>{
+    dispatch(getComplexDetails(id,complexs))
+  },[dispatch,id,complexs])
+
     return (
         <div className="flex flex-col m-10  justify-around ">
         <div className="flex flex-row ">

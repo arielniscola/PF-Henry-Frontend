@@ -5,6 +5,8 @@ const initialState = {
   complexs: [],
   detail: {},
   currentUser: { isOwner: true },
+  sports:[],
+  services:[]
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -18,7 +20,17 @@ const rootReducer = (state = initialState, action) => {
     case actions.GET_COMPLEX_DETAIL:
       return {
         ...state,
-        complexs: action.payload,
+        detail: action.payload,
+      };
+    case actions.GET_ALL_SERVICES:
+      return {
+        ...state,
+        services: action.payload,
+      };
+    case actions.GET_ALL_SPORTS:
+      return {
+        ...state,
+        sports: action.payload,
       };
     case actions.FILTER_BY_SPORT:
       return {
