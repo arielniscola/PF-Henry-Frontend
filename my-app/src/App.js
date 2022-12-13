@@ -8,6 +8,7 @@ import Error404 from "./components/Error404";
 import Account from "./components/Account";
 import ComplexDetails from "./components/ComplexDetails";
 import ComplexContainer from "./components/complexContainer";
+import ComplexFavorite from "./components/ComplexFavorite";
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path="about" element={<AboutUs />} />
         <Route path="contact-us" element={<ContactUs />} />
         <Route path="account" element={<Account />} />
+        <Route path="favorites" element={<ComplexFavorite />} />
         <Route path="*" element={<Error404 />} />
         <Route path="search" element={<ComplexContainer/>} />
         <Route path="search/:id" element={<ComplexDetails />} />
