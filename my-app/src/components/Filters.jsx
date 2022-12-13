@@ -1,20 +1,11 @@
 import React from 'react'
-<<<<<<< HEAD
-import {complexs} from '../data/complexsExample.js'
-=======
->>>>>>> e59b45326762f92f292329be2430ff83ec845584
 import {useDispatch, useSelector} from 'react-redux'
 import {filterServices, filterSports, orderAZ,orderFav, getAllServices, getAllSports} from '../redux/actions'
 import { useEffect } from 'react'
 
 
 function Filters() {
-<<<<<<< HEAD
 
-
-const elements = useSelector(state =>  state.complexs)
-const dispatch = useDispatch()
-=======
     const dispatch = useDispatch()
     useEffect(()=>{
         dispatch(getAllServices())
@@ -23,7 +14,7 @@ const dispatch = useDispatch()
     const elements = useSelector(state =>  state.complexs)
     const sports = useSelector(state =>  state.sports)
     const services = useSelector(state =>  state.services)
->>>>>>> e59b45326762f92f292329be2430ff83ec845584
+
 
 
 const handleOrder = (e) =>{
