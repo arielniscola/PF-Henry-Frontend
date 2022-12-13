@@ -1,4 +1,7 @@
 import { Link } from "react-router-dom";
+import { Modal } from "./Modal";
+import ComplexForm from "./complexform"
+import { useModal } from "./hooks/useModal";
 
 const complexList = [
   {
@@ -40,12 +43,17 @@ const complexList = [
 ];
 
 const OwnerDashboard = () => {
+
+  const [isOpen, modalOpen, modalClose ] = useModal(false)
+
   return (
     <div className="bg-gray-100">
       <div className="container max-w-3xl px-4 mx-auto sm:px-8">
         <div className="py-8">
           <div className="flex flex-row justify-between w-full mb-1 sm:mb-0">
             <h2 className="text-2xl leading-tight">Your complex list</h2>
+            <button onClick={modalOpen}>Create complex</button>
+            <Modal isOpen={isOpen} modalClose={modalClose}><ComplexForm/></Modal>
           </div>
           <div className="px-4 py-4 -mx-4 overflow-x-auto sm:-mx-8 sm:px-8">
             <div className="inline-block min-w-full overflow-hidden rounded-lg shadow">

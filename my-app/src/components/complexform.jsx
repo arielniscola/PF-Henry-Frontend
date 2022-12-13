@@ -36,7 +36,7 @@ function ComplexForm() {
 
 
   return (
-    <div className='flex flex-col m-10 md:flex-row place-content-between'>
+    <div className='flex flex-col m-10 md:flex-row bg-white p-4 rounded place-content-between'>
         <div>
         <form onSubmit={(e) => handleSubmit(e)} className="flex self-center w-full max-w-m space-x-3">
         <div className="w-full max-w-2xl px-5 py-10 m-auto mt-10 bg-white rounded-lg shadow dark:bg-gray-800">

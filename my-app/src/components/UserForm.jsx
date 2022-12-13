@@ -8,6 +8,8 @@ const initalState ={
     password2:"",
     email:"",
     phone:"",
+    dni:"",
+    
 }
 
 
