@@ -79,5 +79,7 @@ export const complexs = [
     services:['Parrila','Quincho','Estacionamineto']
   },
 ];
+
 export const sports = ['Footsal','Futbol 5','Futbol 11','Handball','Padel','Basquet','Bas3x3','Hockey','Tenis','Volley','Beach Volley','Natacion']
 export const services = ['Parrila','Quincho','Duchas','Estacionamineto']
+

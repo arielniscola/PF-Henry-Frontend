@@ -2,7 +2,7 @@ const ComplexCard = ({ complexDetails }) => {
   const { name, event, image, address, rating } = complexDetails;
   return (
     <div className="flex flex-row m-5  justify-around">
-      <div className="flex flex-row ">
+      <div className="flex flex-row">
         <img className="max-w-[200px] rounded-lg" src={image} alt={name} />
 
         <div className="mx-5">
@@ -17,8 +17,14 @@ const ComplexCard = ({ complexDetails }) => {
           </span>
         </div>
         <span className="self-center text-xl">{rating} ★</span>
+      <div className="flex-end">
+      <button className="self-center  bg-gradient-to-r from-pink-300 to-blue-400 hover:from-blue-400 hover:to-pink-300 text-black font-bold py-2 px-4 rounded">
+        AddFavorite
+      </button>
+      </div>
       </div>
     </div>
+
   );
 };
 

@@ -11,7 +11,7 @@ const complexList = [
     logo: "https://logodownload.org/wp-content/uploads/2018/06/estudiantes-logo-escudo.png",
     address: "Buenos Aires, La Plata",
     isActive: true,
-    events: "Cumpleanios , bautizo",
+    events: "Cumpleanios , bautizmo",
   },
   {
     id: 2,

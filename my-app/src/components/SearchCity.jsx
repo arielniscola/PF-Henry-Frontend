@@ -27,13 +27,13 @@ const SearchCity = () => {
         <div>
             <input
                 type="text"
-                className="w-4/12 px-4 py-2 border border-transparent text-base font-medium rounded-md text-black bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" placeholder="Search City"
+                className="w-4/12 px-6 py-2 border border-transparent text-xl font-medium rounded-md text-black bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" placeholder="Search City"
                 value={city}
                 onChange={(e) => handleChange(e)}
             />
             <Link to={city.length > 0 && notfound ? '/search' : '/'}>
             <button onClick={handleSearch}
-            type="button" className="ml-3 inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            type="button" className="ml-3 inline-flex items-center px-4 py-2 border border-transparent text-xl font-medium rounded-md shadow-sm text-white bg-gradient-to-r from-blue-300 to-blue-800 hover:from-green-300 hover:to-green-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >Search</button>
             </Link>
         </div>

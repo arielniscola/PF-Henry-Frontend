@@ -15,31 +15,32 @@ const NavBar = () => {
   },[])
 
   return (
-    <nav className="bg-white shadow dark:bg-gray-800 ">
+    //<nav className="bg-white shadow dark:bg-blue-500/75 ">
+    <nav className="bg-gradient-to-r from-blue-500/75 via-purple-400 to-pink-400/75 ">
       <div className="px-8 mx-auto max-w-7xl">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20">
           <div className="flex items-center ">
             <Link className="flex-shrink-0" to="/">
-              <p className="text-2xl">
+              <p className="text-3xl">
                 PF<span className="font-bold"> Henry</span>
               </p>
             </Link>
             <div className="hidden md:block">
               <div className="flex items-baseline ml-10 space-x-4">
                 <Link
-                  className="px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-800 dark:hover:text-white"
+                  className="px-3 py-2 text-xl font-medium text-gray-600 rounded-md hover:text-gray-800 dark:hover:text-white"
                   to="/"
                 >
                   Home
                 </Link>
                 <Link
-                  className="px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-800 dark:hover:text-white"
+                  className="px-3 py-2 text-xl font-medium text-gray-600 rounded-md hover:text-gray-800 dark:hover:text-white"
                   to="/about"
                 >
                   About us
                 </Link>
                 <Link
-                  className="px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-800 dark:hover:text-white"
+                  className="px-3 py-2 text-xl font-medium text-gray-600 rounded-md hover:text-gray-800 dark:hover:text-white"
                   to="/contact-us"
                 >
                   Contact us
@@ -55,7 +56,7 @@ const NavBar = () => {
                     <button
                       onClick={() => setUserModal(!userModal)}
                       type="button"
-                      className="flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 rounded-md dark:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-gray-500"
+                      className="flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 rounded-md dark:text-gray-50 hover:bg-gray-50 dark:hover:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-gray-500"
                       id="options-menu"
                     >
                       {currentUser ? (
@@ -89,6 +90,15 @@ const NavBar = () => {
                       aria-orientation="vertical"
                       aria-labelledby="options-menu"
                     >
+                      <Link
+                        to="/favorites"
+                        className="block px-4 py-2 text-gray-700 text-md hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600"
+                        role="menuitem"
+                      >
+                        <span className="flex flex-col">
+                          <span>Favorites</span>
+                        </span>
+                      </Link>
                       <Link
                         to="/account"
                         className="block px-4 py-2 text-gray-700 text-md hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600"

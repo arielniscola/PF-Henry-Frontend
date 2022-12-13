@@ -31,7 +31,7 @@ const ComplexDetails = () => {
           </div>
           <span className="self-center text-xl">Rating: {complex.rating} ★</span>
         </div>
-        <button className="m-5 self-start bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">
+        <button className="m-5 self-start bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
             Reserve
         </button>
       </div>
