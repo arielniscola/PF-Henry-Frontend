@@ -578,3 +578,29 @@ export const searchCity = (city, array, setNotfound) => dispatch =>{
       payload: sports
     })
   }
+
+  export const addFavorite = (arr)=>{
+    //ver como cambiarlo para mejorar, considerar crear otra funcion    
+    return{
+      type: actions.ADD_FAVORITE,
+      payload: arr
+    }
+  }
+
+  export const sendFavorites = async(arr)=>{
+    try{
+      const send = await axios.post("url",{arr}) 
+      return {send, msg:"the complex was added to favorites"}
+    }catch(error){console.log(error)}
+  }
+
+  export const getFavorite = ()=>async(dispatch)=>{
+    
+    const favorites = await axios.get("url")
+
+    dispatch({
+      type: actions.GET_FAVORITES,
+      payload: favorites
+    })
+  }
+  

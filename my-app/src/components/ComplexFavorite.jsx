@@ -1,12 +1,23 @@
 import React from 'react';
-//import { Link } from 'react-router-dom';
-//import { useSelector } from 'react-redux';
+import {useLocalStorage} from './hooks/useLocalStorage'
+import ComplexCard from './ComplexCard';
+
 
 const ComplexFavorite = () => {
+
+    const [value, setValue] = useLocalStorage("favorite",[])
+    
+
    return (
-        <div>
-            <h1>Lista ComplexFavorite</h1>
+  
+    <div className="flex flex-col items-center">
+        <h1 className="text-4xl ">Favorites</h1>
+        <div className="flex flex-col items-center">
+            {value.map((complex) => (
+                <ComplexCard key={complex.id} {...complex} />
+            ))}
         </div>
+    </div>
     );
 }
 
