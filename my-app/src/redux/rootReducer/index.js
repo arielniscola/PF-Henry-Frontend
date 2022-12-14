@@ -4,9 +4,13 @@ const initialState = {
   allComplexs: [],
   complexs: [],
   detail: {},
-  currentUser: { isOwner: true },
+  currentUser: { 
+    isLogged:false,
+    isOwner: true 
+  },
   sports:[],
-  services:[]
+  services:[],
+  favorites:[]
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -51,6 +55,16 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         complexs: action.payload,
+      };
+    case actions.ADD_FAVORITE:
+      return {
+        ...state,
+        favorites: action.payload,
+      };
+    case actions.GET_FAVORITES:
+      return {
+        ...state,
+        favorites: [...state.favorites ,action.payload],
       };
     default:
       return state;
