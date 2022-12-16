@@ -1,17 +1,19 @@
-import { useSelector, useDispatch } from "react-redux";
-import Error404 from "./Error404";
+import { useSelector } from "react-redux";
+import { Navigate } from 'react-router-dom';
 import OwnerDashboard from "./OwnerDashboard";
 import UserDashBoard from "./UserDashboard";
 
 const Account = () => {
-  const dispatch = useDispatch();
-
   const currentUser = useSelector((state) => state.currentUser);
 
-  if (!currentUser) return <Error404 />;
+  if (!currentUser) return <Navigate to="/login" replace />;
+
 
   return (
-    <div>{currentUser.isOwner ? <OwnerDashboard /> : <UserDashBoard />}</div>
+    <>
+      <UserDashBoard />
+      {currentUser.isAdmin && <OwnerDashboard />}
+    </>
   );
 };
 
