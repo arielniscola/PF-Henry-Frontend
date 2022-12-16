@@ -1,18 +1,31 @@
 import { useEffect } from "react";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { setCurrentUser, logoutUser } from "../redux/actions";
 
 const NavBar = () => {
   const [userModal, setUserModal] = useState(false);
   const [menuModal, setMenuModal] = useState(false);
-  // const [currentUser, setCurrentUser] = useState(false);
-  const [currentUser, setCurrentUser] = useState({});
-  useEffect(()=>{
-    setCurrentUser({
-      image: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
-      isOwner: false,
-    })
-  },[])
+  const dispatch = useDispatch();
+  const currentUser = useSelector((state) => state.currentUser);
+
+  // useEffect(() => {
+  //   dispatch(
+  //     setCurrentUser({
+  //       image:
+  //         "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg",
+  //       isOwner: false,
+  //     })
+  //   );
+  // }, [dispatch]);
+
+  // console.log(currentUser);
+
+  const resetCurrentUser = () => {
+    localStorage.clear();
+    dispatch(logoutUser());
+  };
 
   return (
     <nav className="bg-white shadow dark:bg-gray-800 ">
@@ -60,9 +73,12 @@ const NavBar = () => {
                     >
                       {currentUser ? (
                         <img
-                          src={currentUser.image}
+                          src={
+                            currentUser.image ||
+                            "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                          }
                           alt="userphoto"
-                          className="w-10"
+                          className="w-9 max-w-[50px] max-h-[50px] rounded-3xl"
                         />
                       ) : (
                         <svg
@@ -104,8 +120,11 @@ const NavBar = () => {
                           className="block px-4 py-2 text-gray-700 text-md hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600"
                           role="menuitem"
                         >
-                          <span className="flex flex-col">
-                            <span>Logout</span>
+                          <span
+                            className="flex flex-col"
+                            onClick={() => dispatch(setCurrentUser(null))}
+                          >
+                            <span onClick={resetCurrentUser}>Logout</span>
                           </span>
                         </Link>
                       ) : (
@@ -115,7 +134,7 @@ const NavBar = () => {
                           role="menuitem"
                         >
                           <span className="flex flex-col">
-                            <span>Sign in</span>
+                            <span>Log in</span>
                           </span>
                         </Link>
                       )}
