@@ -4,9 +4,9 @@ const initialState = {
   allComplexs: [],
   complexs: [],
   detail: {},
-  currentUser: { isOwner: true },
-  sports:[],
-  services:[]
+  currentUser: null,
+  sports: [],
+  services: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -51,6 +51,21 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         complexs: action.payload,
+      };
+    case actions.SET_CURRENT_USER:
+      return {
+        ...state,
+        currentUser: action.payload,
+      };
+    case actions.LOGOUT_CURRENT_USER:
+      return {
+        ...state,
+        currentUser: action.payload,
+      };
+    case actions.CHECK_USER_SESSION:
+      return {
+        ...state,
+        currentUser: action.payload,
       };
     default:
       return state;
