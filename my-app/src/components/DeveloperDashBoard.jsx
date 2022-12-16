@@ -14,8 +14,8 @@ const DeveloperDashBoard = () => {
     dispatch(getAllComplex())
   },[dispatch])
 
-  const complexs = useSelector(state => state.complexs)
-  const users = useSelector(state => state.users)
+  const complexs = useSelector(state => state.allComplexs)
+  const users = useSelector(state => state.allUsers)
 
   const [page,setPage] = useState('complexs')
   const handleSetPage = (e) =>{

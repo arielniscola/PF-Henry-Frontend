@@ -17,8 +17,8 @@ const rootReducer = (state = initialState, action) => {
     case actions.GET_ALL_COMPLEX:
       return {
         ...state,
-        allComplexs: action.payload,
-        complexs: action.payload,
+        allComplexs: action.payload.api,
+        complexs: action.payload.borradoLogico,
       };
     case actions.GET_COMPLEX_DETAIL:
       return {
@@ -83,8 +83,8 @@ const rootReducer = (state = initialState, action) => {
     case actions.GET_ALL_USER:
       return {
         ...state,
-        allUsers: action.payload,
-        users:action.payload
+        allUsers: action.payload.api,
+        users:action.payload.borradoLogico
       };
     default:
       return state;

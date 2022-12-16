@@ -9,9 +9,13 @@ import clientAxios from "../../config/clientAxios";
 export const getAllComplex = () => async(dispatch)=>{
     try {
         const api = await axios.get("http://localhost:3001/complejo/all")
+        const borradoLogico = api.data.filter(e => e.status = true)
         dispatch({
             type: actions.GET_ALL_COMPLEX,
-            payload: api.data
+            payload: {
+              borradoLogico,
+              api: api.data
+            }
         })
   
     } catch (error) {
@@ -94,9 +98,13 @@ export const deleteComplex = (id)=>{
 export const getAllUser = () => async(dispatch)=>{
   try {
       const api = await axios.get("http://localhost:3001/clients/all")
+      const borradoLogico = api.data.filter(e => e.status = true)
       dispatch({
           type: actions.GET_ALL_USER,
-          payload: api.data
+          payload: {
+            borradoLogico,
+            api: api.data
+          }
       })
 
   } catch (error) {
