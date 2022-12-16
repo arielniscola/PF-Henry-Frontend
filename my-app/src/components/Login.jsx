@@ -27,7 +27,7 @@ const Login = () => {
       dispatch(setCurrentUser(data));
     } catch (error) {
       console.log(error);
-      setAlert({ msg: error.response, error: true });
+      setAlert({ msg: error.response.data, error: true });
     }
   };
 
