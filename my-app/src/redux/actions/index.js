@@ -2,6 +2,7 @@ import * as actions from '../actionTypes'
 import axios from 'axios'
 import {sports,services} from '../../data/complexsExample'
 import clientAxios from "../../config/clientAxios";
+// import {complexs} from '../../data/complexsExample'
 
 
 //CRUD COMPLEX
@@ -604,6 +605,7 @@ export const searchCity = (city, array, setNotfound) => dispatch =>{
     })
   }
 
+  //LOGIN
   export const setCurrentUser = (data) => {
     return {
       type: actions.SET_CURRENT_USER,
@@ -646,3 +648,25 @@ export const searchCity = (city, array, setNotfound) => dispatch =>{
       };
     }
   };
+
+
+  // DEVELOPER FUNCTIONS
+export const changeStatus = (value, id, arr) =>{
+  const find = arr.filter(e => e.id === id)
+  const change = {
+    ...find[0],
+    status: value ==="enable"? true : false
+  }
+  try{
+    
+    const update = axios.get(`http://localhost:3001/clients/update/${id}`,change)
+    
+    return {update, msg:"user updated"}
+  }
+  catch(error){
+    alert('error - user not updated')
+    console.log(error)
+  }
+
+
+}

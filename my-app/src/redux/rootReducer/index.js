@@ -7,7 +7,9 @@ const initialState = {
   currentUser: null,
   sports:[],
   services:[],
-  favorites:[]
+  favorites:[],
+  allUsers:[],
+  users:[]
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -77,6 +79,12 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         currentUser: action.payload,
+      };
+    case actions.GET_ALL_USER:
+      return {
+        ...state,
+        allUsers: action.payload,
+        users:action.payload
       };
     default:
       return state;
