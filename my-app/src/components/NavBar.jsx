@@ -1,18 +1,19 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { setCurrentUser, logoutUser } from "../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
 
 const NavBar = () => {
   const [userModal, setUserModal] = useState(false);
   const [menuModal, setMenuModal] = useState(false);
-  // const [currentUser, setCurrentUser] = useState(false);
-  const [currentUser, setCurrentUser] = useState({});
-  useEffect(()=>{
-    setCurrentUser({
-      image: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
-      isOwner: false,
-    })
-  },[])
+  const dispatch = useDispatch();
+  const currentUser = useSelector((state) => state.currentUser);
+
+  const resetCurrentUser = () => {
+    localStorage.removeItem("token");
+    dispatch(logoutUser());
+  };
 
   return (
     //<nav className="bg-white shadow dark:bg-blue-500/75 ">
@@ -115,7 +116,7 @@ const NavBar = () => {
                           role="menuitem"
                         >
                           <span className="flex flex-col">
-                            <span>Logout</span>
+                            <span onClick={resetCurrentUser}>Logout</span>
                           </span>
                         </Link>
                       ) : (

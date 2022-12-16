@@ -9,9 +9,21 @@ import Account from "./components/Account";
 import ComplexDetails from "./components/ComplexDetails";
 import ComplexContainer from "./components/complexContainer";
 import ComplexFavorite from "./components/ComplexFavorite";
-
+import Register from "./components/Register";
+import Login from "./components/Login";
+import ForgotPassword from "./components/ForgotPassword";
+import NewPassword from "./components/NewPassword";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { checkUserSession } from "./redux/actions";
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(checkUserSession());
+  }, [dispatch]);
+
   return (
     <Routes>
       <Route path="/" element={<LayOut />}>
@@ -21,6 +33,10 @@ function App() {
         <Route path="account" element={<Account />} />
         <Route path="favorites" element={<ComplexFavorite />} />
         <Route path="*" element={<Error404 />} />
+        <Route path="register" element={<Register />} />
+        <Route path="login" element={<Login />} />
+        <Route path="forgot-password" element={<ForgotPassword />} />
+        <Route path="forgot-password/:token" element={<NewPassword />} />
         <Route path="search" element={<ComplexContainer/>} />
         <Route path="search/:id" element={<ComplexDetails />} />
       </Route>
