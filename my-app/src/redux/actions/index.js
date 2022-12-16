@@ -2,15 +2,20 @@ import * as actions from '../actionTypes'
 import axios from 'axios'
 import {sports,services} from '../../data/complexsExample'
 import clientAxios from "../../config/clientAxios";
+// import {complexs} from '../../data/complexsExample'
 
 
 //CRUD COMPLEX
 export const getAllComplex = () => async(dispatch)=>{
     try {
         const api = await axios.get("http://localhost:3001/complejo/all")
+        const borradoLogico = api.data.filter(e => e.status = true)
         dispatch({
             type: actions.GET_ALL_COMPLEX,
-            payload: api.data
+            payload: {
+              borradoLogico,
+              api: api.data
+            }
         })
   
     } catch (error) {
@@ -93,9 +98,13 @@ export const deleteComplex = (id)=>{
 export const getAllUser = () => async(dispatch)=>{
   try {
       const api = await axios.get("http://localhost:3001/clients/all")
+      const borradoLogico = api.data.filter(e => e.status = true)
       dispatch({
           type: actions.GET_ALL_USER,
-          payload: api.data
+          payload: {
+            borradoLogico,
+            api: api.data
+          }
       })
 
   } catch (error) {
@@ -604,6 +613,7 @@ export const searchCity = (city, array, setNotfound) => dispatch =>{
     })
   }
 
+  //LOGIN
   export const setCurrentUser = (data) => {
     return {
       type: actions.SET_CURRENT_USER,
@@ -646,3 +656,45 @@ export const searchCity = (city, array, setNotfound) => dispatch =>{
       };
     }
   };
+
+
+  // DEVELOPER FUNCTIONS
+export const changeStatusComplex = (value, id, arr) =>{
+  const find = arr.filter(e => e.id === id)
+  const change = {
+    ...find[0],
+    status: value ==="enable"? true : false
+  }
+  try{
+    
+    const update = axios.get(`http://localhost:3001/complejo/update/${id}`,change)
+    
+    return {update, msg:"complex updated"}
+  }
+  catch(error){
+    alert('error - complex not updated')
+    console.log(error)
+  }
+
+
+}
+
+export const changeStatusUser = (value, id, arr) =>{
+  const find = arr.filter(e => e.id === id)
+  const change = {
+    ...find[0],
+    status: value ==="enable"? true : false
+  }
+  try{
+    
+    const update = axios.get(`http://localhost:3001/clients/update/${id}`,change)
+    
+    return {update, msg:"user updated"}
+  }
+  catch(error){
+    alert('error - user not updated')
+    console.log(error)
+  }
+
+
+}
