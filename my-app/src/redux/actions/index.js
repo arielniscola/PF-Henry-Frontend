@@ -1,7 +1,7 @@
 import * as actions from '../actionTypes'
 import axios from 'axios'
 import {sports,services} from '../../data/complexsExample'
-
+import clientAxios from "../../config/clientAxios";
 
 
 //CRUD COMPLEX
@@ -603,4 +603,46 @@ export const searchCity = (city, array, setNotfound) => dispatch =>{
       payload: favorites
     })
   }
+
+  export const setCurrentUser = (data) => {
+    return {
+      type: actions.SET_CURRENT_USER,
+      payload: data,
+    };
+  };
   
+  export const logoutUser = () => {
+    return {
+      type: actions.LOGOUT_CURRENT_USER,
+      payload: null,
+    };
+  };
+  
+  export const checkUserSession = () => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      return {
+        type: actions.LOGOUT_CURRENT_USER,
+        payload: null,
+      };
+    } else {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      };
+  
+      return async (dispatch) => {
+        try {
+          const { data } = await clientAxios("clients/profile", config);
+          return dispatch({
+            type: actions.SET_CURRENT_USER,
+            payload: data,
+          });
+        } catch (error) {
+          console.log(error);
+        }
+      };
+    }
+  };

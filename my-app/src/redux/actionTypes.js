@@ -35,3 +35,8 @@ export const SEARCH_BY_CITY = "SEARCH_BY_CITY"
 // cretae
 export const CREATE_USER = "CREATE_USER"
 export const CREATE_COMPLEX = "CREATE_COMPLEX"
+
+// user
+export const SET_CURRENT_USER = "SET_CURRENT_USER";
+export const LOGOUT_CURRENT_USER = "LOGOUT_CURRENT_USER";
+export const CHECK_USER_SESSION = "CHECK_USER_SESSION";
