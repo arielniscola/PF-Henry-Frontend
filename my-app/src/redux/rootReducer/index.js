@@ -4,10 +4,7 @@ const initialState = {
   allComplexs: [],
   complexs: [],
   detail: {},
-  currentUser: { 
-    isLogged:false,
-    isOwner: true 
-  },
+  currentUser: null,
   sports:[],
   services:[],
   favorites:[]
