@@ -2,7 +2,6 @@ import * as actions from "../actionTypes";
 import axios from "axios";
 import { sports, services } from "../../data/complexsExample";
 import clientAxios from "../../config/clientAxios";
-
 //CRUD COMPLEX
 export const getAllComplex = () => async (dispatch) => {
   try {
