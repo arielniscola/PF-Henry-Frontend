@@ -651,7 +651,27 @@ export const searchCity = (city, array, setNotfound) => dispatch =>{
 
 
   // DEVELOPER FUNCTIONS
-export const changeStatus = (value, id, arr) =>{
+export const changeStatusComplex = (value, id, arr) =>{
+  const find = arr.filter(e => e.id === id)
+  const change = {
+    ...find[0],
+    status: value ==="enable"? true : false
+  }
+  try{
+    
+    const update = axios.get(`http://localhost:3001/complejo/update/${id}`,change)
+    
+    return {update, msg:"complex updated"}
+  }
+  catch(error){
+    alert('error - complex not updated')
+    console.log(error)
+  }
+
+
+}
+
+export const changeStatusUser = (value, id, arr) =>{
   const find = arr.filter(e => e.id === id)
   const change = {
     ...find[0],

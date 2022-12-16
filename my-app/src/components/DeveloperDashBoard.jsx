@@ -35,7 +35,7 @@ const DeveloperDashBoard = () => {
       </ul>
       </div>
       <div>
-        {page === 'complexs'? <Table array={complexs}/> :<Table array={users}/>}
+        {page === 'complexs'? <Table array={complexs} typeTable="complex"/> :<Table array={users} typeTable="user"/>}
       </div>
     </div>
   )

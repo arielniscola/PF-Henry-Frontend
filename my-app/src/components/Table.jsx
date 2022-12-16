@@ -1,11 +1,15 @@
 import React from 'react'
-import {changeStatus} from '../redux/actions'
+import {changeStatusComplex,changeStatusUser} from '../redux/actions'
 
-const Table = ({array}) => {
+const Table = ({array,typeTable}) => {
 
 
    const handleClick = (e)=>{
-    changeStatus(e.target.value, e.target.id, array)
+    if(typeTable === "complex"){
+        changeStatusComplex(e.target.value, e.target.id, array)
+    }else{
+        changeStatusUser(e.target.value, e.target.id, array)
+    }
    }
   return (
     <div>
