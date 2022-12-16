@@ -16,6 +16,7 @@ import NewPassword from "./components/NewPassword";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { checkUserSession } from "./redux/actions";
+import ConfirmAccount from "./components/ConfirmAccount";
 
 function App() {
   const dispatch = useDispatch();
@@ -37,6 +38,7 @@ function App() {
         <Route path="login" element={<Login />} />
         <Route path="forgot-password" element={<ForgotPassword />} />
         <Route path="forgot-password/:token" element={<NewPassword />} />
+        <Route path="confirm-account/:token" element={<ConfirmAccount />} />
         <Route path="search" element={<ComplexContainer/>} />
         <Route path="search/:id" element={<ComplexDetails />} />
       </Route>
