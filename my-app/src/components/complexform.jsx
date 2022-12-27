@@ -29,11 +29,24 @@ function ComplexForm() {
     valComplex(form,setError)
   }
 
+    const handleImage = (e) => {
+        const file = e.target.files[0];
+        previewFile(file, e.target.name)
+    }
+    const previewFile = (file, name) =>{
+        const reader = new FileReader()
+        reader.readAsDataURL(file);
+        reader.onloadend = () => {
+            setForm({
+              ...form,
+              [name]: reader.result})
+        }
+      }
+
   const handleSubmit = (e) =>{
     e.preventDefault()
-    createComplex()
+    createComplex(form)
   }
-
 
   return (
     <div className='flex flex-col m-10 md:flex-row bg-white p-4 rounded place-content-between'>
@@ -99,7 +112,7 @@ function ComplexForm() {
             
             <div className="col-span-2 bg-white px-4 py-1 border border-transparent border-gray-300 rounded-lg shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
             <label>
-            <input type="file" name="logo" onChange={(e) => handleChange(e)} className="text-sm text-grey-500
+            <input type="file" name="logo" onChange={(e) => handleImage(e)} className="text-sm text-grey-500
             file:mr-5 file:py-2 file:px-6
             file:rounded-full file:border-0
             file:text-sm file:font-medium
