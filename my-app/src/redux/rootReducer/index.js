@@ -8,6 +8,7 @@ const initialState = {
   sports:[],
   services:[],
   favorites:[],
+  favlocal:[],
   allUsers:[],
   users:[]
 };
@@ -86,8 +87,16 @@ const rootReducer = (state = initialState, action) => {
         allUsers: action.payload.api,
         users:action.payload.borradoLogico
       };
+
+    case actions.FAV_LOCAL:
+      return {
+        ...state,
+        favlocal: [...state.favlocal, action.payload],
+      };
+
     default:
-      return state;
+      return state
+
   }
 };
 

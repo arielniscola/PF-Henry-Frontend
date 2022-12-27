@@ -21,6 +21,7 @@ export const GET_EVENT_DETAIL = "GET_EVENT_DETAIL"
 export const GET_ALL_SPORTS = "GET_ALL_SPORTS"
 export const GET_ALL_SERVICES = "GET_ALL_SERVICES"
 export const ADD_FAVORITE = "ADD_FAVORITE"
+export const FAV_LOCAL = "FAV_LOCAL"
 export const GET_FAVORITES = "GET_FAVORITES"
 
 //filters

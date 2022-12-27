@@ -2,26 +2,38 @@ import * as actions from '../actionTypes'
 import axios from 'axios'
 import {sports,services} from '../../data/complexsExample'
 import clientAxios from "../../config/clientAxios";
-// import {complexs} from '../../data/complexsExample'
+import {complexs} from '../../data/complexsExample'
 
 
 //CRUD COMPLEX
-export const getAllComplex = () => async(dispatch)=>{
-    try {
-        const api = await axios.get("http://localhost:3001/complejo/all")
-        const borradoLogico = api.data.filter(e => e.status = true)
-        dispatch({
-            type: actions.GET_ALL_COMPLEX,
-            payload: {
-              borradoLogico,
-              api: api.data
-            }
-        })
+// export const getAllComplex = () => async(dispatch)=>{
+//     try {
+//         const api = await axios.get("http://localhost:3001/complejo/all")
+//         const borradoLogico = api.data.filter(e => e.status = true)
+//         dispatch({
+//             type: actions.GET_ALL_COMPLEX,
+//             payload: {
+//               borradoLogico,
+//               api: api.data
+//             }
+//         })
   
-    } catch (error) {
-        console.log(error)
+//     } catch (error) {
+//         console.log(error)
+//     }
+// }
+
+export const getAllComplex = () =>{
+  return{
+    type: actions.GET_ALL_COMPLEX,
+    payload: {
+      api:complexs,
+      borradoLogico: complexs
     }
+  }
 }
+
+
 
 
 export const getComplexDetails = (id) => async(dispatch) =>{
@@ -43,7 +55,7 @@ export const createComplex = ({logo,cuit,complexName,complexAddress})=>{
   let complex = {
     name:complexName,
     cuit,
-    logo: logo.length ? logo : "https://icones.pro/wp-content/uploads/2022/03/icone-de-construction-et-de-batiment-gris.png" ,
+    logo,
     addres:complexAddress
   }
   try{
@@ -588,11 +600,19 @@ export const searchCity = (city, array, setNotfound) => dispatch =>{
     })
   }
 
-  export const addFavorite = (arr)=>{
+  export const addFavorite = (id,arr)=>{
     //ver como cambiarlo para mejorar, considerar crear otra funcion    
     return{
       type: actions.ADD_FAVORITE,
       payload: arr
+    }
+  }
+
+  export const addFavoriteLocalStorage = (obj)=>{
+    //ver como cambiarlo para mejorar, considerar crear otra funcion
+    return{
+      type: actions.FAV_LOCAL ,
+      payload: obj
     }
   }
 
