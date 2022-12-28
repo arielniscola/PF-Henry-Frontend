@@ -2,16 +2,22 @@ import React from 'react'
 import { useState } from 'react'
 import valComplex from './valComplex'
 import {createComplex} from '../redux/actions'
+import {useLoadScript} from '@react-google-maps/api'
+import MapForm from './MapForm'
 
 const initalState ={
-    complexName:"",
-    complexAddress:"",
+    name:"",
+    addres:"",
     cuit:"",
     city:"",
-    logo:""
+    logo:"",
+    lat:0,
+    lng:0
 }
 
 function ComplexForm() {
+
+  const {isLoaded} = useLoadScript({googleMapsApiKey:"AIzaSyDnQobr1nh7e9Y5r3In5Rmc38aZIqJsMcs"})
 
   const [form, setForm] = useState(initalState)
   const [error, setError] = useState({
@@ -66,7 +72,7 @@ function ComplexForm() {
                   type="text"
                   className="flex-1 w-full px-4 py-2 text-base text-gray-700 placeholder-gray-400 bg-white border border-transparent border-gray-300 rounded-lg shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                   placeholder="Complex name"
-                  name="complexName"
+                  name="name"
                   onChange={(e) => handleChange(e)}
                   />
               </div>
@@ -79,7 +85,7 @@ function ComplexForm() {
                   id="contact-form-name"
                   className="flex-1 w-full px-4 py-2 text-base text-gray-700 placeholder-gray-400 bg-white border border-transparent border-gray-300 rounded-lg shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                   placeholder="Complex address"
-                  name="complexAddress"
+                  name="adress"
                   onChange={(e) => handleChange(e)}
                   />
               </div>
@@ -122,7 +128,9 @@ function ComplexForm() {
             hover:file:text-white
           " />
         </label>
-            </div>
+          { isLoaded && <div> <MapForm send={true} setForm={setForm} form={form}/> </div>}
+            
+          </div>
 
             <div className="col-span-2 text-right">
             {error.complexName && error.complexAddress && error.cuit && error.city && <button
