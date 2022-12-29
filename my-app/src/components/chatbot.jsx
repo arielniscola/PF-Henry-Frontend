@@ -20,7 +20,7 @@ const config = {
 	floating: true
 };
 
-export default function chatbot() {
+export default function Chatbot() {
     return(
         <div>
         <ThemeProvider theme={theme}>
