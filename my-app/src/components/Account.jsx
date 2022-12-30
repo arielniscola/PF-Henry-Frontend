@@ -8,7 +8,7 @@ const Account = () => {
 
   if (!currentUser) return <Navigate to="/login" replace />;
 
-
+  
   return (
     <>
       <UserDashBoard />
