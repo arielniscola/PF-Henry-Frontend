@@ -152,8 +152,8 @@ function ComplexForm() {
           <img className="max-w-[400px] h-52 rounded-lg shadow-xl" src="https://i.ytimg.com/vi/ZwtCjlru67Y/maxresdefault.jpg" alt='example' />
           <div className="mx-5">
             <p className="text-lg font-bold text-gray-500">Event: ****</p>
-            <p className="text-2xl mb-2 py-2">{form.complexName.length ? form.complexName : 'Complex name'}</p>
-            <p className="text-gray-400 mb-2">Address: {form.complexAddress.length ? form.complexAddress : 'Address'}</p>
+            <p className="text-2xl mb-2 py-2">{form.name.length ? form.name : 'Complex name'}</p>
+            <p className="text-gray-400 mb-2">Address: {form.addres.length ? form.addres : 'Address'}</p>
             <span className="p-2 w-9 rounded-2xl border-gray-500 border">
               $500
             </span>

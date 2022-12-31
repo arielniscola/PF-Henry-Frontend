@@ -2,20 +2,16 @@ import * as actions from '../actionTypes'
 import axios from 'axios'
 import {sports,services} from '../../data/complexsExample'
 import clientAxios from "../../config/clientAxios";
-import {complexs} from '../../data/complexsExample'
+// import {complexs} from '../../data/complexsExample'
 
 
 //CRUD COMPLEX
 export const getAllComplex = () => async(dispatch)=>{
     try {
         const api = await axios.get("http://localhost:3001/complejo/all")
-        const borradoLogico = api.data.filter(e => e.status = true)
         dispatch({
             type: actions.GET_ALL_COMPLEX,
-            payload: {
-              borradoLogico,
-              api: api.data
-            }
+            payload: api.data
         })
   
     } catch (error) {
@@ -102,13 +98,9 @@ export const deleteComplex = (id)=>{
 export const getAllUser = () => async(dispatch)=>{
   try {
       const api = await axios.get("http://localhost:3001/clients/all")
-      const borradoLogico = api.data.filter(e => e.status = true)
       dispatch({
           type: actions.GET_ALL_USER,
-          payload: {
-            borradoLogico,
-            api: api.data
-          }
+          payload: api.data
       })
 
   } catch (error) {
@@ -131,19 +123,13 @@ try{
 }
 }
 
-export const createUser = ({fullname,password,email,phone})=>{
+export const createUser = async (formData)=>{
   
-  let user = {
-    name:fullname,
-    password,
-    email,
-    phone
-  }
   try{
     
-    const create = axios.get("http://localhost:3001/clients/create",user)
+    const { data } = await clientAxios.post("/clients/create", formData);
     
-    return {create, msg:"user created"}
+    return data;
   }
   catch(error){
     alert('error - user not created')
@@ -608,9 +594,9 @@ export const searchCity = (city, array, setNotfound) => dispatch =>{
     }
   }
 
-  export const sendFavorites = async(arr)=>{
+  export const updateFavorite= async(id,arr)=>{
     try{
-      const send = await axios.post("url",{arr}) 
+      const send = axios.get(`http://localhost:3001/favorites/create/${id}`,arr)
       return {send, msg:"the complex was added to favorites"}
     }catch(error){console.log(error)}
   }

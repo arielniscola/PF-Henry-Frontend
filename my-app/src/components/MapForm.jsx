@@ -33,10 +33,9 @@ const MapForm = ({send = false, setForm, form}) => {
     }
 
     const handlePosition = (e) => {
+        console.log(e)
         const lat = Number(e.latLng.lat())
         const lng = Number(e.latLng.lng())
-        console.log(lat)
-        console.log(lng)
         setCenter({lat,lng})
     }
 
@@ -46,8 +45,8 @@ const MapForm = ({send = false, setForm, form}) => {
     },[])
     console.log("esto es center",center)
 
-  return <div>
-    <GoogleMap zoom={15} center={center} mapContainerClassName='w-full h-screen' >
+  return <div className='h-80'>
+    <GoogleMap zoom={15} center={center} mapContainerClassName='w-full h-full' >
     {center.lat && <Marker  position={center} draggable={send} onDragEnd={(e) => handlePosition(e)}/>}
   </GoogleMap>
   {send && <button onClick={() => handleClick()}>Confirmar ubicacion</button>}

@@ -7,7 +7,11 @@ const initialState = {
   currentUser: null,
   sports:[],
   services:[],
-  favorites:[],
+  userComplexs:[],
+  favUser:{
+    id:null,
+    fav:[]
+  },
   favlocal:[],
   allUsers:[],
   users:[]
@@ -69,7 +73,9 @@ const rootReducer = (state = initialState, action) => {
     case actions.SET_CURRENT_USER:
       return {
         ...state,
-        currentUser: action.payload,
+        currentUser: {...action.payload, role: "owner"},
+        favorites: action.payload.favorites,
+        userComplexs:action.payload.complexs
       };
     case actions.LOGOUT_CURRENT_USER:
       return {

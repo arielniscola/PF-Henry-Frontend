@@ -1,15 +1,20 @@
 import React from 'react';
 import {useLocalStorage} from './hooks/useLocalStorage'
 import ComplexCard from './ComplexCard';
-import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateFavorite } from '../redux/actions';
+// import { sendFavorites } from '../redux/actions';
 
 
 const ComplexFavorite = () => {
 
+    const dispatch = useDispatch()
+
     const local = useSelector(state => state.favlocal)
-    const fav = useSelector(state => state.favorites)
+    const favUser = useSelector(state => state.favUser)
     const user = useSelector(state => state.currentUser)
+
 
     
     const [value, setValue] = useLocalStorage("favorite",[])
@@ -22,15 +27,22 @@ const ComplexFavorite = () => {
     } 
     const noRepeat = filter([...value,...local])
 
+    const noRepAll = filter([...value, ...favUser.fav])
+
     useEffect(()=>{
         setValue(noRepeat)
+        user.id && dispatch(updateFavorite(favUser.id,noRepAll))
     },[])
 
-    const favorites = user === null ? value : fav
+    const favorites = !user.id ? value : favUser.fav
 
     const handleRemoveFavorite = (complex) => {
-        const newFavorite = value.filter((item) => item.id !== complex.id)
-        setValue(newFavorite)
+        const arr = user.id ? favUser.fav : value
+        const newFavorite = arr.filter((item) => item.id !== complex.id)
+        if(!user.id){
+            return setValue(newFavorite)
+        }
+        dispatch(updateFavorite(favUser.id,newFavorite))
     }
 
 

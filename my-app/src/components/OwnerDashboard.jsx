@@ -1,60 +1,16 @@
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { Modal } from "./Modal";
-import ComplexForm from "./complexform"
-import { useModal } from "./hooks/useModal";
 
-const complexList = [
-  {
-    id: 1,
-    name: "Complejo pepe",
-    cuit: 201232312310,
-    logo: "https://logodownload.org/wp-content/uploads/2018/06/estudiantes-logo-escudo.png",
-    address: "Buenos Aires, La Plata",
-    isActive: true,
-    events: "Cumpleanios , bautizmo",
-  },
-  {
-    id: 2,
-    name: "Complejo salta",
-    cuit: 201232312310,
-    logo: "https://logodownload.org/wp-content/uploads/2018/06/estudiantes-logo-escudo.png",
-    address: "Buenos Aires, La Plata",
-    isActive: true,
-    events: "Futbol, paddle, tenis",
-  },
-  {
-    id: 3,
-    name: "Complejo nopuede",
-    cuit: 201232312310,
-    logo: "https://logodownload.org/wp-content/uploads/2018/06/estudiantes-logo-escudo.png",
-    address: "Buenos Aires, La Plata",
-    isActive: true,
-    events: "Futbol, paddle, tenis",
-  },
-  {
-    id: 4,
-    name: "Complejo parar",
-    cuit: 201232312310,
-    logo: "https://logodownload.org/wp-content/uploads/2018/06/estudiantes-logo-escudo.png",
-    address: "Buenos Aires, La Plata",
-    isActive: true,
-    events: "Futbol, paddle, tenis",
-  },
-];
+
 
 const OwnerDashboard = () => {
-
-  const [isOpen, modalOpen, modalClose ] = useModal(false)
+  const complexList = useSelector(state => state.currentUser.complexs)
 
   return (
     <div className="bg-gray-100">
       <div className="container max-w-3xl px-4 mx-auto sm:px-8">
         <div className="py-8">
-          <div className="flex flex-row justify-between w-full mb-1 sm:mb-0">
-            <h2 className="text-2xl leading-tight">Your complex list</h2>
-            <button onClick={modalOpen}>Create complex</button>
-            <Modal isOpen={isOpen} modalClose={modalClose}><ComplexForm/></Modal>
-          </div>
+            <Link to="/create">Create complex</Link>
           <div className="px-4 py-4 -mx-4 overflow-x-auto sm:-mx-8 sm:px-8">
             <div className="inline-block min-w-full overflow-hidden rounded-lg shadow">
               <table className="min-w-full leading-normal">
@@ -91,7 +47,7 @@ const OwnerDashboard = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {complexList.map((complex) => {
+                  {complexList?.map((complex) => {
                     return (
                       <tr key={complex.id}>
                         <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
