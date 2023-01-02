@@ -1,25 +1,35 @@
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {addFavoriteLocalStorage} from '../redux/actions'
+import { updateFavorite } from "../redux/actions";
 
 const ComplexCard = ({ complexDetails, favorite}) => {
 
   const dispatch = useDispatch()
 
-  const user = useSelector(state => state.currentUser)
+  const user = useSelector(state => state.currentUser.id)
   const local = useSelector(state => state.favlocal)
+  const favorites = useSelector(state => state.favUser.fav)
 
   const { id, name, event, image, address, rating } = complexDetails;
 
-  const find = favorite? favorite : local?.some(e => e.id === id)
+  const find = local?.some(e => e.id === id)
 
   const handleFavorite = () =>{
     if(user === null){
       if(!find){
         dispatch(addFavoriteLocalStorage(complexDetails))
       }else{
-        console.log("no se agrega")
+        alert("already in your favorites")
       }
+    }else{
+      if(favorite){
+        dispatch(updateFavorite([...favorites, complexDetails]))
+      }else{
+        alert("already in your favorites")
+      }
+      
     }
   }
 
@@ -46,7 +56,7 @@ const ComplexCard = ({ complexDetails, favorite}) => {
         
       <div className="flex-end">
       <button onClick={handleFavorite} className="self-center  bg-gradient-to-r from-pink-300 to-blue-400 hover:from-blue-400 hover:to-pink-300 text-black font-bold py-2 px-4 rounded">
-         {find? <i className="fa-solid fa-bookmark"></i> :<i className="fa-regular fa-bookmark"></i>}
+         {find || favorite ? <i className="fa-solid fa-bookmark"></i> :<i className="fa-regular fa-bookmark"></i>}
       </button>
       </div>
     </div>

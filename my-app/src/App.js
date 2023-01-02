@@ -17,6 +17,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { checkUserSession } from "./redux/actions";
 import ConfirmAccount from "./components/ConfirmAccount";
+import ComplexForm from "./components/complexform";
 
 function App() {
   const dispatch = useDispatch();
@@ -40,6 +41,7 @@ function App() {
         <Route path="forgot-password/:token" element={<NewPassword />} />
         <Route path="confirm-account/:token" element={<ConfirmAccount />} />
         <Route path="search" element={<ComplexContainer/>} />
+        <Route path="create" element={<ComplexForm/>} />
         <Route path="search/:id" element={<ComplexDetails />} />
       </Route>
     </Routes>
