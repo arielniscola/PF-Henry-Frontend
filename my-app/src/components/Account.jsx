@@ -15,7 +15,7 @@ const Account = () => {
     if(currentUser.rol === "owner") return <OwnerDashboard/>
   }
 
-
+  
   return (
     <>
     { currentUser.rol !== "admin" && <UserDashBoard />}
