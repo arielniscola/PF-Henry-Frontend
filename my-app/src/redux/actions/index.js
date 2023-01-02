@@ -36,21 +36,12 @@ export const getComplexDetails = (id) => async(dispatch) =>{
 }
 }
 
-export const createComplex = ({logo,cuit,name,addres,lat,lng})=>{
-  
-  let complex = {
-    name,
-    cuit,
-    logo,
-    addres,
-    lat,
-    lng
-  }
+export const createComplex = async(complex)=>{
   try{
     
-    const create = axios.post("http://localhost:3001/complejo/create",complex)
+    const create = await axios.post("http://localhost:3001/complejo/create",complex)
     
-    return {create, msg:"complex created"}
+    console.log(create)
   }
   catch(error){
     alert('error - complex not created')
@@ -68,7 +59,7 @@ export const updateComplex = (id,{logo,cuit,complexName,complexAddress})=>{
   }
   try{
     
-    const create = axios.post(`http://localhost:3001/complejo/update/${id}`,complex)
+    const create = axios.put(`http://localhost:3001/complejo/update/${id}`,complex)
     
     return {create, msg:"complex updated"}
   }
@@ -97,10 +88,14 @@ export const deleteComplex = (id)=>{
 
 export const getAllUser = () => async(dispatch)=>{
   try {
-      const api = await axios.get("http://localhost:3001/clients/all")
+      const {data} = await axios.get("http://localhost:3001/clients/all")
+      const logic = data.filter(e => e.delete === false)
       dispatch({
           type: actions.GET_ALL_USER,
-          payload: api.data
+          payload: {
+            api: data,
+            logic
+          }
       })
 
   } catch (error) {
@@ -116,7 +111,7 @@ try{
   
   dispatch({
     type: actions.GET_USER_DETAIL,
-    payload: find
+    payload: find.data
   })
 }catch(error){
   alert(error)
@@ -147,7 +142,7 @@ export const updateUser = (id,{fullname,password,email,phone})=>{
   }
   try{
     
-    const create = axios.get(`http://localhost:3001/clients/update/${id}`,user)
+    const create = axios.put(`http://localhost:3001/clients/update/${id}`,user)
     
     return {create, msg:"user updated"}
   }
@@ -228,7 +223,7 @@ export const updateCourt = (id,{numberCourt,description,typeCourt})=>{
   }
   try{
     
-    const create = axios.get(`http://localhost:3001/court/update/${id}`,court)
+    const create = axios.put(`http://localhost:3001/court/update/${id}`,court)
     
     return {create, msg:"court updated"}
   }
@@ -301,7 +296,7 @@ export const updateTurn = (id,{ date, time_start})=>{
   const turn = { date, time_start}
   try{
     
-    const create = axios.get(`http://localhost:3001/turn/update/${id}`,turn)
+    const create = axios.put(`http://localhost:3001/turn/update/${id}`,turn)
     
     return {create, msg:"turn updated"}
   }
@@ -375,7 +370,7 @@ export const updateTypeCourt = (id,{description,icon})=>{
   const typecourt = {description,icon}
   try{
     
-    const create = axios.get(`http://localhost:3001/typecourt/update/${id}`,typecourt)
+    const create = axios.put(`http://localhost:3001/typecourt/update/${id}`,typecourt)
     
     return {create, msg:"typecourt updated"}
   }
@@ -448,7 +443,7 @@ export const updateEvent = (id,{description,icon})=>{
   const typecourt = {description,icon}
   try{
     
-    const create = axios.get(`http://localhost:3001/event/update/${id}`,typecourt)
+    const create = axios.put(`http://localhost:3001/event/update/${id}`,typecourt)
     
     return {create, msg:"event updated"}
   }
@@ -528,6 +523,7 @@ export const orderFav = (array) => dispatch =>{
 }
 
 export const searchCity = (city, array, setNotfound) => dispatch =>{
+  console.log(array)
   
   const filtered = array.filter(e => e.city === city)
   console.log(filtered)
@@ -594,9 +590,16 @@ export const searchCity = (city, array, setNotfound) => dispatch =>{
     }
   }
 
+  export const createFavorite= async(id)=>{
+    try{
+      const send = axios.post(`http://localhost:3001/favorites/create/${id}`)
+      return {send, msg:"complex array created"}
+    }catch(error){console.log(error)}
+  }
+
   export const updateFavorite= async(id,arr)=>{
     try{
-      const send = axios.get(`http://localhost:3001/favorites/create/${id}`,arr)
+      const send = axios.post(`http://localhost:3001/favorites/create/${id}`,arr)
       return {send, msg:"the complex was added to favorites"}
     }catch(error){console.log(error)}
   }
@@ -657,15 +660,11 @@ export const searchCity = (city, array, setNotfound) => dispatch =>{
 
 
   // DEVELOPER FUNCTIONS
-export const changeStatusComplex = (value, id, arr) =>{
-  const find = arr.filter(e => e.id === id)
-  const change = {
-    ...find[0],
-    status: value ==="enable"? true : false
-  }
+export const changeStatusComplex = async (id, change) =>{
   try{
     
-    const update = axios.get(`http://localhost:3001/complejo/update/${id}`,change)
+    const update = await axios.put(`http://localhost:3001/complejo/update/${id}`,change)
+    console.log(update)
     
     return {update, msg:"complex updated"}
   }
@@ -677,15 +676,10 @@ export const changeStatusComplex = (value, id, arr) =>{
 
 }
 
-export const changeStatusUser = (value, id, arr) =>{
-  const find = arr.filter(e => e.id === id)
-  const change = {
-    ...find[0],
-    status: value ==="enable"? true : false
-  }
+export const changeStatusUser = async(id,change) =>{
   try{
     
-    const update = axios.get(`http://localhost:3001/clients/update/${id}`,change)
+    const update = await axios.put(`http://localhost:3001/clients/update/${id}`,change)
     
     return {update, msg:"user updated"}
   }

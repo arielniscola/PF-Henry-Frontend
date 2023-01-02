@@ -8,16 +8,17 @@ const Account = () => {
   const currentUser = useSelector((state) => state.currentUser);
 
   if (!currentUser) return <Navigate to="/login" replace />;
+  console.log(currentUser.rol)
 
   const dashBoard = () => {
-    if(currentUser.role === "admin") return <Develop/>
-    if(currentUser.role === "owner") return <OwnerDashboard/>
+    if(currentUser.rol === "admin") return <Develop/>
+    if(currentUser.rol === "owner") return <OwnerDashboard/>
   }
 
 
   return (
     <>
-    { currentUser.role !== "admin" && <UserDashBoard />}
+    { currentUser.rol !== "admin" && <UserDashBoard />}
     {dashBoard()}
     </>
   );

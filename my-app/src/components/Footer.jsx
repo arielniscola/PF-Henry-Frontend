@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <div className="h-56 bg-blue-800/75 flex flex-wrap py- justify-around text-white items-center ">
+    <div className="h-56 bg-blue-800/75 flex flex-wrap py- justify-center text-white items-center ">
       <div className="text-center font-bold ">
         <h2 className="text-5xl  font-bold mb-2">PF HENRY</h2>
         <p className="text-2xl font-bold  ">Ready to start?</p>

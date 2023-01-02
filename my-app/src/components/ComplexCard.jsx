@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {addFavoriteLocalStorage} from '../redux/actions'
@@ -7,7 +8,7 @@ const ComplexCard = ({ complexDetails, favorite}) => {
 
   const dispatch = useDispatch()
 
-  const user = useSelector(state => state.currentUser)
+  const user = useSelector(state => state.currentUser.id)
   const local = useSelector(state => state.favlocal)
   const favorites = useSelector(state => state.favUser.fav)
 

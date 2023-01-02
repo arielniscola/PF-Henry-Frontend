@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {searchCity} from '../redux/actions'
+import {searchCity, getAllComplex} from '../redux/actions'
 import {useDispatch, useSelector} from 'react-redux'
 import { Navigate } from 'react-router-dom';
 import { useEffect } from "react";
@@ -7,19 +7,20 @@ import { useEffect } from "react";
 
 const SearchCity = () => {
   const dispatch = useDispatch()
-  const cities = useSelector(state => state.allComplexs)
   
   const [city,setCity] = useState("")
   const [notfound,setNotfound] = useState(false)
   
   useEffect(() =>{
+    dispatch(getAllComplex())
     setNotfound(false)
   },[])
+  const cities = useSelector(state => state.allComplexs)
 
   if(notfound) return <Navigate to="/search" replace />;
 
   const handleChange = (e) =>{
-    setCity(e.target.value.trim())
+    setCity(e.target.value)
   }
 
     const handleSearch = () => {

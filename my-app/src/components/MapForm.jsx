@@ -2,15 +2,13 @@ import React, { useState } from 'react'
 import { GoogleMap, Marker } from '@react-google-maps/api'
 import { useEffect } from 'react'
 
-const MapForm = ({send = false, setForm, form}) => {
+const MapForm = ({send = false, setForm, form,idUser}) => {
 
     const [center, setCenter] = useState({})
 
 	const onUbicacionConcedida = ubicacion => {
         const lat = Number(ubicacion.coords.latitude)
         const lng = Number(ubicacion.coords.longitude)
-		console.log("Tengo la latitud: ", lat);
-        console.log("Tengo la longitud: ", lng);
         setCenter({lat,lng})
 	}
   
@@ -27,29 +25,28 @@ const MapForm = ({send = false, setForm, form}) => {
     const handleClick = () =>{
         setForm({
             ...form,
+            idUser,
             lat: center.lat,
             lng: center.lng
         })
-    }
-
-    const handlePosition = (e) => {
-        console.log(e)
+      }
+      
+      const handlePosition = (e) => {
         const lat = Number(e.latLng.lat())
         const lng = Number(e.latLng.lng())
         setCenter({lat,lng})
+        handleClick()
     }
 
     useEffect(()=>{
         if ("geolocation" in navigator)console.log(navigator.geolocation.getCurrentPosition(onUbicacionConcedida, onError, opciones))
         else return "tu buscador no soporta geolocalizacion"
     },[])
-    console.log("esto es center",center)
 
-  return <div className='h-80'>
+  return <div className='h-80 relative'>
     <GoogleMap zoom={15} center={center} mapContainerClassName='w-full h-full' >
     {center.lat && <Marker  position={center} draggable={send} onDragEnd={(e) => handlePosition(e)}/>}
   </GoogleMap>
-  {send && <button onClick={() => handleClick()}>Confirmar ubicacion</button>}
     </div>
 }
 

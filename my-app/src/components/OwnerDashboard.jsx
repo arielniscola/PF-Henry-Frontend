@@ -1,16 +1,25 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import Tr from './listForOwner'
+import {getUserDetails} from '../redux/actions'
+import { useEffect } from "react";
 
 
 
 const OwnerDashboard = () => {
-  const complexList = useSelector(state => state.currentUser.complexs)
+  const dispatch = useDispatch()
+  const id = useSelector(state => state.currentUser.id)
+  useEffect(()=>{
+    dispatch(getUserDetails(id))
+  },[])
+  const obj = useSelector(state => state.currentUser)
+  const complexList = useSelector(state => state.userComplexs)
 
   return (
     <div className="bg-gray-100">
-      <div className="container max-w-3xl px-4 mx-auto sm:px-8">
+      <div className="container max-w-4xl px-4 mx-auto sm:px-8">
         <div className="py-8">
-            <Link to="/create">Create complex</Link>
+            <Link  className="w-full px-4 py-2 text-base font-semibold text-center text-white transition duration-200 ease-in bg-indigo-600 rounded-lg shadow-md hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 " to="/create">Create complex</Link>
           <div className="px-4 py-4 -mx-4 overflow-x-auto sm:-mx-8 sm:px-8">
             <div className="inline-block min-w-full overflow-hidden rounded-lg shadow">
               <table className="min-w-full leading-normal">
@@ -41,123 +50,21 @@ const OwnerDashboard = () => {
                       status
                     </th>
                     <th
-                      scope="col"
-                      className="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200"
-                    ></th>
+                      colSpan="2"
+                      className="px-5 py-3 text-sm font-normal text-center text-gray-800 uppercase bg-white border-b border-gray-200"
+                    >actions</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {complexList?.map((complex) => {
-                    return (
-                      <tr key={complex.id}>
-                        <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                          <div className="flex items-center">
-                            <div className="flex-shrink-0">
-                              <Link
-                                to={`/complex/${complex.id}`}
-                                className="relative block"
-                              >
-                                <img
-                                  alt="profil"
-                                  src={complex.logo}
-                                  className="w-10 h-10 mx-auto rounded-full object-contain "
-                                />
-                              </Link>
-                            </div>
-                            <div className="ml-3">
-                              <p className="text-gray-900 whitespace-no-wrap">
-                                {complex.name}
-                              </p>
-                            </div>
-                          </div>
-                        </td>
-                        <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                          <p className="text-gray-900 whitespace-no-wrap">
-                            {complex.events}
-                          </p>
-                        </td>
-                        <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                          <p className="text-gray-900 whitespace-no-wrap">
-                            12/09/2020
-                          </p>
-                        </td>
-                        <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                          <span className="relative inline-block px-3 py-1 font-semibold leading-tight text-green-900">
-                            <span
-                              aria-hidden="true"
-                              className="absolute inset-0 bg-green-200 rounded-full opacity-50"
-                            ></span>
-                            <span className="relative">active</span>
-                          </span>
-                        </td>
-                        <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                          <button className="text-indigo-600 hover:text-indigo-900">
-                            Disable
-                          </button>
-                        </td>
-                      </tr>
-                    );
-                  })}
+                  {complexList?.map((complex,index) => (<Tr
+                  array={complexList}
+                  key={index}
+                  complex={complex}
+                  typeTable="complex"
+                  />)
+                  )}
                 </tbody>
               </table>
-              <div className="flex flex-col items-center px-5 py-5 bg-white xs:flex-row xs:justify-between">
-                <div className="flex items-center">
-                  <button
-                    type="button"
-                    className="w-full p-4 text-base text-gray-600 bg-white border rounded-l-xl hover:bg-gray-100"
-                  >
-                    <svg
-                      width="9"
-                      fill="currentColor"
-                      height="8"
-                      className=""
-                      viewBox="0 0 1792 1792"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path d="M1427 301l-531 531 531 531q19 19 19 45t-19 45l-166 166q-19 19-45 19t-45-19l-742-742q-19-19-19-45t19-45l742-742q19-19 45-19t45 19l166 166q19 19 19 45t-19 45z"></path>
-                    </svg>
-                  </button>
-                  <button
-                    type="button"
-                    className="w-full px-4 py-2 text-base text-indigo-500 bg-white border-t border-b hover:bg-gray-100 "
-                  >
-                    1
-                  </button>
-                  <button
-                    type="button"
-                    className="w-full px-4 py-2 text-base text-gray-600 bg-white border hover:bg-gray-100"
-                  >
-                    2
-                  </button>
-                  <button
-                    type="button"
-                    className="w-full px-4 py-2 text-base text-gray-600 bg-white border-t border-b hover:bg-gray-100"
-                  >
-                    3
-                  </button>
-                  <button
-                    type="button"
-                    className="w-full px-4 py-2 text-base text-gray-600 bg-white border hover:bg-gray-100"
-                  >
-                    4
-                  </button>
-                  <button
-                    type="button"
-                    className="w-full p-4 text-base text-gray-600 bg-white border-t border-b border-r rounded-r-xl hover:bg-gray-100"
-                  >
-                    <svg
-                      width="9"
-                      fill="currentColor"
-                      height="8"
-                      className=""
-                      viewBox="0 0 1792 1792"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path d="M1363 877l-742 742q-19 19-45 19t-45-19l-166-166q-19-19-19-45t19-45l531-531-531-531q-19-19-19-45t19-45l166-166q19-19 45-19t45 19l742 742q19 19 19 45t-19 45z"></path>
-                    </svg>
-                  </button>
-                </div>
-              </div>
             </div>
           </div>
         </div>
