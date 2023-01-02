@@ -8,7 +8,7 @@ const ComplexCard = ({ complexDetails, favorite}) => {
 
   const dispatch = useDispatch()
 
-  const user = useSelector(state => state.currentUser.id)
+  const user = useSelector(state => state.isActive)
   const local = useSelector(state => state.favlocal)
   const favorites = useSelector(state => state.favUser.fav)
 

@@ -119,7 +119,6 @@ try{
 }
 
 export const createUser = async (formData)=>{
-  
   try{
     
     const { data } = await clientAxios.post("/clients/create", formData);
@@ -647,6 +646,7 @@ export const searchCity = (city, array, setNotfound) => dispatch =>{
       return async (dispatch) => {
         try {
           const { data } = await clientAxios("clients/profile", config);
+          console.log(data)
           return dispatch({
             type: actions.SET_CURRENT_USER,
             payload: data,

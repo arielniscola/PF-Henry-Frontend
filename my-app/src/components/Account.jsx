@@ -8,7 +8,7 @@ const Account = () => {
   const currentUser = useSelector((state) => state.currentUser);
 
   if (!currentUser) return <Navigate to="/login" replace />;
-  console.log(currentUser.rol)
+  console.log(currentUser)
 
   const dashBoard = () => {
     if(currentUser.rol === "admin") return <Develop/>

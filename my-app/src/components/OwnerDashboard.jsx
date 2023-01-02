@@ -7,12 +7,6 @@ import { useEffect } from "react";
 
 
 const OwnerDashboard = () => {
-  const dispatch = useDispatch()
-  const id = useSelector(state => state.currentUser.id)
-  useEffect(()=>{
-    dispatch(getUserDetails(id))
-  },[])
-  const obj = useSelector(state => state.currentUser)
   const complexList = useSelector(state => state.userComplexs)
 
   return (
@@ -56,7 +50,7 @@ const OwnerDashboard = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {complexList?.map((complex,index) => (<Tr
+                  {[complexList]?.map((complex,index) => (<Tr
                   array={complexList}
                   key={index}
                   complex={complex}
