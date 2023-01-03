@@ -8,11 +8,14 @@ import clientAxios from "../../config/clientAxios";
 //CRUD COMPLEX
 export const getAllComplex = () => async(dispatch)=>{
     try {
-        const api = await axios.get("http://localhost:3001/complejo/all")
+        const {data} = await axios.get("http://localhost:3001/complejo/all")
+        const logic = data.filter(e => e.delete === false)
         dispatch({
             type: actions.GET_ALL_COMPLEX,
-            payload: api.data
-        })
+            payload: {
+              api: data,
+              logic
+            }})
   
     } catch (error) {
         console.log(error)
@@ -40,8 +43,6 @@ export const createComplex = async(complex)=>{
   try{
     
     const create = await axios.post("http://localhost:3001/complejo/create",complex)
-    
-    console.log(create)
   }
   catch(error){
     alert('error - complex not created')
@@ -522,10 +523,8 @@ export const orderFav = (array) => dispatch =>{
 }
 
 export const searchCity = (city, array, setNotfound) => dispatch =>{
-  console.log(array)
   
   const filtered = array.filter(e => e.city === city)
-  console.log(filtered)
   
   if(filtered.length > 0){
     setNotfound(true)
@@ -646,7 +645,6 @@ export const searchCity = (city, array, setNotfound) => dispatch =>{
       return async (dispatch) => {
         try {
           const { data } = await clientAxios("clients/profile", config);
-          console.log(data)
           return dispatch({
             type: actions.SET_CURRENT_USER,
             payload: data,
@@ -664,7 +662,6 @@ export const changeStatusComplex = async (id, change) =>{
   try{
     
     const update = await axios.put(`http://localhost:3001/complejo/update/${id}`,change)
-    console.log(update)
     
     return {update, msg:"complex updated"}
   }

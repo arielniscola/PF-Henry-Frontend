@@ -80,9 +80,8 @@ const rootReducer = (state = initialState, action) => {
     case actions.SET_CURRENT_USER:
       return {
         ...state,
-        currentUser: {...action.payload, rol:"owner"},
-        userComplexs:action.payload.complejo,
-        favUser: action.payload.favorite || []
+        currentUser:action.payload,
+        userComplexs:[action.payload.complejo],//mientras la relacion siga de 1 a 1 lo debo dejar asi
       };
     case actions.LOGOUT_CURRENT_USER:
       return {

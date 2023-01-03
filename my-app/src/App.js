@@ -14,20 +14,17 @@ import Login from "./components/Login";
 import ForgotPassword from "./components/ForgotPassword";
 import NewPassword from "./components/NewPassword";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { checkUserSession } from "./redux/actions";
 import ConfirmAccount from "./components/ConfirmAccount";
 import ComplexForm from "./components/complexform";
 
 function App() {
   const dispatch = useDispatch();
-  const prueba = useSelector(state => state.currentUser)
 
   useEffect(() => {
     dispatch(checkUserSession());
   }, [dispatch]);
-
-  console.log(prueba)
 
   return (
     <Routes>

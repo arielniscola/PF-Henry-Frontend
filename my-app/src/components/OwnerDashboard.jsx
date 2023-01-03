@@ -1,8 +1,6 @@
-import { useDispatch, useSelector } from "react-redux";
+import {useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Tr from './listForOwner'
-import {getUserDetails} from '../redux/actions'
-import { useEffect } from "react";
 
 
 
@@ -50,7 +48,7 @@ const OwnerDashboard = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {[complexList]?.map((complex,index) => (<Tr
+                  {complexList?.map((complex,index) => (<Tr
                   array={complexList}
                   key={index}
                   complex={complex}

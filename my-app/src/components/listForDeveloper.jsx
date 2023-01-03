@@ -10,21 +10,19 @@ const ItemForDeveloperList = ({e, typeTable,array}) => {
     const dispatch = useDispatch()
 
     const [borrado,setBorrado] = useState(e.deleted)
-    console.log(borrado)
 
-    const handleClick = (e)=>{
-        const find =  array?.filter(o => o.id === e.target.id)
+    const handleClick = ()=>{
         const change = {
-          ...find[0],
+          ...e,
           deleted: borrado}
 
         if(typeTable === "complex"){
             setBorrado(!borrado)
-            changeStatusComplex(e.target.id, change)
+            changeStatusComplex(e.id, change)
             dispatch(getAllComplex())
         }else{
             setBorrado(!borrado)
-            changeStatusUser(e.target.id,change)
+            changeStatusUser(e.id,change)
             dispatch(getAllUser())
         }
        }
@@ -53,7 +51,7 @@ const ItemForDeveloperList = ({e, typeTable,array}) => {
     </td>
     
     <td className="py-4 px-6">
-        <button onClick={(e) => handleClick(e)} id={e.id} value={borrado}className="font-medium text-blue-600 dark:text-blue-500 hover:underline">{borrado? "enable":"disable"}</button>
+        <button onClick={() => handleClick()} value={borrado}className="font-medium text-blue-600 dark:text-blue-500 hover:underline">{borrado? "enable":"disable"}</button>
     </td>
 </tr>
   )
