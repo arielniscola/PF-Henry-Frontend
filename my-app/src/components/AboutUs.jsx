@@ -1,3 +1,9 @@
+
+import React from "react";
+
+
+
+
 const AboutUs = () => {
   return <div className="flex flex-col h-full items-center justify-center">
           <div className="self-center max-w-xl h-full">
@@ -13,6 +19,7 @@ const AboutUs = () => {
         </p>
       </div>
   </div>;
+
 };
 
 export default AboutUs;
