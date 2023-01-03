@@ -1,18 +1,10 @@
-import { useDispatch, useSelector } from "react-redux";
+import {useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Tr from './listForOwner'
-import {getUserDetails} from '../redux/actions'
-import { useEffect } from "react";
 
 
 
 const OwnerDashboard = () => {
-  const dispatch = useDispatch()
-  const id = useSelector(state => state.currentUser.id)
-  useEffect(()=>{
-    dispatch(getUserDetails(id))
-  },[])
-  const obj = useSelector(state => state.currentUser)
   const complexList = useSelector(state => state.userComplexs)
 
   return (

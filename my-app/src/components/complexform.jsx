@@ -13,7 +13,6 @@ function ComplexForm() {
   
   const {isLoaded} = useLoadScript({googleMapsApiKey:"AIzaSyDnQobr1nh7e9Y5r3In5Rmc38aZIqJsMcs"})
   const idUser = useSelector(state => state.currentUser.id)
-  console.log(idUser)
   const initalState ={
       name:"",
       addres:"",
@@ -32,8 +31,6 @@ function ComplexForm() {
     cuit:false,
   })
 
-  console.log(error)
-
   const handleChange = (e) =>{
     setForm({
       ...form,
@@ -44,8 +41,6 @@ function ComplexForm() {
 
     const handleImage = (e) => {
         const file = e.target.files[0];
-        console.log(e.target.files)
-        console.log(file)
         previewFile(file, e.target.name)
     }
     const previewFile = (file, name) =>{

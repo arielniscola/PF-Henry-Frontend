@@ -1,26 +1,19 @@
 import React from 'react'
 import { useState } from 'react'
-import {changeStatusComplex, getUserDetails} from '../redux/actions'
-import { useDispatch, useSelector } from 'react-redux'
+import {changeStatusComplex} from '../redux/actions'
 import { Link } from 'react-router-dom'
 
-const ItemForDeveloperList = ({complex,array}) => {
-    
-    const dispatch = useDispatch()
-    const id = useSelector(state => state.currentUser.id)
+const ItemForDeveloperList = ({complex}) => {
 
-    const [borrado,setBorrado] = useState(complex.deleted)
-    console.log(complex)
+    const [borrado,setBorrado] = useState(complex && complex.deleted)
 
-    const handleClick = (e)=>{
-        const find =  array?.filter(o => o.id === e.target.id)
+    const handleClick = ()=>{
         const change = {
-          ...find[0],
+          ...complex,
           deleted: borrado}
-
+          console.log("esto es complex",complex)
         setBorrado(!borrado)
-        changeStatusComplex(e.target.id, change)
-        dispatch(getUserDetails(id))
+        changeStatusComplex(complex.id, change)
        }
 
 
@@ -73,13 +66,13 @@ const ItemForDeveloperList = ({complex,array}) => {
         </td>
         
         <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
-            <button onClick={(e) => handleClick(e)} value={borrado} id={complex.id} className="text-indigo-600 hover:text-indigo-900">
+            <button onClick={() => handleClick()} value={borrado} id={complex.id} className="text-indigo-600 hover:text-indigo-900">
             {borrado? "enable":"disable"}
             </button>
         </td>
         <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
-            <button onClick={(e) => handleClick(e)} value={borrado} id={complex.id} className="text-indigo-600 hover:text-indigo-900">
-            {borrado? "enable":"disable"}
+            <button value={borrado} className="text-indigo-600 hover:text-indigo-900">
+            delete
             </button>
         </td>
     </tr>

@@ -3,8 +3,6 @@ import Tr from './listForDeveloper'
 
 const Table = ({array,typeTable}) => {
 
-
-
   return (
     <div>
         

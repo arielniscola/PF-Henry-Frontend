@@ -43,10 +43,7 @@ const Register = () => {
     setAlert({});
 
     try {
-
       const data = await createUser(formData)
-      data && console.log(data)
-      
       setAlert({ msg: data.msg, error: false });
       setFormData({ name: "", password: "", email: "", repeatPassword: "" });
     } catch (error) {

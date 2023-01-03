@@ -9,13 +9,14 @@ const DeveloperDashBoard = () => {
 
   const dispatch = useDispatch()
 
+  const complexs = useSelector(state => state.allComplexs)
+  const users = useSelector(state => state.allUsers)
+
   useEffect(()=>{
     dispatch(getAllUser())
     dispatch(getAllComplex())
   },[dispatch])
 
-  const complexs = useSelector(state => state.allComplexs)
-  const users = useSelector(state => state.allUsers)
 
   const [page,setPage] = useState('complexs')
   const handleSetPage = (e) =>{
@@ -35,7 +36,7 @@ const DeveloperDashBoard = () => {
       </ul>
       </div>
       <div>
-        {page === 'complexs'? <Table array={complexs} typeTable="complex"/> :<Table array={users} typeTable="user"/>}
+        {page === 'complexs'? <Table array={complexs} typeTable="complex"/>:<Table array={users} typeTable="user"/>}
       </div>
     </div>
   )
