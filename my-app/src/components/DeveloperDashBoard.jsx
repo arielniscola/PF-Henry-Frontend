@@ -9,13 +9,14 @@ const DeveloperDashBoard = () => {
 
   const dispatch = useDispatch()
 
+  const complexs = useSelector(state => state.allComplexs)
+  const users = useSelector(state => state.allUsers)
+
   useEffect(()=>{
     dispatch(getAllUser())
     dispatch(getAllComplex())
   },[dispatch])
 
-  const complexs = useSelector(state => state.allComplexs)
-  const users = useSelector(state => state.allUsers)
 
   const [page,setPage] = useState('complexs')
   const handleSetPage = (e) =>{
@@ -23,7 +24,7 @@ const DeveloperDashBoard = () => {
   }
 
   return (
-    <div>
+    <div className='mb-52'>
       <div className='my-4'>
           <ul className="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400">
           <li className="mr-2">
@@ -35,7 +36,7 @@ const DeveloperDashBoard = () => {
       </ul>
       </div>
       <div>
-        {page === 'complexs'? <Table array={complexs} typeTable="complex"/> :<Table array={users} typeTable="user"/>}
+        {page === 'complexs'? <Table array={complexs} typeTable="complex"/>:<Table array={users} typeTable="user"/>}
       </div>
     </div>
   )

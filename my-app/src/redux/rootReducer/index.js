@@ -4,10 +4,13 @@ const initialState = {
   allComplexs: [],
   complexs: [],
   detail: {},
-  currentUser: null,
+  currentUser: {},
   sports:[],
   services:[],
-  favorites:[],
+  favUser:{
+    id:null,
+    fav:[]
+  },
   favlocal:[],
   allUsers:[],
   users:[]
@@ -26,6 +29,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         detail: action.payload,
       };
+      case actions.GET_USER_DETAIL:
+        return {
+          ...state,
+          currentUser: action.payload//{...action.payload,rol:"admin"}
+        };
     case actions.GET_ALL_SERVICES:
       return {
         ...state,
@@ -59,17 +67,21 @@ const rootReducer = (state = initialState, action) => {
     case actions.ADD_FAVORITE:
       return {
         ...state,
-        favorites: action.payload,
+        favUser: action.payload,
       };
     case actions.GET_FAVORITES:
       return {
         ...state,
-        favorites: [...state.favorites ,action.payload],
+        favUser: {
+          ...state.favUser,
+          fav:[...state.favUser.fav, action.payload]
+        },
       };
     case actions.SET_CURRENT_USER:
       return {
         ...state,
-        currentUser: action.payload,
+        currentUser:action.payload,
+        userComplexs:[action.payload.complejo],//mientras la relacion siga de 1 a 1 lo debo dejar asi
       };
     case actions.LOGOUT_CURRENT_USER:
       return {
@@ -85,7 +97,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         allUsers: action.payload.api,
-        users:action.payload.borradoLogico
+        users:action.payload.logic
       };
 
     case actions.FAV_LOCAL:

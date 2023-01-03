@@ -2,8 +2,10 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import clientAxios from "../config/clientAxios";
 import Alert from "./Alert";
+import { createUser } from "../redux/actions";
 
 const Register = () => {
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -41,11 +43,11 @@ const Register = () => {
     setAlert({});
 
     try {
-      const { data } = await clientAxios.post("/clients/create", formData);
+      const data = await createUser(formData)
       setAlert({ msg: data.msg, error: false });
       setFormData({ name: "", password: "", email: "", repeatPassword: "" });
     } catch (error) {
-      setAlert({ msg: error.response.data, error: true });
+      setAlert({ msg: await error.response.data, error: true });
     }
   };
 
