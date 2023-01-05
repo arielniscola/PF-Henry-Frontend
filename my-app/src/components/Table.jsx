@@ -27,12 +27,14 @@ const Table = ({array,typeTable}) => {
 
 
         <tbody>
-            {array?.map(e => (<Tr
+            {array ? array.map(e => (<Tr
             array={array}
             key={e.id}
             e={e}
             typeTable={typeTable}
-            />))}
+            />))
+        : <tr>no hay {typeTable} registrados</tr>
+        } 
         </tbody>
     </table>
 </div>

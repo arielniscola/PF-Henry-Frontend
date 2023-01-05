@@ -12,7 +12,8 @@ const ComplexCard = ({ complexDetails, favorite}) => {
   const local = useSelector(state => state.favlocal)
   const favorites = useSelector(state => state.favUser.fav)
 
-  const { id, name, event, image, address, rating } = complexDetails;
+  const { id, name, event, image, city, rating, } = complexDetails;
+  console.log(complexDetails)
 
   const find = local?.some(e => e.id === id)
 
@@ -38,12 +39,12 @@ const ComplexCard = ({ complexDetails, favorite}) => {
     <div className="flex flex-row m-5  justify-around">
       <Link className="flex flex-row" to={`/search/${id}`}>
 
-        <img className="max-w-[200px] rounded-lg" src={image} alt={name} />
+        <img className="max-w-[200px] rounded-lg" src={image || "https://www.cheshirehomechoice.org.uk/choice/images/shared/noimagethumb.jpg"} alt={name} />
 
         <div className="mx-5">
           <p className="text-lg font-bold text-black-500">{event}</p>
           <p className="text-2xl mb-2 py-2">{name}</p>
-          <p className="text-black-400 mb-2">{address}</p>
+          <p className="text-black-400 mb-2">{city}</p>
           <span className="p-2 w-9 rounded-2xl border-gray-500 border">
             $500
           </span>
@@ -51,7 +52,7 @@ const ComplexCard = ({ complexDetails, favorite}) => {
             2HS
           </span>
         </div>
-        <span className="self-center text-xl">{rating} ★</span>
+        <span className="self-center text-xl">{rating||"no reviews"} ★</span>
       </Link>
         
       <div className="flex-end">
