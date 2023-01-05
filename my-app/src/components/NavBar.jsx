@@ -46,6 +46,12 @@ const NavBar = () => {
                 >
                   Contact us
                 </Link>
+                <Link
+                  className="px-3 py-2 text-xl font-medium text-gray-600 rounded-md hover:text-gray-800 dark:hover:text-white"
+                  to="/complejodisplayer"
+                >
+                  Complejos
+                </Link>
               </div>
             </div>
           </div>
