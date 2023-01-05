@@ -29,7 +29,7 @@ const rootReducer = (state = initialState, action) => {
       case actions.GET_USER_DETAIL:
         return {
           ...state,
-          currentUser: action.payload//{...action.payload,rol:"admin"}
+          currentUser: action.payload
         };
     case actions.GET_ALL_SERVICES:
       return {
@@ -66,15 +66,10 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         favUser: action.payload,
       };
-    case actions.GET_FAVORITES:
-      return {
-        ...state,
-        favUser:[...state.favUser.fav, action.payload,"6666bdc0-9fc7-4262-be61-67d9ecd5c750"]
-      };
     case actions.SET_CURRENT_USER:
       return {
         ...state,
-        currentUser:{...action.payload, rol:"admin"},//mientras la relacion siga de 1 a 1 lo debo dejar asi
+        currentUser:action.payload
       };
     case actions.LOGOUT_CURRENT_USER:
       return {
