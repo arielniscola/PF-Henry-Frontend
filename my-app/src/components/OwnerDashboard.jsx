@@ -5,14 +5,14 @@ import Tr from './listForOwner'
 
 
 const OwnerDashboard = () => {
-  const complexList = useSelector(state => state.userComplexs)
+  const complexList = useSelector(state => state.currentUser.complejo)
 
   return (
     <div className="bg-gray-100">
       <div className="container max-w-4xl px-4 mx-auto sm:px-8">
         <div className="py-8">
             <Link  className="w-full px-4 py-2 text-base font-semibold text-center text-white transition duration-200 ease-in bg-indigo-600 rounded-lg shadow-md hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 " to="/create">Create complex</Link>
-          <div className="px-4 py-4 -mx-4 overflow-x-auto sm:-mx-8 sm:px-8">
+          {<div className="px-4 py-4 -mx-4 overflow-x-auto sm:-mx-8 sm:px-8">
             <div className="inline-block min-w-full overflow-hidden rounded-lg shadow">
               <table className="min-w-full leading-normal">
                 <thead>
@@ -47,7 +47,7 @@ const OwnerDashboard = () => {
                     >actions</th>
                   </tr>
                 </thead>
-                <tbody>
+                {!complexList ? <tbody className="flex flex-col justify-center text-center items-center"> <h2>No hay complejos creados</h2> </tbody> : <tbody>
                   {complexList?.map((complex,index) => (<Tr
                   array={complexList}
                   key={index}
@@ -55,10 +55,10 @@ const OwnerDashboard = () => {
                   typeTable="complex"
                   />)
                   )}
-                </tbody>
+                </tbody>}
               </table>
             </div>
-          </div>
+          </div>}
         </div>
       </div>
     </div>

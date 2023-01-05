@@ -4,7 +4,7 @@ import {changeStatusComplex,changeStatusUser} from '../redux/actions'
 import { getAllComplex,getAllUser } from '../redux/actions'
 import { useDispatch } from 'react-redux'
 
-const ItemForDeveloperList = ({e, typeTable,array}) => {
+const ItemForDeveloperList = ({e, typeTable}) => {
 
     
     const dispatch = useDispatch()
@@ -37,7 +37,7 @@ const ItemForDeveloperList = ({e, typeTable,array}) => {
         <img className="w-10 h-10 rounded-full" src={e.image || "https://cdn-icons-png.flaticon.com/512/1144/1144760.png"} alt={e.name}/>
         <div className="pl-3">
             <div className="text-base font-semibold">{e.name}</div>
-            <div className="font-normal text-gray-500">{e.mail? e.mail : e.addres}</div>
+            <div className="font-normal text-gray-500">{e.email? e.email : e.addres}</div>
         </div>  
     </th>
     <td className="py-4 px-6">

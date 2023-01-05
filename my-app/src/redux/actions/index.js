@@ -43,6 +43,7 @@ export const createComplex = async(complex)=>{
   try{
     
     const create = await axios.post("http://localhost:3001/complejo/create",complex)
+    return {create, msg:"complex updated"}
   }
   catch(error){
     alert('error - complex not created')
@@ -595,9 +596,10 @@ export const searchCity = (city, array, setNotfound) => dispatch =>{
     }catch(error){console.log(error)}
   }
 
-  export const updateFavorite= async(id,arr)=>{
+  export const updateFavorite= async(id,obj)=>{
+    console.log("esto llega en las actions",id,obj)
     try{
-      const send = axios.post(`http://localhost:3001/favorites/create/${id}`,arr)
+      const send = await axios.put(`http://localhost:3001/clients/update/${id}`,obj)
       return {send, msg:"the complex was added to favorites"}
     }catch(error){console.log(error)}
   }
