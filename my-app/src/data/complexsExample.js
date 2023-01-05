@@ -9,7 +9,8 @@ export const complexs = [
     rating: 5,
     city: "Lomas de Zamora",
     sports: ['Futbol 5'],
-    services:['Parrila','Duchas']
+    services:['Parrila','Duchas'],
+    price: 100
   },
   {
     id: 2,
@@ -20,7 +21,8 @@ export const complexs = [
       "https://img.freepik.com/foto-gratis/surtido-tarta-globos_23-2149023589.jpg?w=996&t=st=1670345170~exp=1670345770~hmac=87c7fd854d768cbf29029e483f71d6ccd4873ac0f025596029545d3c9c604629",
     rating: 3,
     city: "Rosario",
-    services:['Parrila','Quincho','Estacionamineto']
+    services:['Parrila','Quincho','Estacionamineto'],
+    price: 125
   },
   {
     id: 3,
@@ -30,7 +32,8 @@ export const complexs = [
     image: "https://s.ineventos.com/blog/2021/100199/014110-1080w.webp",
     rating: 2,
     city: "Mendoza",
-    services:['Parrila','Estacionamineto']
+    services:['Parrila','Estacionamineto'],
+    price: 150
   },
   {
     id: 4,
@@ -42,7 +45,8 @@ export const complexs = [
     rating: 4,
     city: "Tigre",
     sports: ['Tenis'],
-    services:['Quincho','Duchas']
+    services:['Quincho','Duchas'],
+    price: 150
   },
   {
     id: 5,
@@ -54,7 +58,8 @@ export const complexs = [
     rating: 4,
     city: "Cordoba",
     sports: ['Footsal','Futbol 5','Futbol 11'],
-    services:['Parrila','Quincho','Duchas','Estacionamineto']
+    services:['Parrila','Quincho','Duchas','Estacionamineto'],
+    price: 135
   },
   {
     id: 6,
@@ -65,18 +70,20 @@ export const complexs = [
       "https://infodeportes.com.ar/wp-content/uploads/2021/12/Innovador-complejo-de-canchas-de-futbol-que-promete-revolucionar-la-forma-de-compartir-y-entretenerse.png",
     rating: 1,
     city: "Carlos Paz",
-    services:['Estacionamineto']
+    services:['Estacionamineto'],
+    price: 140
   },
   {
     id: 7,
     name: "Salon rojo",
-    event: "Cumpleanios, ",
+    event: "Cumpleaños",
     address: "Colombres 1154, Santa Fe ",
     image:
       "https://infodeportes.com.ar/wp-content/uploads/2021/12/Innovador-complejo-de-canchas-de-futbol-que-promete-revolucionar-la-forma-de-compartir-y-entretenerse.png",
     rating: 3,
     city: "Santa Fe",
-    services:['Parrila','Quincho','Estacionamineto']
+    services:['Parrila','Quincho','Estacionamineto'],
+    price: 150
   },
 ];
 

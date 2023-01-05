@@ -22,28 +22,29 @@ const ComplexFavorite = () => {
     
     const filter = (array) =>{
         let hash = {};
-        const arr = array.filter(o => hash[o.id] ? false : hash[o.id] = true);
+        const filtered = array.filter(o => hash[o.id] ? false : hash[o.id] = true);
+        const arr = filtered.map(e => e.id)
         return arr
     } 
     const noRepeat = filter([...value,...local])
 
-    const noRepAll = filter([...value, ...favUser.fav])
+    const noRepAll = filter([...value, ...favUser])
 
     useEffect(()=>{
         setValue(noRepeat)
-        user.id && dispatch(updateFavorite(favUser.id,noRepAll))
+        user.isActive && dispatch(updateFavorite(user.id,noRepAll))
     },[])
 
-    const favorites = !user.id ? value : value
+    const favorites = !user.isActive ? value : value
     console.log(favUser.fav)
 
     const handleRemoveFavorite = (complex) => {
-        const arr = user.id ? favUser.fav : value
+        const arr = user.id ? favUser : value
         const newFavorite = arr.filter((item) => item.id !== complex.id)
-        if(!user.id){
+        if(!user.isActive){
             return setValue(newFavorite)
         }
-        dispatch(updateFavorite(favUser.id,newFavorite))
+        dispatch(updateFavorite(user.id,newFavorite))
     }
 
 

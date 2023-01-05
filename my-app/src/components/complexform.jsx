@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 import valComplex from './valComplex'
 import {createComplex} from '../redux/actions'
@@ -9,28 +9,52 @@ import MapForm from './MapForm'
 
 function ComplexForm() {
 
-  const dispatch = useDispatch()
   
   const {isLoaded} = useLoadScript({googleMapsApiKey:"AIzaSyDnQobr1nh7e9Y5r3In5Rmc38aZIqJsMcs"})
   const idUser = useSelector(state => state.currentUser.id)
   const initalState ={
-      name:"",
-      addres:"",
-      cuit:"",
-      city:"",
-      logo:"",
-      lat:0,
-      lng:0,
-      wesite:"",
-      idUser
+    name:"",
+    addres:"",
+    cuit:"",
+    city:"",
+    logo:"",
+    lat:"",
+    lng:"",
+    website:"",
+    idUser
   }
-
+  
   const [form, setForm] = useState(initalState)
   const [error, setError] = useState({
     name:false,
     cuit:false,
   })
+  
+  const geolocalization = () =>{
+    if ("geolocation" in navigator)console.log(navigator.geolocation.getCurrentPosition(onUbicacionConcedida, onError, opciones))
+else return "tu buscador no soporta geolocalizacion"
+  }
 
+  const onUbicacionConcedida = ubicacion => {
+     const lat = parseFloat(ubicacion.coords.latitude)
+     const lng = parseFloat(ubicacion.coords.longitude)
+     setForm({...form,lat,lng})
+}
+
+const onError = err => {
+console.log("Error obteniendo ubicación: ", err);
+}
+
+const opciones = {
+enableHighAccuracy: true, // Alta precisión
+maximumAge: 0, // No queremos caché
+timeout: 5000 // Esperar solo 5 segundos
+};
+  
+
+useEffect(()=>{
+  geolocalization()
+},[])
   const handleChange = (e) =>{
     setForm({
       ...form,
@@ -57,6 +81,7 @@ function ComplexForm() {
     e.preventDefault()
     createComplex(form)
     setForm(initalState)
+    geolocalization()
   }
 
   return (
@@ -78,6 +103,7 @@ function ComplexForm() {
                   className="flex-1 w-full px-4 py-2 text-base text-gray-700 placeholder-gray-400 bg-white border border-transparent border-gray-300 rounded-lg shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                   placeholder="Complex name"
                   name="name"
+                  value={form.name}
                   onChange={(e) => handleChange(e)}
                   />
               </div>
@@ -90,7 +116,8 @@ function ComplexForm() {
                   id="contact-form-name"
                   className="flex-1 w-full px-4 py-2 text-base text-gray-700 placeholder-gray-400 bg-white border border-transparent border-gray-300 rounded-lg shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                   placeholder="Complex address"
-                  name="adress"
+                  name="addres"
+                  value={form.addres}
                   onChange={(e) => handleChange(e)}
                   />
               </div>
@@ -103,6 +130,7 @@ function ComplexForm() {
                   className="flex-1 w-full px-4 py-2 text-base text-gray-700 placeholder-gray-400 bg-white border border-transparent border-gray-300 rounded-lg shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                   placeholder="Cuit"
                   name="cuit"
+                  value={form.cuit}
                   onChange={(e) => handleChange(e)}
                   />
               </div>
@@ -115,6 +143,7 @@ function ComplexForm() {
                   className="flex-1 w-full px-4 py-2 text-base text-gray-700 placeholder-gray-400 bg-white border border-transparent border-gray-300 rounded-lg shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                   placeholder="City"
                   name="city"
+                  value={form.city}
                   onChange={(e) => handleChange(e)}
                   />
               </div>
@@ -127,6 +156,7 @@ function ComplexForm() {
                   className="flex-1 w-full px-4 py-2 text-base text-gray-700 placeholder-gray-400 bg-white border border-transparent border-gray-300 rounded-lg shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                   placeholder="Website"
                   name="website"
+                  value={form.website}
                   onChange={(e) => handleChange(e)}
                   />
               </div>

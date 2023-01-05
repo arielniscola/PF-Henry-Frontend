@@ -1,6 +1,6 @@
 import ChatBot from 'react-simple-chatbot';
 import { ThemeProvider } from 'styled-components';
-import {Link} from 'react-router-dom';
+import {Link,} from 'react-router-dom';
 
 // Creating our own theme
 const theme = {
@@ -71,10 +71,10 @@ export default function Chatbot() {
                     component: <div>
                         <h1>Puedes encontrarnos en: </h1>
                         <ul>
-                            <li><a href='#' target="_blank">Linkedin</a></li>
-                            <li><a href='#' target="_blank">Facebook</a></li>
-                            <li><a href='#' target="_blank">Instagram</a></li>
-                            <li><a href='#' target="_blank">WhatsApp</a></li>
+                            <li><a href='https://www.linkedin.com' target="__blank" >Linkedin</a></li>
+                            <li><a href='https://www.facebook.com' target="__blank">Facebook</a></li>
+                            <li><a href='https://www.instagram.com' target="__blank">Instagram</a></li>
+                            <li><a href='https://www.whatsapp.com' target="__blank">WhatsApp</a></li>
                         </ul>
                     </div>,
                     trigger: "8"

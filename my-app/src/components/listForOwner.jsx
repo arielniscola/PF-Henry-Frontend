@@ -3,7 +3,8 @@ import { useState } from 'react'
 import {changeStatusComplex} from '../redux/actions'
 import { Link } from 'react-router-dom'
 
-const ItemForDeveloperList = ({complex}) => {
+const ItemForOwnerList = ({complex}) => {
+    console.log(complex)
 
     const [borrado,setBorrado] = useState(complex && complex.deleted)
 
@@ -80,4 +81,4 @@ const ItemForDeveloperList = ({complex}) => {
   )
 }
 
-export default ItemForDeveloperList
+export default ItemForOwnerList

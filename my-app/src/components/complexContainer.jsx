@@ -1,13 +1,15 @@
 import React from 'react'
 import Filters from './Filters'
 import ComplexCard from "./ComplexCard";
-import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import MapComplex from "./mapForComplexs"
+import { useLoadScript } from '@react-google-maps/api';
 
 const ComplexContainer = () => {
 
   const complexs = useSelector(state => state.complexs)
-  const favorites = useSelector(state => state.favorites.favorites)
+  const favorites = useSelector(state => state.favUser)
+  const {isLoaded} = useLoadScript({googleMapsApiKey:"AIzaSyDnQobr1nh7e9Y5r3In5Rmc38aZIqJsMcs"})
 
   const filter = (array) =>{
     let hash = {};
@@ -24,8 +26,13 @@ const ComplexContainer = () => {
   return (
     <div>
         <Filters/>
-        <div className='flex w-full flex-col items-start'>
-        {complexs?.map(complex =>(<Link key={complex.id} to={`/search/${complex.id}`}><ComplexCard complexDetails={complex} id={complex.id} favorite={(e) => find(e)} /></Link>))}
+        <div>
+          <div>
+            {isLoaded && <MapComplex array={complexs}/>}
+          </div>
+          <div className='flex w-full flex-col items-start'>
+          {complexs?.map(complex =>(<ComplexCard key={complex.id} complexDetails={complex} id={complex.id} favorite={(e) => find(e)} />))}
+          </div>
         </div>
     </div>
   )
