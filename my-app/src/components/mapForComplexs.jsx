@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { GoogleMap, Marker } from '@react-google-maps/api'
 import { useEffect } from 'react'
 
-const MapForm = ({array}) => {
+const MapForComplex = ({array}) => {
 
     const [center, setCenter] = useState({})
 
@@ -35,4 +35,4 @@ const MapForm = ({array}) => {
     </div>
 }
 
-export default MapForm
+export default MapForComplex
