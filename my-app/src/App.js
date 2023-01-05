@@ -18,6 +18,8 @@ import { useDispatch} from "react-redux";
 import { checkUserSession } from "./redux/actions";
 import ConfirmAccount from "./components/ConfirmAccount";
 import ComplexForm from "./components/complexform";
+import Reservations from "./components/Reservations";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -43,6 +45,7 @@ function App() {
         <Route path="search" element={<ComplexContainer/>} />
         <Route path="create" element={<ComplexForm/>} />
         <Route path="search/:id" element={<ComplexDetails />} />
+        <Route path="reservations" element={<Reservations />} />
       </Route>
     </Routes>
   );
