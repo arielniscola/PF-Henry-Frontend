@@ -4,7 +4,7 @@ const initialState = {
   allComplexs: [],
   complexs: [],
   detail: {},
-  currentUser: {},
+  currentUser: null,
   sports:[],
   services:[],
   favUser:[],
@@ -91,7 +91,7 @@ const rootReducer = (state = initialState, action) => {
     case actions.FAV_LOCAL:
       return {
         ...state,
-        favlocal: [...state.favlocal, action.payload],
+        favlocal: [...state.favlocal, ...action.payload],
       };
 
     default:

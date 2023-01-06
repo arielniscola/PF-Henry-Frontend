@@ -41,7 +41,7 @@ const ConfirmAccount = () => {
           {<Alert alert={{msg:"User successfully confirmed", error:false}} />}
             <Link
               className="block text-center my-5 text-slate-500 uppercase text-sm"
-              to="/"
+              to="/login"
             >
               Log in
             </Link>
