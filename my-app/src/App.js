@@ -19,7 +19,7 @@ import { checkUserSession } from "./redux/actions";
 import ConfirmAccount from "./components/ConfirmAccount";
 import ComplexForm from "./components/complexform";
 import Reservations from "./components/Reservations";
-
+import CreateCourt from "./components/CreateCourt";
 import ComplejoDisplayer from "./components/ComplejoDisplayer";
 
 
@@ -49,6 +49,7 @@ function App() {
         <Route path="search/:id" element={<ComplexDetails />} />
         <Route path="reservations" element={<Reservations />} />
         <Route path="complejodisplayer" element={<ComplejoDisplayer />} />
+        <Route path="createcourt" element={<CreateCourt />} />
  
       </Route>
     </Routes>
