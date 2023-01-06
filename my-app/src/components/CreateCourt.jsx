@@ -76,15 +76,15 @@ const CreateCourt = () => {
 
     const handleImage = (e) => {
         const file = e.target.files[0];
-        previewFile(file, e.target.name)
+        previewFile(file)
     }
-    const previewFile = (file, name) =>{
+    const previewFile = (file) =>{
         const reader = new FileReader()
         reader.readAsDataURL(file);
         reader.onloadend = () => {
             setForm({
               ...form,
-              [name]: reader.result})
+              img: reader.result})
         }
       }
 
