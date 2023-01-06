@@ -196,13 +196,8 @@ try{
 }
 }
 
-export const createCourt = ({numberCourt,description,typeCourt})=>{
-  
-  const court = {
-    numberCourt,
-    description,
-    typeCourt
-  }
+export const createCourt = (court)=>{
+
   try{
     
     const create = axios.get("http://localhost:3001/court/create",court)
@@ -581,11 +576,11 @@ export const searchCity = (city, array, setNotfound) => dispatch =>{
     }
   }
 
-  export const addFavoriteLocalStorage = (obj)=>{
+  export const addFavoriteLocalStorage = (arr)=>{
     //ver como cambiarlo para mejorar, considerar crear otra funcion
     return{
       type: actions.FAV_LOCAL ,
-      payload: obj
+      payload: arr
     }
   }
 
@@ -597,7 +592,6 @@ export const searchCity = (city, array, setNotfound) => dispatch =>{
   }
 
   export const updateFavorite= async(id,obj)=>{
-    console.log("esto llega en las actions",id,obj)
     try{
       const send = await axios.put(`http://localhost:3001/clients/update/${id}`,obj)
       return {send, msg:"the complex was added to favorites"}

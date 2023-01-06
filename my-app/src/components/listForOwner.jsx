@@ -25,8 +25,8 @@ const ItemForOwnerList = ({complex}) => {
         <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
             <div className="flex items-center">
             <div className="flex-shrink-0">
-                <Link
-                to={`/complex/${complex.id}`}
+                <div
+                // to={`/complex/${complex.id}`}
                 className="relative block"
                 >
                 <img
@@ -34,7 +34,7 @@ const ItemForOwnerList = ({complex}) => {
                     src={complex.logo || "https://cdn-icons-png.flaticon.com/512/2782/2782896.png"}
                     className="w-10 h-10 mx-auto rounded-full object-contain "
                 />
-                </Link>
+                </div>
             </div>
             <div className="ml-3">
                 <p className="text-gray-900 whitespace-no-wrap">
