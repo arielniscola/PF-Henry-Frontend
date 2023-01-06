@@ -4,12 +4,14 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import uploadimg from "../data/uploadimg.png";
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 
 
 const  UserDashboard = () => {
   const [images, setImages] = useState(uploadimg);
   const [nombre, setNombre] = useState("User");
+  const rol = useSelector(state => state.currentUser.rol)
 
 
   useEffect(() => {
@@ -96,6 +98,10 @@ const  UserDashboard = () => {
             <Link to="/favorites">
             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-10"
             >My Favorites</button>
+            </Link>
+            <Link to="/create">
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-10"
+            >{rol === "owner"? "Create Complex": "Be Owner"}</button>
             </Link>
       
           </div>

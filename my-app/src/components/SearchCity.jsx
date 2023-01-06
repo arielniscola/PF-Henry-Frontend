@@ -25,7 +25,7 @@ const SearchCity = () => {
 
     const handleSearch = () => {
       if(city.length > 0){
-      dispatch(searchCity(city, cities, setNotfound))
+      dispatch(searchCity(city.trim(), cities, setNotfound))
     }else{
       alert('a name is needed')
     }

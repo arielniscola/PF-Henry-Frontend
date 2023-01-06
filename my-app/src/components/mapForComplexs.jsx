@@ -5,11 +5,12 @@ import { useEffect } from 'react'
 const MapForComplex = ({array}) => {
 
     const [center, setCenter] = useState({})
+    console.log(array)
 
 	const onUbicacionConcedida = ubicacion => {
-        const lat = parseFloat(ubicacion.coords.latitude)
-        const lng = parseFloat(ubicacion.coords.longitude)
-        setCenter({lat,lng})
+        const lat = (ubicacion.coords.latitude)
+        const lng = (ubicacion.coords.longitude)
+        setCenter({lat:Number(lat),lng:Number(lng)})
 	}
   
 	const onError = err => {
@@ -30,7 +31,7 @@ const MapForComplex = ({array}) => {
   return <div className='h-80 relative'>
     <GoogleMap zoom={15} center={center} mapContainerClassName='w-full h-full' > 
     {center.lat && <Marker className="text-cyan-800" icon={"https://cdn-icons-png.flaticon.com/64/5307/5307117.png"} position={center}/>}
-    {array?.map(e => (<Marker icon={"https://cdn-icons-png.flaticon.com/64/1688/1688177.png"} position={{lat:parseFloat(e.lat),lng:parseFloat(e.lng)}}/>))}
+    {array?.map((e,i)=> (<Marker key={i} icon={"https://cdn-icons-png.flaticon.com/64/1688/1688177.png"} position={{lat:Number(e.lat),lng:Number(e.lng)}}/>))}
   </GoogleMap>
     </div>
 }
