@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { GoogleLogin } from "@react-oauth/google";
+
 import Alert from "./Alert";
 import { setCurrentUser } from "../redux/actions/index";
 import clientAxios from "../config/clientAxios";
@@ -28,6 +30,17 @@ const Login = () => {
     } catch (error) {
       console.log(error);
       setAlert({ msg: error.response.data, error: true });
+    }
+  };
+
+  const handleGoogleLogin = async (response) => {
+    try {
+      const { data } = await clientAxios.post("/clients/googleAuth", response);
+      setAlert({});
+      localStorage.setItem("token", data.token);
+      dispatch(setCurrentUser(data));
+    } catch (error) {
+      setAlert({ msg: error.response.data.msg, error: true });
     }
   };
 
@@ -86,6 +99,15 @@ const Login = () => {
             type="submit"
             value="Log in"
             className="w-full py-3 mb-5 font-bold text-white uppercase transition-colors rounded bg-sky-700 hover:cursor-pointer hover:bg-sky-800"
+          />
+          <GoogleLogin
+            useOneTap={true}
+            onSuccess={(credentialResponse) => {
+              handleGoogleLogin(credentialResponse);
+            }}
+            onError={() => {
+              console.log("Login Failed");
+            }}
           />
         </form>
         <nav className="lg:flex lg:justify-between">
