@@ -33,7 +33,7 @@ const Table = ({array,typeTable}) => {
             e={e}
             typeTable={typeTable}
             />))
-        : <tr>no hay {typeTable} registrados</tr>
+        : <tr> no hay {typeTable} registrados </tr>
         } 
         </tbody>
     </table>

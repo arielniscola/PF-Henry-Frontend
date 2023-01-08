@@ -36,7 +36,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         services: action.payload,
       };
-    case actions.GET_ALL_SPORTS:
+    case actions.GET_ALL_TYPECOURT:
       return {
         ...state,
         sports: action.payload,

@@ -27,9 +27,10 @@ const ItemForDeveloperList = ({e, typeTable}) => {
         }
        }
 
+if(typeTable === "user" || typeTable === "complex" ){
 
-  return (
-    <tr key={e.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+    return (
+        <tr key={e.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
     <td className="py-4 px-6">
         {e.id}
     </td>
@@ -55,6 +56,42 @@ const ItemForDeveloperList = ({e, typeTable}) => {
     </td>
 </tr>
   )
+} else if (typeTable === "sports"){
+    return(
+
+        <tr key={e.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+    <td className="py-4 px-6">
+        {e.id}
+    </td>
+    <th scope="row" className="flex items-center py-4 px-6 text-gray-900 whitespace-nowrap dark:text-white">
+        <img className="w-10 h-10 rounded-full" src={e.imagen || "https://cdn-icons-png.flaticon.com/512/5564/5564932.png"} alt={e.name}/>
+        <div className="pl-3">
+            <div className="text-base font-semibold">{e.description}</div>
+        </div>  
+    </th>
+    <td className="py-4 px-6">
+        <button className="font-medium text-blue-600 dark:text-blue-500 hover:underline">borrar</button>
+    </td>
+</tr>
+        )
+} else{
+    return (
+        
+        <tr key={e.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+    <td className="py-4 px-6">
+        {e.id}
+    </td>
+    <th scope="row" className="flex items-center py-4 px-6 text-gray-900 whitespace-nowrap dark:text-white">
+        <div className="pl-3">
+            <div className="text-base font-semibold">{e.nameservice}</div>
+        </div>  
+    </th>
+    <td className="py-4 px-6">
+        <button className="font-medium text-blue-600 dark:text-blue-500 hover:underline">borrar</button>
+    </td>
+</tr>
+    )
+}
 }
 
 export default ItemForDeveloperList
