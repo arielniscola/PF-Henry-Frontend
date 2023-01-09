@@ -45,6 +45,7 @@ function App() {
           <Route path="forgot-password" element={<ForgotPassword />} />
           <Route path="forgot-password/:token" element={<NewPassword />} />
           <Route path="confirm-account/:token" element={<ConfirmAccount />} />
+          <Route path="mercadopago-auth/" element={<AddPermissionMercadopago />} />
           <Route path="search" element={<ComplexContainer />} />
           <Route path="create" element={<ComplexForm />} />
           <Route path="search/:id" element={<ComplexDetails />} />

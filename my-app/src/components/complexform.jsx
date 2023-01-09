@@ -5,6 +5,7 @@ import {createComplex} from '../redux/actions'
 import {useLoadScript} from '@react-google-maps/api'
 import {useDispatch, useSelector} from 'react-redux'
 import MapForm from './MapForm'
+import MediosPago from './mercadopago/MediosPago'
 
 
 function ComplexForm() {
@@ -210,6 +211,8 @@ else return "tu buscador no soporta geolocalizacion"
 
           </div>
         </form>
+
+        <MediosPago/>
         </div>
 
 
