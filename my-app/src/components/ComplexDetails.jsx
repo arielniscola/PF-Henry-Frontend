@@ -12,7 +12,7 @@ const ComplexDetails = () => {
   const { id } = useParams();
 
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: "AIzaSyDnQobr1nh7e9Y5r3In5Rmc38aZIqJsMcs",
+    googleMapsApiKey:process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
   });
 
   useEffect(() => {

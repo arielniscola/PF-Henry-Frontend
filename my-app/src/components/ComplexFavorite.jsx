@@ -36,7 +36,7 @@ const ComplexFavorite = () => {
     }
     useEffect(()=>{
         getAllComplex()
-        user && updateFavorite(user.id,{...user ,favorite:[...new Set([...local,...user.favorites])]})
+        user && [...local,...user.favorites] !== user.favorites && updateFavorite(user.id,{...user ,favorite:[...new Set([...local,...user.favorites])]})
     },[])
 
 
@@ -44,10 +44,10 @@ const ComplexFavorite = () => {
          <div className="flex w-full flex-col items-start m-10  justify-arounds  ">
              <h2 className="mb-5 text-4xl font-bold text-blue-700">Favorites</h2>
             <div className="flex w-full flex-col items-start justify-center">
-                {favorites? favorites.map((complex,index) => (
+                {favorites.length? favorites.map((complex,index) => (
                     <div key={index} className="flex flex-row items-center justify-center relative pr-16">
                         <ComplexCard favorite={true} complexDetails={complex}/>
-                        <button onClick={() => handleRemoveFavorite(complex) } className="self-center absolute top-5 right-0 bg-gradient-to-r from-pink-300 to-blue-400 hover:from-blue-400 hover:to-pink-300 text-black font-bold py-2 px-4 rounded">
+                        <button onClick={() => handleRemoveFavorite(complex) } className="self-center  w-12 h-11 ml-1 text-base font-semibold text-center text-white transition duration-200 ease-in bg-indigo-600 rounded-lg shadow-md hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2">
                             borrar
                         </button>
                     </div>

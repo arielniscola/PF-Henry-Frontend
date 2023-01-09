@@ -1,6 +1,6 @@
 import * as actions from '../actionTypes'
 import axios from 'axios'
-import {sports,services} from '../../data/complexsExample'
+
 import clientAxios from "../../config/clientAxios";
 // import {complexs} from '../../data/complexsExample'
 
@@ -9,7 +9,7 @@ import clientAxios from "../../config/clientAxios";
 export const getAllComplex = () => async(dispatch)=>{
     try {
         const {data} = await axios.get("http://localhost:3001/complejo/all")
-        const logic = data.filter(e => e.delete === false)
+        const logic = data.filter(e => e.deleted === false)
         dispatch({
             type: actions.GET_ALL_COMPLEX,
             payload: {
@@ -91,7 +91,7 @@ export const deleteComplex = (id)=>{
 export const getAllUser = () => async(dispatch)=>{
   try {
       const {data} = await axios.get("http://localhost:3001/clients/all")
-      const logic = data.filter(e => e.delete === false)
+      const logic = data.filter(e => e.deleted === false)
       dispatch({
           type: actions.GET_ALL_USER,
           payload: {
@@ -346,9 +346,8 @@ try{
 }
 }
 
-export const createTypeCourt = ({description,icon})=>{
+export const createTypeCourt = (typecourt)=>{
   
-  const typecourt = {description,icon}
   try{
     
     const create = axios.get("http://localhost:3001/typecourt/create",typecourt)
@@ -520,7 +519,7 @@ export const orderFav = (array) => dispatch =>{
 
 export const searchCity = (city, array, setNotfound) => dispatch =>{
   
-  const filtered = array.filter(e => e.city === city)
+  const filtered = array.filter(e => e.city.toLowerCase() === city.toLowerCase())
   
   if(filtered.length > 0){
     setNotfound(true)
@@ -535,38 +534,33 @@ export const searchCity = (city, array, setNotfound) => dispatch =>{
   
   //OTROS
   export const getAllServices = () => async(dispatch)=>{
-    // try {
-    //     const api = await axios.get("https://restcountries.com/v3.1/all")
-    //     dispatch({
-    //         type: actions.GET_ALL_COMPLEX,
-    //         payload: api.data
-    //     })
+    try {
+        const {data} = await axios.get("`http://localhost:3001/servicescomplejo/all`")
+        dispatch({
+            type: actions.GET_ALL_SERVICES,
+            payload: data
+        })
   
-    // } catch (error) {
-    //     console.log(error)
-    // }
-    dispatch({
-      type: actions.GET_ALL_SERVICES,
-      payload: services
-    })
+    } catch (error) {
+        console.log(error)
+    }
   }
+
+  export const createService = (service)=>{
   
-  export const getAllSports = () => async(dispatch)=>{
-    // try {
-    //     const api = await axios.get("https://restcountries.com/v3.1/all")
-    //     dispatch({
-    //         type: actions.GET_ALL_COMPLEX,
-    //         payload: api.data
-    //     })
-  
-    // } catch (error) {
-    //     console.log(error)
-    // }
-    dispatch({
-      type: actions.GET_ALL_SPORTS,
-      payload: sports
-    })
+    try{
+      
+      const create = axios.get("http://localhost:3001/servicescomplejo/create",service)
+      
+      return {create, msg:"service created"}
+    }
+    catch(error){
+      alert('error - service not created')
+      console.log(error)
+    }
   }
+
+  
 
   export const addFavorite = (id,arr)=>{
     //ver como cambiarlo para mejorar, considerar crear otra funcion    

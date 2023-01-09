@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {addFavoriteLocalStorage} from '../redux/actions'
@@ -15,7 +14,7 @@ const ComplexCard = ({ complexDetails}) => {
   const currentUser = useSelector(state => state.currentUser)
   console.log("esto es local",local)
 
-  const { id, name, event, image, city, rating,logo } = complexDetails;
+  const { id, name, event, city, rating,logo } = complexDetails;
 
   const fav = currentUser ? currentUser.favorites : local
 
@@ -62,9 +61,8 @@ const ComplexCard = ({ complexDetails}) => {
         </div>
         <span className="self-center text-xl">{rating||"no reviews"} ★</span>
       </Link>
-        
       <div className="flex-end">
-      <button onClick={handleFavorite} className="self-center  bg-gradient-to-r from-pink-300 to-blue-400 hover:from-blue-400 hover:to-pink-300 text-black font-bold py-2 px-4 rounded">
+      <button onClick={handleFavorite} className="self-center  w-12 h-11 ml-1 text-base font-semibold text-center text-white transition duration-200 ease-in bg-indigo-600 rounded-lg shadow-md hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2">
          { favorite ? <i className="fa-solid fa-bookmark"></i> :<i className="fa-regular fa-bookmark"></i>}
       </button>
       </div>

@@ -14,7 +14,7 @@ const SearchCity = () => {
   useEffect(() =>{
     dispatch(getAllComplex())
     setNotfound(false)
-  },[])
+  },[dispatch])
   const cities = useSelector(state => state.allComplexs)
 
   if(notfound) return <Navigate to="/search" replace />;
@@ -41,7 +41,8 @@ const SearchCity = () => {
                 onChange={(e) => handleChange(e)}
             />
             <button onClick={handleSearch}
-            type="button" className="ml-3 inline-flex items-center px-4 py-2 border border-transparent text-xl font-medium rounded-md shadow-sm text-white bg-gradient-to-r from-blue-300 to-blue-800 hover:from-green-300 hover:to-green-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            type="button" className="w-20 h-12 ml-1 text-base font-semibold text-center text-white transition duration-200 ease-in bg-indigo-600 rounded-lg shadow-md hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2"
+            
             >Search</button>
         </div>
     );

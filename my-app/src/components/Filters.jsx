@@ -1,6 +1,6 @@
 import React from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {filterServices, filterSports, orderAZ,orderFav, getAllServices, getAllSports} from '../redux/actions'
+import {filterServices, filterSports, orderAZ,orderFav, getAllServices, getAllTypeCourt} from '../redux/actions'
 import { useEffect } from 'react'
 
 
@@ -9,7 +9,7 @@ function Filters() {
     const dispatch = useDispatch()
     useEffect(()=>{
         dispatch(getAllServices())
-        dispatch(getAllSports())
+        dispatch(getAllTypeCourt())
     },[dispatch])
     const elements = useSelector(state =>  state.complexs)
     const sports = useSelector(state =>  state.sports)
