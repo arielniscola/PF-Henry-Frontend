@@ -22,6 +22,7 @@ import Reservations from "./components/Reservations";
 import CreateCourt from "./components/CreateCourt";
 import ComplejoDisplayer from "./components/ComplejoDisplayer";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import AddPermissionMercadopago from "./components/mercadopago/AddPermissionMercadopago.jsx"
 
 function App() {
   const dispatch = useDispatch();
