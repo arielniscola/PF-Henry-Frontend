@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import { useEffect } from "react";
-import { useLocation, Link } from "react-router-dom";
+import {  Link } from "react-router-dom";
 import { ButtonReturn, Generalcontainer } from "../styles.js";
 import clientAxios from "../../../config/clientAxios.jsx";
 
