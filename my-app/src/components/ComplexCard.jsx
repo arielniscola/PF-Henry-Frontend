@@ -5,7 +5,7 @@ import { updateFavorite } from "../redux/actions";
 import uploadimg from '../data/uploadimg.png'
 import { useState } from "react";
 
-const ComplexCard = ({ complexDetails}) => {
+const ComplexCard = ({ complexDetails, favorites}) => {
 
   const dispatch = useDispatch()
 
@@ -62,9 +62,9 @@ const ComplexCard = ({ complexDetails}) => {
         <span className="self-center text-xl">{rating||"no reviews"} ★</span>
       </Link>
       <div className="flex-end">
-      <button onClick={handleFavorite} className="self-center  w-12 h-11 ml-1 text-base font-semibold text-center text-white transition duration-200 ease-in bg-indigo-600 rounded-lg shadow-md hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2">
+      {!favorites && <button onClick={handleFavorite} className="self-center  w-12 h-11 ml-1 text-base font-semibold text-center text-white transition duration-200 ease-in bg-indigo-600 rounded-lg shadow-md hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2">
          { favorite ? <i className="fa-solid fa-bookmark"></i> :<i className="fa-regular fa-bookmark"></i>}
-      </button>
+      </button>}
       </div>
     </div>
 

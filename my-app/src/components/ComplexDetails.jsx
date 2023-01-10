@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { useLoadScript } from "@react-google-maps/api";
 import { getComplexDetails, updateComplex } from "../redux/actions";
+import Review from "./Review";
 
 const ComplexDetails = () => {
   const [loading, setLoading] = useState(false);
@@ -12,10 +13,10 @@ const ComplexDetails = () => {
   const currentUser = useSelector((state) => state.currentUser)
   const { id } = useParams();
   console.log(id)
-  console.log(complex)
+  console.log("ESTO ES EL .ENV",process.env.REACT_APP_GOOGLE_MAPS_API_KEY)
 
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey:process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
+    googleMapsApiKey:process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
   });
 
   const [update, setUpdate] = useState({
@@ -31,19 +32,9 @@ const ComplexDetails = () => {
     })();
   }, [dispatch, id]);
 
-//REVIEW
-
-  const [score, setScore] = useState({
-    score: 0,
-});
-
-const [comment, setComment] = useState({
-    comment: "",
-});
-
-const [name,setName] = useState(true)
 
 //UPDATE
+const [name,setName] = useState(true)
 
 const changeInput = () => {
   let input = document.getElementById("file");
@@ -60,22 +51,6 @@ const changeInput = () => {
     };
   };
 
-};
-
-
-const handleChange = (e) => {
-    setScore({
-        ...score,
-        [e.target.name]: e.target.value,
-    }); console.log("esto es score",score);
-};
-
-
-const handleChangeComment = (e) => {
-    setComment({
-        ...comment,
-        [e.target.name]: e.target.value,
-    }); console.log("esto es comment",comment);
 };
 
 const changeName = () =>{
@@ -262,43 +237,13 @@ const find = currentUser?.complejos?.find(e => e.id === id)
               </div>
             </div>
           </section>
-          <div className="flex flex-col items-center justify-center">
-            <form className="flex flex-col items-center justify-center">
-                <div className="flex flex-col items-center justify-center">
-                ★
-                    <input
-                        className="text-black text-2xl w-10 h-10"
-                        type="number"
-                        name="score"
-                        value={score.score}
-                        max="5"
-                        min="0"
-                        onChange={handleChange}
-                    />
-                </div>
-                <div className="flex flex-col items-center justify-center">
-                    <textarea
-                        name="comment"
-                        id=""
-                        cols="40"
-                        rows="2"
-                        onChange={(e) => setComment(e.target.value)}
-                        placeholder="Leave your comment"
-                        className="border border-gray-300 p-2 rounded mb-5"
-                    ></textarea>
-                </div>
-                <div className="flex flex-col items-center justify-center">
-                    <button
-                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-
-                        onClick={handleChangeComment}
-                    >
-                        Send
-                    </button>
-                </div>
-            </form>
-        </div>
+          <div>
+          <p className="flex flex-col items-center justify-center mt-10 text-2xl font-medium">
+          your opinions are important, don't forget to leave a comment.
+        </p>
+          <Review id={complex?.id} userId={currentUser?.id}/>
               {(update.name||update.images) && <button onClick={handleUpdate} className="fixed text-lg bottom-4 right-1/2 lg:bottom-4 lg:right-1/2 w-20 h-10 ml-1 font-semibold text-center text-white transition duration-200 ease-in bg-indigo-600 rounded-md shadow-md hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2">update</button>}
+          </div>
         </div>
       ) : (
         <p>Loading</p>

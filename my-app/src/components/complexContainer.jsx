@@ -8,7 +8,7 @@ import { useLoadScript } from '@react-google-maps/api';
 const ComplexContainer = () => {
 
   const complexs = useSelector(state => state.complexs)
-  const {isLoaded} = useLoadScript({googleMapsApiKey:process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY})
+  const {isLoaded} = useLoadScript({googleMapsApiKey:"AIzaSyDnQobr1nh7e9Y5r3In5Rmc38aZIqJsMcs"})
 
   return (
     <div>

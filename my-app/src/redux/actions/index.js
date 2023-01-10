@@ -13,7 +13,7 @@ export const getAllComplex = () => async(dispatch)=>{
         dispatch({
             type: actions.GET_ALL_COMPLEX,
             payload: {
-              api: data,
+              data,
               logic
             }})
   
@@ -519,6 +519,77 @@ export const searchCity = (city, array, setNotfound) => dispatch =>{
       alert("city not found")
     }
   }
+
+  //CRUD REVIEWS Review
+  export const getAllReview = () => async(dispatch)=>{
+    try {
+        const {data} = await axios.get("http://localhost:3001/reviews/all")
+
+        dispatch({
+            type: actions.GET_ALL_REVIEW,
+            payload:data
+          })
+  
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+
+
+export const getReviewDetails = (id) => async(dispatch) =>{
+  try{
+    
+    const {data}= await axios.get(`http://localhost:3001/reviews/${id}`)
+    
+    dispatch({
+      type: actions.GET_REVIEW_DETAIL,
+      payload: data
+    })
+  }catch(error){
+    alert(error)
+}
+}
+
+export const createReview = async(complex)=>{
+  try{
+    
+    const create = await axios.post("http://localhost:3001/reviews/create",complex)
+    return {create, msg:"complex updated"}
+  }
+  catch(error){
+    alert('error - complex not created')
+    console.log(error)
+  }
+}
+
+export const updateReview = (id,complex)=>{
+  try{
+    
+    const create = axios.put(`http://localhost:3001/reviews/update/${id}`,complex)
+    
+    return {create, msg:"complex updated"}
+  }
+  catch(error){
+    alert('error - complex not updated')
+    console.log(error)
+  }
+}
+
+export const deleteReview = (id)=>{
+
+  try{
+    
+    const create = axios.post(`http://localhost:3001/reviews/delete/${id}`)
+    
+    return {create, msg:"complex deleted"}
+  }
+  catch(error){
+    alert('error - complex not deleted')
+    console.log(error)
+  }
+}
   
   //OTROS
   export const getAllServices = () => async(dispatch)=>{

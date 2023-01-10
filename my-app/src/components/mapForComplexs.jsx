@@ -28,10 +28,10 @@ const MapForComplex = ({array}) => {
         else return "tu buscador no soporta geolocalizacion"
     },[])
 
-  return <div className='h-80 relative'>
+  return <div className='relative w-full h-full'>
     <GoogleMap zoom={15} center={center} mapContainerClassName='w-full h-full' > 
     {center.lat && <Marker className="text-cyan-800" icon={"https://cdn-icons-png.flaticon.com/64/5307/5307117.png"} position={center}/>}
-    {array?.map((e,i)=> (<Marker key={i} icon={"https://cdn-icons-png.flaticon.com/64/1688/1688177.png"} position={{lat:Number(e.lat),lng:Number(e.lng)}}/>))}
+    {array?.map((e,i)=> (<Marker children key={i} icon={"https://cdn-icons-png.flaticon.com/64/1688/1688177.png"} position={{lat:Number(e.lat),lng:Number(e.lng)}}/>))}
   </GoogleMap>
     </div>
 }
