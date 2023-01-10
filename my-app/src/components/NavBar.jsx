@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { logoutUser } from "../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
+import logo from '../data/BooKingblanco.png'
 
 const NavBar = () => {
   const [userModal, setUserModal] = useState(false);
@@ -21,9 +22,7 @@ const NavBar = () => {
         <div className="flex items-center justify-between h-20">
           <div className="flex items-center ">
             <Link className="flex-shrink-0" to="/">
-              <p className="text-3xl text-white">
-                PF<span className="font-bold"> Henry</span>
-              </p>
+              <img className="h-16" src={logo} alt="BooKing" />
             </Link>
             <div className="hidden md:block">
               <div className="flex items-baseline ml-10 space-x-4">

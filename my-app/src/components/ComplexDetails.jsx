@@ -3,16 +3,25 @@ import { GoogleMap, Marker } from "@react-google-maps/api";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { useLoadScript } from "@react-google-maps/api";
-import { getComplexDetails } from "../redux/actions";
+import { getComplexDetails, updateComplex } from "../redux/actions";
+import Review from "./Review";
 
 const ComplexDetails = () => {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const complex = useSelector((state) => state.detail);
+  const currentUser = useSelector((state) => state.currentUser)
   const { id } = useParams();
+  console.log(id)
+  console.log("ESTO ES EL .ENV",process.env.REACT_APP_GOOGLE_MAPS_API_KEY)
 
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey:process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
+    googleMapsApiKey:process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+  });
+
+  const [update, setUpdate] = useState({
+    images:null,
+    name:null
   });
 
   useEffect(() => {
@@ -23,23 +32,76 @@ const ComplexDetails = () => {
     })();
   }, [dispatch, id]);
 
+
+//UPDATE
+const [name,setName] = useState(true)
+
+const changeInput = () => {
+  let input = document.getElementById("file");
+  input.click();
+
+  input.onchange = () => {
+    let file = input.files[0];
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+
+    reader.onload = () => {
+      localStorage.setItem("imagen", reader.result);
+      setUpdate({...update, images:reader.result});
+    };
+  };
+
+};
+
+const changeName = () =>{
+  setName(!name)
+}
+
+const handleChangeName = (e) => {
+  setUpdate({...update,name:e.target.value})
+}
+
+const handleUpdate = () =>{
+  updateComplex(id,{...complex, logo:update.images ? update.images: complex.logo,name:update.name ? update.name: complex.name})
+  getComplexDetails(id)
+}
+
+const find = currentUser?.complejos?.find(e => e.id === id)
+
+
   return (
     <>
       {!loading && isLoaded ? (
-        <div className="flex flex-col justify-around w-10/12 mx-auto">
-          <img
-            className="w-full max-w-screen-md mx-auto rounded-lg shadow-xl"
-            src={
-              complex.logo ||
-              "https://images-platform.99static.com//_2gq7dvYv9xtbqA9fP3AlbTZ-zM=/50x0:1826x1776/fit-in/590x590/projects-files/32/3275/327556/942cbbbc-6c3a-4370-988b-8a016293b91d.jpg"
-            }
-            alt={complex.name}
-          />
+        <div className=" flex flex-col mt-4 justify-around w-10/12 mx-auto">
+          <div className="relative">
+            <img
+              className="w-full max-w-screen-md mx-auto rounded-lg shadow-xl"
+              src={
+                update.images || complex.logo ||
+                "https://images-platform.99static.com//_2gq7dvYv9xtbqA9fP3AlbTZ-zM=/50x0:1826x1776/fit-in/590x590/projects-files/32/3275/327556/942cbbbc-6c3a-4370-988b-8a016293b91d.jpg"
+              }
+              alt={complex.name}
+              />
+              {currentUser?.rol === "owner" && find && <button onClick={changeInput} className="absolute bottom-2 right-2 lg:bottom-4 lg:right-44  w-11 h-11 ml-1 text-base font-semibold text-center text-white transition duration-200 ease-in bg-indigo-600 rounded-full shadow-md hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2">
+              <input
+              type="file"
+              id="file"
+              onChange={changeInput}
+              style={{ display: "none" }}
+            />
+              <i className="fa-solid fa-pen"/>
+              </button>}
+          </div>
           <section className="flex flex-row justify-between mt-10">
             <div className="flex flex-col items-start w-3/4 ">
-              <p className="mb-5 text-5xl font-bold text-gray-500">
-                {complex.name || "No name provided"}
-              </p>
+              <div className="flex flex-row items-center">
+              {name ? <p className="mb-5 text-5xl font-bold text-gray-500">
+                {update.name || complex.name || "No name provided"}
+              </p> : <input type="text" className="flex-1 w-full px-4 py-2 text-base text-gray-700 placeholder-gray-400 bg-white border border-transparent border-gray-300 rounded-lg shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"  value={update.name} onChange={(e) =>handleChangeName(e)}/>}
+             {currentUser?.rol === "owner" && find && <button onClick={changeName} className=" w-11 h-11 ml-1 text-base font-semibold text-center text-white transition duration-200 ease-in bg-indigo-600 rounded-full shadow-md hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2">
+              <i className="fa-solid fa-pen"/>
+              </button>}
+              </div>
               <p className="text-2xl font-bold text-gray-500">
                 {complex.city || "No city provided"}
               </p>
@@ -71,7 +133,7 @@ const ComplexDetails = () => {
 
           <section className="mt-10">
             <h3 className="text-3xl font-bold">Upcoming Events</h3>
-            {complex.events.length ? (
+            {complex.events ? (
               complex.events.map((event) => (
                 <article>
                   <img src={event.img} alt={event.tittle} />
@@ -88,7 +150,7 @@ const ComplexDetails = () => {
           <section className="mt-10">
             <h3 className="text-3xl font-bold">Complex Courts</h3>
             <div className="flex flex-wrap justify-center w-full gap-5">
-              {complex.courts.length ? (
+              {complex.courts ? (
                 complex.courts.map((court) => (
                   <Link to={`/court/${court.id}`} key={court.id}>
                     <div className="p-5 mx-auto mt-5 border-2 rounded-lg">
@@ -148,7 +210,7 @@ const ComplexDetails = () => {
                 </div>
                 <div className="p-4 ml-5 border-2 rounded-xl border-t-neutral-400 ">
                   <h4 className="py-2 text-sm font-bold border-b-2">Open</h4>
-                  {complex.configs.length ? (
+                  {complex.configs? (
                     complex.configs.map((config) => (
                       <p className="my-5" key={config.id}>
                         {config.open_days} |{" "}
@@ -164,7 +226,7 @@ const ComplexDetails = () => {
                   <h4 className="py-2 text-sm font-bold border-b-2">
                     Services
                   </h4>
-                  {complex.ServicesComplejos.length ? (
+                  {complex.ServicesComplejos ? (
                     complex.ServicesComplejos.map((service) => (
                       <p className="my-5">{service.nameservice}</p>
                     ))
@@ -175,6 +237,13 @@ const ComplexDetails = () => {
               </div>
             </div>
           </section>
+          <div>
+          <p className="flex flex-col items-center justify-center mt-10 text-2xl font-medium">
+          your opinions are important, don't forget to leave a comment.
+        </p>
+          <Review id={complex?.id} userId={currentUser?.id}/>
+              {(update.name||update.images) && <button onClick={handleUpdate} className="fixed text-lg bottom-4 right-1/2 lg:bottom-4 lg:right-1/2 w-20 h-10 ml-1 font-semibold text-center text-white transition duration-200 ease-in bg-indigo-600 rounded-md shadow-md hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2">update</button>}
+          </div>
         </div>
       ) : (
         <p>Loading</p>
@@ -184,4 +253,3 @@ const ComplexDetails = () => {
 };
 
 export default ComplexDetails;
-

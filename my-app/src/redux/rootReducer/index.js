@@ -2,6 +2,7 @@ import * as actions from "../actionTypes";
 
 const initialState = {
   allComplexs: [],
+  allReviews:[],
   complexs: [],
   detail: {},
   currentUser: null,
@@ -18,8 +19,8 @@ const rootReducer = (state = initialState, action) => {
     case actions.GET_ALL_COMPLEX:
       return {
         ...state,
-        allComplexs: action.payload.api,
-        complexs: action.payload.borradoLogico,
+        allComplexs: action.payload.data,
+        complexs: action.payload.logic,
       };
     case actions.GET_COMPLEX_DETAIL:
       return {
@@ -86,6 +87,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         allUsers: action.payload.api,
         users:action.payload.logic
+      };
+    case actions.GET_ALL_REVIEW:
+      return {
+        ...state,
+        allReviews: action.payload,
       };
 
     case actions.FAV_LOCAL:

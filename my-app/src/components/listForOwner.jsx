@@ -4,7 +4,6 @@ import {changeStatusComplex} from '../redux/actions'
 import { Link } from 'react-router-dom'
 
 const ItemForOwnerList = ({complex}) => {
-    console.log(complex)
 
     const [borrado,setBorrado] = useState(complex && complex.deleted)
 
@@ -17,6 +16,7 @@ const ItemForOwnerList = ({complex}) => {
         changeStatusComplex(complex.id, change)
        }
 
+       console.log(complex)
 
 
   return (
@@ -25,8 +25,8 @@ const ItemForOwnerList = ({complex}) => {
         <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
             <div className="flex items-center">
             <div className="flex-shrink-0">
-                <div
-                // to={`/complex/${complex.id}`}
+                <Link
+                to={`/search/${complex.id}`}
                 className="relative block"
                 >
                 <img
@@ -34,7 +34,7 @@ const ItemForOwnerList = ({complex}) => {
                     src={complex.logo || "https://cdn-icons-png.flaticon.com/512/2782/2782896.png"}
                     className="w-10 h-10 mx-auto rounded-full object-contain "
                 />
-                </div>
+                </Link>
             </div>
             <div className="ml-3">
                 <p className="text-gray-900 whitespace-no-wrap">

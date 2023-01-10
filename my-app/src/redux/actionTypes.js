@@ -2,6 +2,9 @@
 //traer info//COMPLEX
 export const GET_ALL_COMPLEX = "GET_ALL_COMPLEX"
 export const GET_COMPLEX_DETAIL = "GET_COMPLEX_DETAIL"
+//traer info//REVIEW
+export const GET_ALL_REVIEW = "GET_ALL_REVIEW"
+export const GET_REVIEW_DETAIL = "GET_REVIEW_DETAIL"
 //traer info//USER
 export const GET_ALL_USER = "GET_ALL_USER"
 export const GET_USER_DETAIL = "GET_USER_DETAIL"

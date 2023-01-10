@@ -5,7 +5,8 @@ import Tr from './listForOwner'
 
 
 const OwnerDashboard = () => {
-  const complexList = useSelector(state => state.currentUser.complejo)
+  const complexList = useSelector(state => state.currentUser.complejos)
+  console.log(complexList)
 
   return (
     <div className="bg-gray-100">

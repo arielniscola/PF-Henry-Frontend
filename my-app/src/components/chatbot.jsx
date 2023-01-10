@@ -4,13 +4,13 @@ import {Link,} from 'react-router-dom';
 
 // Creating our own theme
 const theme = {
-	background: '#C9FF8F',
-	headerBgColor: '#197B22',
+	background: '#9eabd4',
+	headerBgColor: '#5670c3',
 	headerFontSize: '20px',
 	botBubbleColor: '#0F3789',
 	headerFontColor: 'white',
 	botFontColor: 'white',
-	userBubbleColor: '#FF5733',
+	userBubbleColor: '#6198cc',
 	userFontColor: 'white',
 };
 
