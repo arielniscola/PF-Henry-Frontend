@@ -18,7 +18,7 @@ export default function MediosPago() {
   console.log(process.env.REACT_APP_ID);
   const handleButton = () => {
     window.open(
-      "https://auth.mercadopago.com/authorization?client_id=6362912020600309&response_type=code&platform_id=mp&state=RANDOM_ID&redirect_uri=https://deploy-pf-arielniscola.vercel.app/mercadopago-auth/"
+      `https://auth.mercadopago.com/authorization?client_id=${process.env.REACT_APP_CLIENT_ID}&response_type=code&platform_id=mp&state=RANDOM_ID&redirect_uri=https://deploy-pf-arielniscola.vercel.app/mercadopago-auth/`
     );
   };
   return (
