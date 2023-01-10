@@ -22,7 +22,8 @@ import Reservations from "./components/Reservations";
 import CreateCourt from "./components/CreateCourt";
 import ComplejoDisplayer from "./components/ComplejoDisplayer";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-
+import AddPermissionMercadopago from "./components/mercadopago/AddPermissionMercadopago.jsx"
+import Success from "./components/mercadopago/backs_urls/Success.jsx"
 function App() {
   const dispatch = useDispatch();
 
@@ -45,6 +46,8 @@ function App() {
           <Route path="forgot-password" element={<ForgotPassword />} />
           <Route path="forgot-password/:token" element={<NewPassword />} />
           <Route path="confirm-account/:token" element={<ConfirmAccount />} />
+          <Route path="mercadopago-auth/" element={<AddPermissionMercadopago />} />
+          <Route path="payment/success" element={<Success />} />
           <Route path="search" element={<ComplexContainer />} />
           <Route path="create" element={<ComplexForm />} />
           <Route path="search/:id" element={<ComplexDetails />} />
