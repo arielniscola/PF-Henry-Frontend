@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { ButtonReturn, Generalcontainer } from "../styles.js";
-import clientAxios from "../../config/clientAxios";
+import clientAxios from "../../../config/clientAxios.jsx";
 
 export default function Success() {
   const [alert, setAlert] = useState({});
