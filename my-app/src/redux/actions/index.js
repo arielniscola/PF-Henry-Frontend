@@ -28,11 +28,11 @@ export const getAllComplex = () => async(dispatch)=>{
 export const getComplexDetails = (id) => async(dispatch) =>{
   try{
     
-    const find = await axios.get(`http://localhost:3001/complejo/${id}`)
+    const {data}= await axios.get(`http://localhost:3001/complejo/${id}`)
     
     dispatch({
       type: actions.GET_COMPLEX_DETAIL,
-      payload: find
+      payload: data
     })
   }catch(error){
     alert(error)
@@ -51,14 +51,7 @@ export const createComplex = async(complex)=>{
   }
 }
 
-export const updateComplex = (id,{logo,cuit,complexName,complexAddress})=>{
-  
-  let complex = {
-    name:complexName,
-    cuit,
-    logo: logo.length ? logo : "https://icones.pro/wp-content/uploads/2022/03/icone-de-construction-et-de-batiment-gris.png" ,
-    addres:complexAddress
-  }
+export const updateComplex = (id,complex)=>{
   try{
     
     const create = axios.put(`http://localhost:3001/complejo/update/${id}`,complex)
@@ -133,16 +126,11 @@ export const createUser = async (formData)=>{
   }
 }
 
-export const updateUser = (id,{fullname,password,email,phone})=>{
+export const updateUser = (id,user)=>{
+  console.log("esto es  id",id)
+  console.log("esto es  user",user)
   
-  let user = {
-    name:fullname,
-    password,
-    email,
-    phone
-  }
   try{
-    
     const create = axios.put(`http://localhost:3001/clients/update/${id}`,user)
     
     return {create, msg:"user updated"}

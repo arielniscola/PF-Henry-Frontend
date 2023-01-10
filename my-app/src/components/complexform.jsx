@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 import valComplex from './valComplex'
-import {createComplex} from '../redux/actions'
+import {createComplex, updateUser} from '../redux/actions'
 import {useLoadScript} from '@react-google-maps/api'
 import {useDispatch, useSelector} from 'react-redux'
 import MapForm from './MapForm'
@@ -12,6 +12,7 @@ function ComplexForm() {
   
   const {isLoaded} = useLoadScript({googleMapsApiKey:process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY})
   const currentUser = useSelector(state => state.currentUser)
+  console.log(currentUser.complejos)
   const initalState ={
     name:"",
     address:"",
@@ -87,6 +88,7 @@ else return "tu buscador no soporta geolocalizacion"
       const handleSubmit = (e) =>{
         e.preventDefault()
         createComplex(form)
+        currentUser.rol === "client" && updateUser(currentUser.id,{...currentUser,rol:"owner"})
         setForm(initalState)
         geolocalization()
       }

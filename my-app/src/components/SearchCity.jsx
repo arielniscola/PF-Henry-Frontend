@@ -33,7 +33,7 @@ const SearchCity = () => {
 
 
     return (
-        <div>
+        <div className="flex flex-row items-center">
             <input
                 type="text"
                 className="w-4/12 px-6 py-2 border border-transparent text-xl font-medium rounded-md text-black bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" placeholder="Search City"

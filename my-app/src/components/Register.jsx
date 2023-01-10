@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import clientAxios from "../config/clientAxios";
 import Alert from "./Alert";
 import { createUser } from "../redux/actions";
+import logo from '../data/BooKingnegro.png'
 
 const Register = () => {
 
@@ -55,9 +55,11 @@ const Register = () => {
 
   return (
     <main className="container p-5 mx-auto mt-5 md:mt-20 md:w-2/3 lg:w-2/5">
-      <h1 className="text-6xl font-black capitalize text-sky-600">
-        Register your account to start using{" "}
-        <span className="text-slate-700">PF henry</span>
+      <h1 className="text-6xl text-center font-black capitalize text-sky-600">
+        Register your account to start using
+        <div className="flex flex-col justify-center items-center">
+          <img className="h-32 my-2" src={logo} alt="BooKing" />
+        </div>
       </h1>
 
       {msg && <Alert alert={alert} />}

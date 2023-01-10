@@ -1,10 +1,14 @@
 import { Link } from "react-router-dom";
+import logo from '../data/BooKingblanco.png'
+
 
 const Footer = () => {
   return (
     <div className="h-full bg-blue-800/75 flex flex-wrap py- justify-center text-white items-center ">
       <div className="text-center font-bold ">
-        <h2 className="text-5xl  font-bold mb-2">PF HENRY</h2>
+        <div className="flex flex-col justify-center items-center">
+          <img className="h-16 my-2" src={logo} alt="BooKing" />
+        </div>
         <p className="text-2xl font-bold  ">Ready to start?</p>
         <button className="bg-green-500 text-white py-2 px-5 mt-2 rounded-lg">
           <Link to='/contact-us'>
