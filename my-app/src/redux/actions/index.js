@@ -552,27 +552,28 @@ export const getReviewDetails = (id) => async(dispatch) =>{
 }
 }
 
-export const createReview = async(complex)=>{
+export const createReview = async(review)=>{
+  console.log("esto llega en review",review)
   try{
     
-    const create = await axios.post("http://localhost:3001/reviews/create",complex)
-    return {create, msg:"complex updated"}
+    const create = await axios.post("http://localhost:3001/reviews/create",review)
+    return {create, msg:"review updated"}
   }
   catch(error){
-    alert('error - complex not created')
+    alert('error - review not created')
     console.log(error)
   }
 }
 
-export const updateReview = (id,complex)=>{
+export const updateReview = (id,review)=>{
   try{
     
-    const create = axios.put(`http://localhost:3001/reviews/update/${id}`,complex)
+    const create = axios.put(`http://localhost:3001/reviews/update/${id}`,review)
     
-    return {create, msg:"complex updated"}
+    return {create, msg:"review updated"}
   }
   catch(error){
-    alert('error - complex not updated')
+    alert('error - review not updated')
     console.log(error)
   }
 }
@@ -583,7 +584,7 @@ export const deleteReview = (id)=>{
     
     const create = axios.post(`http://localhost:3001/reviews/delete/${id}`)
     
-    return {create, msg:"complex deleted"}
+    return {create, msg:"review deleted"}
   }
   catch(error){
     alert('error - complex not deleted')
@@ -644,10 +645,20 @@ export const deleteReview = (id)=>{
     }catch(error){console.log(error)}
   }
 
-  export const updateFavorite= async(id,obj)=>{
+  export const updateFavorite= (id,obj,bool)=> async dispatch => {
+    console.log("esto es update", obj)
     try{
       const send = await axios.put(`http://localhost:3001/clients/update/${id}`,obj)
-      return {send, msg:"the complex was added to favorites"}
+      
+      if(bool){dispatch({
+        type: actions.UPDATE_FAVORITES,
+        payload: obj.favorites
+      })}else{
+        {dispatch({
+          type: actions.UPDATE_FAVORITES_DEL,
+          payload: obj.favorites
+        })}
+      }
     }catch(error){console.log(error)}
   }
 
