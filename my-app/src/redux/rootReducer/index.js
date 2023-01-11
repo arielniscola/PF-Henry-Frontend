@@ -9,7 +9,6 @@ const initialState = {
   sports:[],
   services:[],
   favUser:[],
-  favlocal:[],
   allUsers:[],
   users:[]
 };
@@ -93,11 +92,15 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         allReviews: action.payload,
       };
-
-    case actions.FAV_LOCAL:
+    case actions.UPDATE_FAVORITES:
       return {
         ...state,
-        favlocal: [...state.favlocal, ...action.payload],
+        currentUser: {...state.currentUser, favorites:[...state.currentUser.favorites, action.payload]},
+      };
+    case actions.UPDATE_FAVORITES_DEL:
+      return {
+        ...state,
+        currentUser: {...state.currentUser, favorites:action.payload},
       };
 
     default:

@@ -1,39 +1,38 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import {addFavoriteLocalStorage} from '../redux/actions'
+import {addFavoriteLocalStorage, getUserDetails} from '../redux/actions'
 import { updateFavorite } from "../redux/actions";
 import uploadimg from '../data/uploadimg.png'
 import { useState } from "react";
+import { useLocalStorage } from "./hooks/useLocalStorage";
 
-const ComplexCard = ({ complexDetails, favorites}) => {
+const ComplexCard = ({ complexDetails, favorites,arrfav ,setArrfav}) => {
 
   const dispatch = useDispatch()
 
-  const user = useSelector(state => state.isActive)
-  const local = useSelector(state => state.favlocal)
   const currentUser = useSelector(state => state.currentUser)
-  console.log("esto es local",local)
+  const [storage, setStorage] = useLocalStorage("favorite",[])
 
   const { id, name, event, city, rating,logo } = complexDetails;
 
-  const fav = currentUser ? currentUser.favorites : local
+  const fav = currentUser ? currentUser.favorites : storage
 
   const find = fav?.some(e => e.id === id)
 
   const [favorite, setFavorite] = useState(find)
 
   const handleFavorite = () =>{
-    if(!user){
+    if(!currentUser){
       if(!favorite){
-        dispatch(addFavoriteLocalStorage([id]))
         setFavorite(true)
+        setStorage([...storage, id])
       }else{
         alert("already in your favorites")
       }
     }else{
       if(!favorite){
-        dispatch(updateFavorite(currentUser.id,{...currentUser, favorites:[...currentUser.favorites,id]}))
         setFavorite(true)
+        setArrfav([...new Set([...arrfav,...storage,id])])
       }else{
         alert("already in your favorites")
       }
