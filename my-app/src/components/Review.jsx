@@ -1,15 +1,14 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { createReview } from '../redux/actions';
+import { createReview, getComplexDetails } from '../redux/actions';
 
 const Review = ({id,userId}) => {
     const dispatch = useDispatch()
-    console.log(id,userId)
     const [review, setReview] = useState({
         rating: 0,
         comment: "",
-        idClient:userId,
-        idComplejo:id
+        clientId:userId,
+        complejoId:id
 
     });
 
@@ -19,13 +18,14 @@ const Review = ({id,userId}) => {
             [e.target.name]: e.target.value,
         }); console.log("esto es review",review);
     };
-    const handleCreateReview = () =>{
+    const handleCreateReview = (e) =>{
+        e.preventDefault()
         dispatch(createReview(review))
     }
 
   return (
     <div className="flex flex-col items-center justify-center">
-    <form className="flex flex-col h-52 mb-4 relative items-center justify-center">
+    <form onSubmit={(e)=>handleCreateReview(e)} className="flex flex-col h-52 mb-4 relative items-center justify-center">
         <div className="flex flex-row items-center justify-center">
             {[...Array(5)].map((e,i)=> { 
                 const ratingValue = i+1
@@ -37,7 +37,7 @@ const Review = ({id,userId}) => {
                     value={ratingValue}
                     onClick ={(e) => handleChange(e)}
                     />
-                    <div className={ratingValue <= review.rating ? "text-3xl mb-2 text-yellow-400" : "text-3xl mb-2 text-gray-400"}><i className="fa-solid fa-star"></i></div>
+                    <div className={ratingValue <= review.rating ? "text-3xl mb-2 text-blue-800/75" : "text-3xl mb-2 text-gray-400"}><i className="fa-solid fa-star"></i></div>
                     </label>)})}
         </div>
 
@@ -55,7 +55,7 @@ const Review = ({id,userId}) => {
             <button
                 className=" absolute bottom-0 right-1 w-16 h-10 ml-1 text-xl font-semibold text-center text-white transition duration-200 ease-in bg-indigo-600 rounded-md shadow-md hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2"
 
-                onClick={handleCreateReview}
+                type='submit'
             >
                 Send
             </button>
