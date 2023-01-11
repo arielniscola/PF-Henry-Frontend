@@ -99,15 +99,25 @@ const ReservationCourt = ({ court }) => {
   };
 
   return (
-    <div className="bg-gray-100">
-      <div className="container max-w-4xl px-4 mx-auto sm:px-8">
-        <div>Detalles del Turn</div>
-        <div>Pick date Turn:</div>
+      <div className="flex flex-col items-center m-12 h-72 border border-black 
+      rounded-lg shadow-lg bg-gray-100
+      ">
+        <h2 className="flex flex-col items-center justify-center mt-10 text-4xl  font-bold text-blue-700">
+        Shift Detail
+        </h2>
+        <div className="flex flex-row items-center text-2xl font-medium ml-60 ">
+          <div >
+          Pick date Turn:
+          </div>
+          <div>
         <DatePicker
           selected={startDate}
           onChange={(date) => selectedDate(date)}
-        />
-        <div>Available times:</div>
+          className=" bg-white rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none text-base px-2 m-5"
+        /></div>
+        </div>
+        <div className="flex flex-col items-center justify-center  text-2xl font-medium">
+        Available times:</div>
         <div>
           <ul className="max-w-md divide-y divide-gray-200 dark:divide-gray-700">
             {times.length > 0 &&
@@ -135,7 +145,7 @@ const ReservationCourt = ({ court }) => {
                       <div>
                         <button
                           type="button"
-                          class="text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center mr-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800"
+                          className="text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center mr-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800"
                           onClick={() => {
                             saveTurn(time.time);
                             payment();
@@ -164,7 +174,6 @@ const ReservationCourt = ({ court }) => {
           </ul>
         </div>
       </div>
-    </div>
   );
 };
 

@@ -1,12 +1,13 @@
 import React from "react";
 
 
+
+
 const Reservations = () => {
-    return (
-        <div>
-        <h1>Reservations</h1>
-        </div>
-    );
-    }
+    return <div>Reservations</div>;
+     
+};
 
 export default Reservations;
+
+
