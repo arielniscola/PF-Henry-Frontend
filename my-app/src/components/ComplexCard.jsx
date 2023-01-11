@@ -1,12 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import {addFavoriteLocalStorage, getUserDetails} from '../redux/actions'
-import { updateFavorite } from "../redux/actions";
+import {getUserDetails, updateFavorite} from '../redux/actions'
 import uploadimg from '../data/uploadimg.png'
 import { useState } from "react";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 
-const ComplexCard = ({ complexDetails, favorites,arrfav ,setArrfav}) => {
+const ComplexCard = ({ complexDetails, favorites}) => {
 
   const dispatch = useDispatch()
 
@@ -32,14 +31,14 @@ const ComplexCard = ({ complexDetails, favorites,arrfav ,setArrfav}) => {
     }else{
       if(!favorite){
         setFavorite(true)
-        setArrfav([...new Set([...arrfav,...storage,id])])
+        dispatch(updateFavorite(currentUser?.id,{...currentUser, favorites:[...currentUser.favorites,id]},true))
+        dispatch(getUserDetails(currentUser.id))
       }else{
         alert("already in your favorites")
       }
       
     }
   }
-
 
   return (
     <div className="flex flex-row m-5  justify-around">
@@ -61,7 +60,7 @@ const ComplexCard = ({ complexDetails, favorites,arrfav ,setArrfav}) => {
         <span className="self-center text-xl">{rating||"no reviews"} ★</span>
       </Link>
       <div className="flex-end">
-      {!favorites && <button onClick={handleFavorite} className="self-center  w-12 h-11 ml-1 text-base font-semibold text-center text-white transition duration-200 ease-in bg-indigo-600 rounded-lg shadow-md hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2">
+      {!favorites && <button onClick={() => handleFavorite()} className="self-center  w-12 h-11 ml-1 text-base font-semibold text-center text-white transition duration-200 ease-in bg-indigo-600 rounded-lg shadow-md hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2">
          { favorite ? <i className="fa-solid fa-bookmark"></i> :<i className="fa-regular fa-bookmark"></i>}
       </button>}
       </div>

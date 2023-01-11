@@ -3,7 +3,8 @@ import { GoogleMap, Marker } from "@react-google-maps/api";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { useLoadScript } from "@react-google-maps/api";
-import { getAllReview, getComplexDetails, updateComplex } from "../redux/actions";
+import { getAllUser, getComplexDetails, updateComplex } from "../redux/actions";
+import Comment from "./Comment";
 import Review from "./Review";
 
 const ComplexDetails = () => {
@@ -11,11 +12,10 @@ const ComplexDetails = () => {
   const dispatch = useDispatch();
   const complex = useSelector((state) => state.detail);
   const currentUser = useSelector((state) => state.currentUser)
+  console.log("esto es complex",complex?.reviews)
 
   
   const { id } = useParams();
-  console.log(id)
-  console.log("ESTO ES EL .ENV",process.env.REACT_APP_GOOGLE_MAPS_API_KEY)
   
   const { isLoaded } = useLoadScript({
     googleMapsApiKey:process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
@@ -32,7 +32,6 @@ const ComplexDetails = () => {
       setLoading(true);
       await dispatch(getComplexDetails(id));
       setLoading(false);
-      getAllReview()
     })();
   }, [dispatch, id]);
   
@@ -244,12 +243,7 @@ const find = currentUser?.complejos?.find(e => e.id === id)
           <div>
             <h3 className="flex flex-col items-center justify-center mb-5 text-4xl  font-bold text-blue-700">Comments</h3>
             <div>
-              {complex?.reviews?.map(rev =>(
-                <div>
-                  <div>{rev.rating}</div>
-                  <div>{rev.comment}</div>
-                </div>
-              ))}
+              {complex?.reviews?.map(rev => <Comment rev={rev}/>)}
             </div>
           <p className="flex flex-col items-center justify-center mt-10 text-2xl font-medium">
           your opinions are important, don't forget to leave a comment.

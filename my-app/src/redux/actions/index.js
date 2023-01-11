@@ -184,11 +184,10 @@ try{
 }
 }
 
-export const createCourt = (court)=>{
+export const createCourt = async(court)=>{
 
   try{
-    
-    const create = axios.get("http://localhost:3001/court/create",court)
+    const create = await axios.post("http://localhost:3001/court/create",court)
     
     return {create, msg:"court created"}
   }
@@ -334,11 +333,11 @@ try{
 }
 }
 
-export const createTypeCourt = (typecourt)=>{
+export const createTypeCourt = async (typecourt)=>{
   
   try{
     
-    const create = axios.get("http://localhost:3001/typecourt/create",typecourt)
+    const create = await axios.post("http://localhost:3001/typecourt/create",{description:typecourt.description})
     
     return {create, msg:"typecourt created"}
   }
