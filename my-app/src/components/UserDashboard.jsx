@@ -4,14 +4,16 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import uploadimg from "../data/uploadimg.png";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserDetails } from "../redux/actions";
 
 
 
 const  UserDashboard = () => {
+  const dispatch = useDispatch()
   const [images, setImages] = useState(uploadimg);
   const [nombre, setNombre] = useState("User");
-  const rol = useSelector(state => state.currentUser.rol)
+  const currentUser = useSelector(state => state.currentUser)
 
 
   useEffect(() => {
@@ -21,6 +23,8 @@ const  UserDashboard = () => {
     if (localStorage.getItem("nombree")) {
       setNombre(localStorage.getItem("nombree"));
     }
+    currentUser && dispatch(getUserDetails(currentUser?.id))
+    
   }, []);
 
   const changeInput = () => {
@@ -101,7 +105,7 @@ const  UserDashboard = () => {
             </Link>
             <Link to="/create">
             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-10"
-            >{rol === "owner"? "Create Complex": "Be Owner"}</button>
+            >{currentUser.rol === "owner"? "Create Complex": "Be Owner"}</button>
             </Link>
       
           </div>

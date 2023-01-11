@@ -3,7 +3,7 @@ import { GoogleMap, Marker } from "@react-google-maps/api";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { useLoadScript } from "@react-google-maps/api";
-import { getComplexDetails, updateComplex } from "../redux/actions";
+import { getAllReview, getComplexDetails, updateComplex } from "../redux/actions";
 import Review from "./Review";
 
 const ComplexDetails = () => {
@@ -11,33 +11,37 @@ const ComplexDetails = () => {
   const dispatch = useDispatch();
   const complex = useSelector((state) => state.detail);
   const currentUser = useSelector((state) => state.currentUser)
+
+  
   const { id } = useParams();
   console.log(id)
   console.log("ESTO ES EL .ENV",process.env.REACT_APP_GOOGLE_MAPS_API_KEY)
-
+  
   const { isLoaded } = useLoadScript({
     googleMapsApiKey:process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
   });
-
+  
   const [update, setUpdate] = useState({
     images:null,
     name:null
   });
+
 
   useEffect(() => {
     (async () => {
       setLoading(true);
       await dispatch(getComplexDetails(id));
       setLoading(false);
+      getAllReview()
     })();
   }, [dispatch, id]);
-
-
-//UPDATE
-const [name,setName] = useState(true)
-
-const changeInput = () => {
-  let input = document.getElementById("file");
+  
+  
+  //UPDATE
+  const [name,setName] = useState(true)
+  
+  const changeInput = () => {
+    let input = document.getElementById("file");
   input.click();
 
   input.onchange = () => {
@@ -238,6 +242,15 @@ const find = currentUser?.complejos?.find(e => e.id === id)
             </div>
           </section>
           <div>
+            <h3 className="flex flex-col items-center justify-center mb-5 text-4xl  font-bold text-blue-700">Comments</h3>
+            <div>
+              {complex?.reviews?.map(rev =>(
+                <div>
+                  <div>{rev.rating}</div>
+                  <div>{rev.comment}</div>
+                </div>
+              ))}
+            </div>
           <p className="flex flex-col items-center justify-center mt-10 text-2xl font-medium">
           your opinions are important, don't forget to leave a comment.
         </p>

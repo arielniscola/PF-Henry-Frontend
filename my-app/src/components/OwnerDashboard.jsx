@@ -1,12 +1,18 @@
-import {useSelector } from "react-redux";
+import { useEffect } from "react";
+import {useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { getUserDetails } from "../redux/actions";
 import Tr from './listForOwner'
 
 
 
 const OwnerDashboard = () => {
-  const complexList = useSelector(state => state.currentUser.complejos)
-  console.log(complexList)
+  const dispatch = useDispatch()
+  const currentUser = useSelector(state => state.currentUser)
+   useEffect(()=>{
+  currentUser && dispatch(getUserDetails(currentUser?.id))
+
+   },[])
 
   return (
     <div className="bg-gray-100">
@@ -48,9 +54,9 @@ const OwnerDashboard = () => {
                     >actions</th>
                   </tr>
                 </thead>
-                {!complexList ? <tbody className="flex flex-col justify-center text-center items-center"> <h2>No hay complejos creados</h2> </tbody> : <tbody>
-                  {complexList?.map((complex,index) => (<Tr
-                  array={complexList}
+                {!currentUser?.complejos ? <tbody className="flex flex-col justify-center text-center items-center"> <h2>No hay complejos creados</h2> </tbody> : <tbody>
+                  {currentUser?.complejos?.map((complex,index) => (<Tr
+                  array={currentUser?.complejos}
                   key={index}
                   complex={complex}
                   typeTable="complex"
