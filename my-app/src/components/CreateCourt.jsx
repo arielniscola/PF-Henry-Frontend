@@ -1,37 +1,26 @@
 import React from "react";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { createCourt } from "../redux/actions";
-import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import {useDispatch, useSelector} from 'react-redux'
 
 
 
-
-
-// creo un componente para que el usario pueda crear tipos de canchas
 const CreateCourt = () => {
+    const currentUser = useSelector(state => state.currentUser)
 
-    //creo un estado inicial
     const initalState ={
+       id: currentUser.id,
         numberCourt: 0,
         description: "",
-        typeCourt: "",
+        type_Court: "",
         price: 0,
         img: "",
     };
 
-    // creo un estado para guardar los datos del formulario
     const [form, setForm] = useState(initalState);
-
-    // creo un estado para guardar los errores
     const [errors, setErrors] = useState({});
     
-    // creo un estado para guardar los datos del formulario
-    const dispatch = useDispatch();
-
-
-    // creo una funcion para manejar los cambios en el formulario
+    
     const handleChange = (e) => {
         setForm({
             ...form,
@@ -39,41 +28,20 @@ const CreateCourt = () => {
         });
     };
 
-    // creo una funcion para manejar el submit del formulario
-    
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // valido el formulario
+       
         let errors = validate(form);
         setErrors(errors);
         if (Object.keys(errors).length === 0) {
-            // si no hay errores, envio los datos al servidor
-            dispatch(createCourt(form));
-            // vacio el formulario
+          
+            createCourt(form);
+        
             setForm(initalState);
-        }  
-    };//console.log("esto es form",form);
-
-    // creo una funcion para validar el formulario
-    const validate = (form) => {
-        let errors = {};
-        if (!form.numberCourt) {
-            errors.numberCourt = "El numero de cancha es requerido";
-        }
-        if (!form.description) {
-            errors.description = "La descripcion es requerida";
-        }
-        if (!form.typeCourt) {
-            errors.typeCourt = "El tipo de cancha es requerido";
-        }
-        if (!form.price) {
-            errors.price = "El precio es requerido";
-        }
-        return errors;
+        }  console.log("form",form);
     };
-   
-
+    
     const handleImage = (e) => {
         const file = e.target.files[0];
         previewFile(file)
@@ -88,7 +56,22 @@ const CreateCourt = () => {
         }
       }
 
-
+      const validate = (form) => {
+        let errors = {};
+        if (!form.numberCourt) {
+            errors.numberCourt = "El numero de cancha es requerido";
+        }
+        if (!form.description) {
+            errors.description = "La descripcion es requerida";
+        }
+        if (!form.type_Court) {
+            errors.type_Court = "El tipo de cancha es requerido";
+        }
+        if (!form.price) {
+            errors.price = "El precio es requerido";
+        }
+        return errors;
+    };
 
 
     return (
@@ -127,14 +110,14 @@ const CreateCourt = () => {
                 <label className="mb-2">Type Court</label>
                 <input
                     type="text"
-                    name="typeCourt"
-                    value={form.typeCourt}
+                    name="type_Court"
+                    value={form.type_Court}
                     onChange={handleChange}
                     className="border border-gray-300 p-2 rounded mb-5"
                 />
-                {errors.typeCourt && (
+                {errors.type_Court && (
                     <p className="text-red-500 text-xs italic">
-                        {errors.typeCourt}
+                        {errors.type_Court}
                     </p>
                 )}
                 <label className="mb-2">Price</label>
@@ -150,15 +133,18 @@ const CreateCourt = () => {
                         {errors.price}
                     </p>
                 )}
-                <label className="mb-2">Image</label>
-                <input
-                    type="file"
-                    id="file"
-                    name="img"
-                    value={form.img}
-                    onChange={(e) => handleImage(e)}
-                    className="border border-gray-300 p-2 rounded mb-5"
-                />
+                 <label> Image:<br></br>
+              <input type="file"  name="logo" onChange={(e) => handleImage(e)} 
+              className="text-sm text-grey-500
+              file:mr-5 file:py-2 file:px-6
+              file:rounded-full file:border-0
+              file:text-sm file:font-medium
+              file:bg-blue-200 file:text-blue-700
+              file:transition-all
+              hover:file:cursor-pointer hover:file:bg-blue-700
+              hover:file:text-white mb-5
+              " />
+          </label>
                 {errors.img && (
                     <p className="text-red-500 text-xs italic">
                         {errors.img}

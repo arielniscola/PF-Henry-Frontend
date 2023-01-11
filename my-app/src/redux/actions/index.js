@@ -184,11 +184,11 @@ try{
 }
 }
 
-export const createCourt = (court)=>{
+export const createCourt = async (court) => {
 
   try{
     
-    const create = axios.get("http://localhost:3001/court/create",court)
+    const create = await axios.get("http://localhost:3001/court/create",court)
     
     return {create, msg:"court created"}
   }
