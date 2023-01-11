@@ -1,7 +1,9 @@
 import React, { useEffect, useSelector, Fragment } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
-
+import {useModal} from './hooks/useModal'
+import Review from './Review'
+import {Modal} from './Modal'
 import Swal from "sweetalert2";
 
 const Reservations = (props) => {
@@ -23,6 +25,8 @@ const Reservations = (props) => {
       });
     // console.log('borrado:', id)
   }
+
+  const [isOpen,modalOpen,]=useModal(false)
 
   // const location = useLocation();
   // useEffect(() => {
@@ -52,48 +56,59 @@ const Reservations = (props) => {
   // };
   return (
     <div>
-<section class="antialiased bg-gray-100 text-gray-600 h-screen px-4">
-    <div class="flex flex-col justify-center h-full">
+<section className="antialiased bg-gray-100 text-gray-600 h-screen px-4">
+    <div className="flex flex-col justify-center h-full">
         
-        <div class="w-full max-w-2xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
-            <header class="px-5 py-4 border-b border-gray-100">
-                <h2 class="font-semibold text-gray-800">My reservations</h2>
+        <div className="w-full max-w-2xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
+            <header className="px-5 py-4 border-b border-gray-100">
+                <h2 className="font-semibold text-gray-800">My reservations</h2>
             </header>
-            <div class="p-3">
-                <div class="overflow-x-auto">
-                    <table class="table-auto w-full">
-                        <thead class="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
+            <div className="p-3">
+                <div className="overflow-x-auto">
+                    <table className="table-auto w-full">
+                        <thead className="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
                             <tr>
-                                <th class="p-2 whitespace-nowrap">
-                                    <div class="font-semibold text-left">Estado</div>
+                                <th className="p-2 whitespace-nowrap">
+                                    <div className="font-semibold text-left">Status</div>
                                 </th>
-                                <th class="p-2 whitespace-nowrap">
-                                    <div class="font-semibold text-left">dia</div>
+                                <th className="p-2 whitespace-nowrap">
+                                    <div className="font-semibold text-left">Day</div>
                                 </th>
-                                <th class="p-2 whitespace-nowrap">
-                                    <div class="font-semibold text-left">Horario</div>
+                                <th className="p-2 whitespace-nowrap">
+                                    <div className="font-semibold text-left">Schedule</div>
+                                </th>
+                                <th className="p-2 whitespace-nowrap">
+                                    <div className="font-semibold text-left">Review</div>
                                 </th>
                             </tr>
                         </thead>
-                        <tbody class="text-sm divide-y divide-gray-100">
-                        {
+                        <tbody className="text-sm divide-y divide-gray-100">
+                         {
                           turno?.map((el) =>{
-                            return(
+                            return( 
                               <Fragment>
                             <tr>
-                                <td class="p-2 whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        {/* <div class="w-10 h-10 flex-shrink-0 mr-2 sm:mr-3"><img class="rounded-full" src="https://http2.mlstatic.com/D_NQ_NP_853161-MLA53266914902_012023-F.jpg" width="40" height="40" alt="Alex Shatov"/></div> */}
-                                        <div class="font-medium text-gray-800">{el.state}</div>
+                                <td className="p-2 whitespace-nowrap">
+                                    <div className="flex items-center">
+                                        {/* <div className="w-10 h-10 flex-shrink-0 mr-2 sm:mr-3"><img className="rounded-full" src="https://http2.mlstatic.com/D_NQ_NP_853161-MLA53266914902_012023-F.jpg" width="40" height="40" alt="Alex Shatov"/></div> */}
+                                        <div className="font-medium text-gray-800">{el.state}</div>
                                     </div>
                                 </td>
-                                <td class="p-2 whitespace-nowrap">
-                                    <div class="text-left">{el.date}</div>
+                                <td className="p-2 whitespace-nowrap">
+                                    <div className="text-left">{el.date}</div>
                                 </td>
-                                <td class="p-2 whitespace-nowrap">
-                                    <div class="text-left font-medium text-green-500">{el.time_start}</div>
+                                <td className="p-2 whitespace-nowrap">
+                                    <div className="text-left font-medium text-green-500">{el.time_start}</div>
                                 </td>
-                                <td class="p-2 whitespace-nowrap">
+                                
+                                <td className="p-2 whitespace-nowrap">
+                                <button onClick={() => modalOpen()} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                <i className="fa-solid fa-star"></i>
+                                </button>
+                                    <Modal isOpen={isOpen} >
+                                      <Review/>
+                                    </Modal>
+                                </td>
                                 {/* <button
                                 type="button"
                                 class="border border-red-500 bg-red-500 text-white rounded-md px-2 py-1 m-1 transition duration-500 ease select-none hover:bg-red-600 focus:outline-none focus:shadow-outline"
@@ -101,12 +116,12 @@ const Reservations = (props) => {
                                 >
                                 X
                                 </button> */}
-                                </td>
+                                
                             </tr>                                
                               </Fragment>
                             )
                           })
-                        }
+                        } 
                         </tbody>
                     </table>
                 </div>
