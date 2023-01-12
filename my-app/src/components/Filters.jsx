@@ -49,7 +49,7 @@ const handleService = (e) =>{
             <option>Sports</option>        
             {
                 sports?.map((s,index) =>{
-                    return <option key={index} value={s}>{s}</option>
+                    return <option key={index} value={s}>{s?.description}</option>
                 })
             }
             </select>
@@ -59,7 +59,7 @@ const handleService = (e) =>{
             <option>Services</option>
             {
                 services?.map((s,index) =>{
-                    return <option key={index} value={s}>{s}</option>
+                    return <option key={index} value={s}>{s?.nameservice}</option>
                 })
             }
             </select>

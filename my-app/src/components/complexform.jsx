@@ -10,7 +10,7 @@ import MapForm from './MapForm'
 function ComplexForm() {
 
   
-  const {isLoaded} = useLoadScript({googleMapsApiKey:process.env.REACT_APP_GOOGLE_KEY})
+  const {isLoaded} = useLoadScript({googleMapsApiKey:"AIzaSyDsRVQeZOteGF2GRu-VglsSh3w4C4KjmFw"})
   const currentUser = useSelector(state => state.currentUser)
   console.log(currentUser.complejos)
   const initalState ={

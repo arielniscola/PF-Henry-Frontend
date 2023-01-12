@@ -29,7 +29,7 @@ const rootReducer = (state = initialState, action) => {
       case actions.GET_USER_DETAIL:
         return {
           ...state,
-          currentUser: {...action.payload,rol:"admin"}
+          currentUser: action.payload
         };
     case actions.GET_ALL_SERVICES:
       return {

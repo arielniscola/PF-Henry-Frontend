@@ -51,8 +51,8 @@ function App() {
           <Route path="search/:id" element={<ComplexDetails />} />
           <Route path="reservations" element={<Reservations />} />
           <Route path="complejodisplayer" element={<ComplejoDisplayer />} />
-          <Route path="createcourt" element={<CreateCourt />} />
-          <Route path="reservation" element={<ReservationCourt />} />
+          <Route path="createcourt/:id" element={<CreateCourt />} />
+          <Route path="reservation/:id/:duration_turn" element={<ReservationCourt />} />
         </Route>
       </Routes>
     </GoogleOAuthProvider>
