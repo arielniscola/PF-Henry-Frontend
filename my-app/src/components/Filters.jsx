@@ -1,6 +1,6 @@
 import React from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {filterServices, filterSports, orderAZ,orderFav, getAllServices, getAllTypeCourt} from '../redux/actions'
+import {filterSports, orderAZ,orderFav, getAllServices, getAllTypeCourt} from '../redux/actions'
 import { useEffect } from 'react'
 
 
@@ -28,11 +28,11 @@ const handleSports = (e) =>{
     dispatch(filterSports(e.target.value,elements))}
 }
 
-const handleService = (e) =>{
-    e.preventDefault()
-    if(e.target.value !== 'Services'){
-    dispatch(filterServices(e.target.value,elements))}
-}
+// const handleService = (e) =>{
+//     e.preventDefault()
+//     if(e.target.value !== 'Services'){
+//     dispatch(filterServices(e.target.value,elements))}
+// }
 
   return (
     <section className='flex flex-row m-0 w-full items-center gap-10 p-4'>
@@ -41,7 +41,6 @@ const handleService = (e) =>{
 
                 <option>Order</option>
                 <option value='az'>A-Z</option>
-                <option value='fav'>Favorites</option>
             </select>
         </div>
         <div className='flex relative w-36 h-10 rounded-full overflow-hidden border-2 border-blue-900'>
@@ -49,12 +48,12 @@ const handleService = (e) =>{
             <option>Sports</option>        
             {
                 sports?.map((s,index) =>{
-                    return <option key={index} value={s}>{s?.description}</option>
+                    return <option key={index} value={s.id}>{s?.description}</option>
                 })
             }
             </select>
         </div>
-        <div className='flex relative w-36 h-10 rounded-full overflow-hidden border-2 border-blue-900'>
+        {/* <div className='flex relative w-36 h-10 rounded-full overflow-hidden border-2 border-blue-900'>
             <select className='appearance-none outline-0 border-0 flex jistify-center py-0 px-12 bg-transparent text-blue-900 cursor-pointer text-base hover:shadow-inner hover:shadow-slate-400 focus:shadow-inner focus:shadow-slate-400' onChange={(e) => handleService(e)}>
             <option>Services</option>
             {
@@ -63,7 +62,7 @@ const handleService = (e) =>{
                 })
             }
             </select>
-        </div>
+        </div> */}
     </section>
   )
 }
