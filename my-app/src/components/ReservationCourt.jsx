@@ -4,8 +4,11 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { useParams } from "react-router-dom";
 
-const ReservationCourt = ({ court }) => {
+const ReservationCourt = () => {
+  const court = useParams()
+  console.log(court)
   const [startDate, setStartDate] = useState(new Date());
   const [turns, setTurns] = useState([]);
   const [times, setTimes] = useState([]);

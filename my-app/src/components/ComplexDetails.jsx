@@ -6,6 +6,7 @@ import { useLoadScript } from "@react-google-maps/api";
 import { getAllUser, getComplexDetails, updateComplex } from "../redux/actions";
 import Comment from "./Comment";
 import Review from "./Review";
+import CourtCard from "./courtCard";
 
 const ComplexDetails = () => {
   const [loading, setLoading] = useState(false);
@@ -151,26 +152,15 @@ const find = currentUser?.complejos?.find(e => e.id === id)
           </section>
 
           <section className="mt-10">
+            <div className="relative flex items-center">
             <h3 className="text-3xl font-bold">Complex Courts</h3>
+            {currentUser?.rol === "owner" && find && <Link className="absolute bottom-2 right-2 lg:bottom-4 lg:right-44  w-20 h-11 ml-1 text-base font-semibold text-center text-white transition duration-200 ease-in bg-indigo-600 rounded-md shadow-md hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2" to={`/createcourt/${complex?.id}`} >Create Court</Link>}
+            </div>
             <div className="flex flex-wrap justify-center w-full gap-5">
               {complex.courts ? (
-                complex.courts.map((court) => (
-                  <Link to={`/court/${court.id}`} key={court.id}>
-                    <div className="p-5 mx-auto mt-5 border-2 rounded-lg">
-                      <img
-                        className="rounded-xl"
-                        src={
-                          court.image ||
-                          "https://www.nexcourt.com/app/default/assets/gallery/basketball_28x45.jpg?v=1528119626"
-                        }
-                        alt="Court"
-                      />
-                      <p className="pt-5">{court.description}</p>
-                      <p className="py-5">Court Number: {court.numberCourt}</p>
-                      <p className="">
-                        Court Type: {court.typeCourt || "Not specified"}
-                      </p>
-                    </div>
+                complex?.courts?.map((court) => (
+                  <Link to={`/reservation/${court.id}/${court?.duration_turn}`} key={court.id}>
+                    <CourtCard court={court} />
                   </Link>
                 ))
               ) : (
@@ -245,11 +235,6 @@ const find = currentUser?.complejos?.find(e => e.id === id)
             <div>
               {complex?.reviews?.map(rev => <Comment rev={rev}/>)}
             </div>
-          <p className="flex flex-col items-center justify-center mt-10 text-2xl font-medium">
-          your opinions are important, don't forget to leave a comment.
-        </p>
-          <Review id={complex?.id} userId={currentUser?.id}/>
-              {(update.name||update.images) && <button onClick={handleUpdate} className="fixed text-lg bottom-4 right-1/2 lg:bottom-4 lg:right-1/2 w-20 h-10 ml-1 font-semibold text-center text-white transition duration-200 ease-in bg-indigo-600 rounded-md shadow-md hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2">update</button>}
           </div>
         </div>
       ) : (

@@ -2,16 +2,19 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { createCourt, getAllTypeCourt } from "../redux/actions";
 import {useDispatch, useSelector} from 'react-redux'
+import { useParams } from "react-router-dom";
 
 
 
 const CreateCourt = () => {
 
+
     const dispatch = useDispatch()
+    const {id} = useParams()
     const typeCourt = useSelector(state => state.sports)
 
     const initalState ={
-        complejoId: "cc6a24ab-e596-4cb5-a131-9f082a59eec5",
+        complejoId:id,
         numberCourt: 0,
         description: "",
         typeCourtId: "",
@@ -19,9 +22,11 @@ const CreateCourt = () => {
         duration_turn: 1,
     };
 
+    
     // img: "",
-
+    
     const [form, setForm] = useState(initalState);
+    console.log(form)
     const [errors, setErrors] = useState({});
     console.log(form)
     
@@ -38,6 +43,14 @@ const CreateCourt = () => {
         });
     };
 
+    const handleChangeP = (e) => {
+        console.log(e.target)
+        setForm({
+            ...form,
+            price: parseFloat(e.target.value),
+        });
+    };
+
     const handleChangeS = (e) => {
         console.log(e.target)
         setForm({
@@ -50,7 +63,7 @@ const CreateCourt = () => {
         console.log(e.target)
         setForm({
             ...form,
-            duration_turn: e.target.value,
+            duration_turn: parseFloat(e.target.value,)
         });
     };
 
@@ -162,7 +175,7 @@ const CreateCourt = () => {
                         type="number"
                         name="price"
                         value={form.price}
-                        onChange={handleChange}
+                        onChange={(e) => handleChangeP(e)}
                         className="border border-gray-300 p-2 rounded mb-5"
                     />
                 </div>
