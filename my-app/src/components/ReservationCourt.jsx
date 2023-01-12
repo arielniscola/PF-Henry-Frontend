@@ -27,7 +27,11 @@ const ReservationCourt = ({ court }) => {
     generetedTimes(result.data);
   };
   const generetedTimes = (turnsRes) => {
-    const duration_turno = 1.5;
+    const duration_turno = court.duration_turn * 60;
+    const hora = Math.trunc(duration_turno / 60);
+    const min = Math.trunc(duration_turno % 60);
+    console.log(hora);
+    console.log(min);
     let fechaHora = new Date(startDate);
     fechaHora.setHours(9, 0, 0, 0);
     let horarios = [];
@@ -69,7 +73,7 @@ const ReservationCourt = ({ court }) => {
     const turnCreate = {
       time_start: time,
       date: newFormatDate,
-      courtId: "7d195750-6ac3-4b4d-8a5f-2cd6571dd5ee",
+      courtId: court.id,
       clientId: currentUser.id,
       state: "reserved",
     };
