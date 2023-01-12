@@ -9,7 +9,7 @@ const Review = ({id,userId}) => {
         rating: 0,
         comment: "",
         clientId:userId,
-        complejoId:id
+        complejoId:id})
 
   const handleChange = (e) => {
     setReview({

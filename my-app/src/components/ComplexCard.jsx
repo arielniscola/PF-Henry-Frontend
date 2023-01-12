@@ -50,12 +50,6 @@ const ComplexCard = ({ complexDetails, favorites}) => {
           <p className="text-lg font-bold text-black-500">{event}</p>
           <p className="text-2xl mb-2 py-2">{name}</p>
           <p className="text-black-400 mb-2">{city}</p>
-          <span className="p-2 w-9 rounded-2xl border-gray-500 border">
-            $500
-          </span>
-          <span className="p-2 ml-2 w-9 rounded-2xl border-gray-500 border">
-            2HS
-          </span>
         </div>
         <span className="self-center text-xl">{rating||"no reviews"} ★</span>
       </Link>

@@ -60,7 +60,7 @@ const NavBar = () => {
                     >
                       {currentUser ? (
                         <img
-                          src={currentUser.image}
+                          src={currentUser.profile_img || `https://i.pravatar.cc/150?u=${currentUser.id}`}
                           alt="userphoto"
                           className="w-10 rounded-full"
                         />

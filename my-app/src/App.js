@@ -32,7 +32,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_KEY}>
+    <GoogleOAuthProvider clientId={process.env.REACT_APP_KEY_GOOGLE}>
       <Routes>
         <Route path="/" element={<LayOut />}>
           <Route index element={<Home />} />
