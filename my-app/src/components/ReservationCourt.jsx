@@ -4,11 +4,14 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 
 const ReservationCourt = () => {
   const court = useParams()
-  console.log(court)
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const price = queryParams.get("price");
+  const name = queryParams.get("name");
   const [startDate, setStartDate] = useState(new Date());
   const [turns, setTurns] = useState([]);
   const [times, setTimes] = useState([]);
@@ -24,7 +27,7 @@ const ReservationCourt = () => {
     const newFormatDate = `${year}-${month}-${day}`.toString();
 
     const result = await axios.get(
-      `http://localhost:3001/turn/complejo-turno-date/${newFormatDate}/7d195750-6ac3-4b4d-8a5f-2cd6571dd5ee`
+      `http://localhost:3001/turn/complejo-turno-date/${newFormatDate}/${court?.id}`
     );
     setTurns(result.data);
     generetedTimes(result.data);
@@ -42,7 +45,8 @@ const ReservationCourt = () => {
       fechaHora.setHours(fechaHora.getHours() + 1, fechaHora.getMinutes() + 30);
       let addFecha = new Date(fechaHora);
       console.log(addFecha.toTimeString().substring(0, 8));
-      const filterTurns = turnsRes.find(
+      turnsRes && console.log(turnsRes)
+      const filterTurns = turnsRes?.find(
         (elem) => addFecha.toTimeString().substring(0, 8) === elem.time_start
       );
       console.log(filterTurns);
@@ -90,10 +94,10 @@ const ReservationCourt = () => {
     const result = await axios
       .post("http://localhost:3001/payment", {
         id: "1",
-        name: "Compejo1",
+        name,
         image:
           "https://infodeportes.com.ar/wp-content/uploads/2021/12/Innovador-complejo-de-canchas-de-futbol-que-promete-revolucionar-la-forma-de-compartir-y-entretenerse.png",
-        price: 100,
+        price:parseInt(price),
       })
       .then(
         (res) => (window.location.href = res.data.response.body.init_point)
@@ -119,7 +123,7 @@ const ReservationCourt = () => {
   };
   return (
     <div
-      className="flex flex-col items-center m-12 h-72 border border-black 
+      className="flex flex-col items-center m-12 h-screen border border-black 
       rounded-lg shadow-lg bg-gray-100
       "
     >
@@ -147,7 +151,7 @@ const ReservationCourt = () => {
                 <div className="flex items-center space-x-4">
                   <div className="flex-shrink-0"></div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
+                    <p className="text-sm font-medium text-gray-900 truncate">
                       <b>{time.time}</b>
                     </p>
                   </div>

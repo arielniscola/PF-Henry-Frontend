@@ -39,6 +39,9 @@ const CourtCard = ({court}) => {
             <p className="">
             Court Type: {name[0]?.description || "Not specified"}
             </p>
+            <p className="">
+            Price:{court?.price}
+            </p>
         </div>
   </div>
   )

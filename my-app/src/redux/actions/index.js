@@ -105,6 +105,7 @@ export const getUserDetails = (id) => async (dispatch) => {
 };
 
 export const createUser = async (formData) => {
+  console.log(formData)
   try {
     const { data } = await clientAxios.post("/clients/create", formData);
 
@@ -155,45 +156,6 @@ export const getAllCourt = () => async (dispatch) => {
     console.log(error);
   }
 };
-
-export const getCourtDetails = (id) => async (dispatch) => {
-  try {
-    const find = await axios.get(`http://localhost:3001/court/${id}`);
-
-    dispatch({
-      type: actions.GET_COURT_DETAIL,
-      payload: find,
-    });
-  } catch (error) {
-    alert(error);
-  }
-};
-
-export const createCourt = (court) => {
-  try {
-    const create = axios.get("http://localhost:3001/court/create", court);
-
-
-    return { create, msg: "court created" };
-  } catch (error) {
-    alert("error - court not created");
-    console.log(error);
-  }
-};
-
-export const getCourtDetails = (id) => async(dispatch) =>{
-try{
-  
-  const find = await axios.get(`http://localhost:3001/court/${id}`)
-  
-  dispatch({
-    type: actions.GET_COURT_DETAIL,
-    payload: find
-  })
-}catch(error){
-  alert(error)
-}
-}
 
 export const createCourt = async(court)=>{
   try{
@@ -523,7 +485,7 @@ export const getReviewDetails = (id) => async (dispatch) => {
 export const createReview = async (review) => {
   console.log("esto llega en review", review);
   try {
-    const create = await axios.post("http://localhost:3001/reviews", review);
+    const create = await axios.post("http://localhost:3001/reviews/create", review);
     alert("Review created");
     return { create, msg: "review updated" };
   } catch (error) {

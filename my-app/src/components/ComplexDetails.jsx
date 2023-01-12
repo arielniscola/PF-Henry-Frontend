@@ -159,7 +159,7 @@ const find = currentUser?.complejos?.find(e => e.id === id)
             <div className="flex flex-wrap justify-center w-full gap-5">
               {complex.courts ? (
                 complex?.courts?.map((court) => (
-                  <Link to={`/reservation/${court.id}/${court?.duration_turn}`} key={court.id}>
+                  <Link to={`/reservation/${court.id}/${court?.duration_turn}?price=${court.price}&name=${complex?.name}`} key={court.id}>
                     <CourtCard court={court} />
                   </Link>
                 ))
