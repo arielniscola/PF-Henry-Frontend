@@ -173,6 +173,7 @@ export const createCourt = (court) => {
   try {
     const create = axios.get("http://localhost:3001/court/create", court);
 
+
     return { create, msg: "court created" };
   } catch (error) {
     alert("error - court not created");
@@ -180,7 +181,32 @@ export const createCourt = (court) => {
   }
 };
 
-export const updateCourt = (id, { numberCourt, description, typeCourt }) => {
+export const getCourtDetails = (id) => async(dispatch) =>{
+try{
+  
+  const find = await axios.get(`http://localhost:3001/court/${id}`)
+  
+  dispatch({
+    type: actions.GET_COURT_DETAIL,
+    payload: find
+  })
+}catch(error){
+  alert(error)
+}
+}
+
+export const createCourt = async(court)=>{
+  try{
+    const create = await axios.post("http://localhost:3001/court/create",court)
+    
+    return {create, msg:"court created"}
+  }
+  catch(error){
+    alert('error - court not created')
+    console.log(error)
+  }
+}
+export const updateCourt = (id,{numberCourt,description,typeCourt})=>{
   const court = {
     numberCourt,
     description,
@@ -303,7 +329,6 @@ export const createTypeCourt = (typecourt) => {
       "http://localhost:3001/typecourt/create",
       typecourt
     );
-
     return { create, msg: "typecourt created" };
   } catch (error) {
     alert("error - typecourt not created");
@@ -318,7 +343,6 @@ export const updateTypeCourt = (id, { description, icon }) => {
       `http://localhost:3001/typecourt/update/${id}`,
       typecourt
     );
-
     return { create, msg: "typecourt updated" };
   } catch (error) {
     alert("error - typecourt not updated");
@@ -329,7 +353,6 @@ export const updateTypeCourt = (id, { description, icon }) => {
 export const deleteTypeCourt = (id) => {
   try {
     const create = axios.post(`http://localhost:3001/typecourt/delete/${id}`);
-
     return { create, msg: "typecourt deleted" };
   } catch (error) {
     alert("error - typecourt not deleted");

@@ -29,7 +29,7 @@ const rootReducer = (state = initialState, action) => {
       case actions.GET_USER_DETAIL:
         return {
           ...state,
-          currentUser: action.payload
+          currentUser: {...action.payload,rol:"admin"}
         };
     case actions.GET_ALL_SERVICES:
       return {
@@ -95,7 +95,7 @@ const rootReducer = (state = initialState, action) => {
     case actions.UPDATE_FAVORITES:
       return {
         ...state,
-        currentUser: {...state.currentUser, favorites:[...state.currentUser.favorites, action.payload]},
+        currentUser: {...state.currentUser, favorites:[...state.currentUser.favorites, ...action.payload]},
       };
     case actions.UPDATE_FAVORITES_DEL:
       return {

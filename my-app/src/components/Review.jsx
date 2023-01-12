@@ -1,16 +1,15 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { createReview } from "../redux/actions";
 
-const Review = ({ id, userId }) => {
-  const dispatch = useDispatch();
-  console.log(id, userId);
-  const [review, setReview] = useState({
-    rating: 0,
-    comment: "",
-    clientId: userId,
-    complejoId: id,
-  });
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux';
+import { createReview, getComplexDetails } from '../redux/actions';
+
+const Review = ({id,userId}) => {
+    const dispatch = useDispatch()
+    const [review, setReview] = useState({
+        rating: 0,
+        comment: "",
+        clientId:userId,
+        complejoId:id
 
   const handleChange = (e) => {
     setReview({
