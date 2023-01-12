@@ -8,6 +8,7 @@ const CreateSportsServices = () => {
         description:"",
         icon:""
     })
+    console.log(sports)
     const [services, setServices]= useState({
         name:"",
     })

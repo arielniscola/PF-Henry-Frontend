@@ -51,7 +51,6 @@ const ComplexCard = ({ complexDetails, favorites}) => {
           <p className="text-2xl mb-2 py-2">{name}</p>
           <p className="text-black-400 mb-2">{city}</p>
         </div>
-        <span className="self-center text-xl">{rating||"no reviews"} ★</span>
       </Link>
       <div className="flex-end">
       {!favorites && <button onClick={() => handleFavorite()} className="self-center  w-12 h-11 ml-1 text-base font-semibold text-center text-white transition duration-200 ease-in bg-indigo-600 rounded-lg shadow-md hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2">

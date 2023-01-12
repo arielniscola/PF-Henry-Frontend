@@ -285,9 +285,9 @@ export const getTypeCourtDetails = (id) => async (dispatch) => {
   }
 };
 
-export const createTypeCourt = (typecourt) => {
+export const createTypeCourt = async(typecourt) => {
   try {
-    const create = axios.get(
+    const create = await axios.post(
       "http://localhost:3001/typecourt/create",
       typecourt
     );
@@ -387,22 +387,16 @@ export const deleteEvent = (id) => {
 };
 
 // FILTROS Y ORDENAMIENTOS
-export const filterSports = (sport, arr) => async (dispatch) => {
-  const filtSports = arr.filter((e) => e.sports);
-  const filtered = filtSports.filter((e) => e.sports.some((e) => e === sport));
-
-  dispatch({
-    type: actions.FILTER_BY_SPORT,
-    payload: filtered,
-  });
-};
-
-export const filterServices = (service, arr) => async (dispatch) => {
-  const filtServ = arr.filter((e) => e.services);
-  const filtered = filtServ.filter((e) =>
-    e.services.some((e) => e === service)
-  );
-
+export const filterSports = (id, arr) => async (dispatch) => {
+  console.log(id)
+  console.log(arr)
+  const filtered = arr.filter((item) =>
+  id
+    ? item["courts"].some(
+        (atr) => atr.typeCourtId === id
+      )
+    : true
+    );
   dispatch({
     type: actions.FILTER_BY_SPORT,
     payload: filtered,
