@@ -1,6 +1,6 @@
 import React from "react";
 
-export const ModalReview = ({ children, isOpen, modalClose }) => {
+export const ModalReview = ({ children, isOpen}) => {
   return (
     <article
       className={

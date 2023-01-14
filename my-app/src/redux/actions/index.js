@@ -47,9 +47,10 @@ export const createComplex = async (complex) => {
   }
 };
 
-export const updateComplex = (id, complex) => {
+export const updateComplex = async (id, complex) => {
+  console.log(complex)
   try {
-    const create = axios.put(
+    const create = await axios.put(
       `http://localhost:3001/complejo/update/${id}`,
       complex
     );
@@ -105,7 +106,6 @@ export const getUserDetails = (id) => async (dispatch) => {
 };
 
 export const createUser = async (formData) => {
-  console.log(formData)
   try {
     const { data } = await clientAxios.post("/clients/create", formData);
 
@@ -116,12 +116,11 @@ export const createUser = async (formData) => {
   }
 };
 
-export const updateUser = (id, user) => {
-  console.log("esto es  id", id);
-  console.log("esto es  user", user);
+export const updateUser = async (id, user) => {
+  console.log(user)
 
   try {
-    const create = axios.put(
+    const create = await axios.put(
       `http://localhost:3001/clients/update/${id}`,
       user
     );
@@ -388,8 +387,6 @@ export const deleteEvent = (id) => {
 
 // FILTROS Y ORDENAMIENTOS
 export const filterSports = (id, arr) => async (dispatch) => {
-  console.log(id)
-  console.log(arr)
   const filtered = arr.filter((item) =>
   id
     ? item["courts"].some(
@@ -568,7 +565,6 @@ export const createFavorite = async (id) => {
 };
 
 export const updateFavorite = (id, obj, bool) => async (dispatch) => {
-  console.log("esto es update", obj);
   try {
     const send = await axios.put(
       `http://localhost:3001/clients/update/${id}`,

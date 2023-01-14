@@ -16,7 +16,6 @@ const ComplexFavorite = () => {
     const array = useSelector(state => state.complexs)
     
     const [value, setValue] = useLocalStorage("favorite",[])
-    console.log(currentUser?.favorites)
 
     const favorites = currentUser ? array.filter(e => currentUser?.favorites?.includes(e.id)) : array.filter(e => value.includes(e.id))
 
@@ -27,7 +26,6 @@ const ComplexFavorite = () => {
             setValue(filt)
         } else{
             const filt = currentUser?.favorites?.filter(ids => ids !== id)
-            console.log(filt)
             dispatch(updateFavorite(currentUser.id,{...currentUser, favorites:filt},false))
         }
     }

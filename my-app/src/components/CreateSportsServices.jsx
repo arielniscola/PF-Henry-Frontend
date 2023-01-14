@@ -8,14 +8,9 @@ const CreateSportsServices = () => {
         description:"",
         icon:""
     })
-    console.log(sports)
     const [services, setServices]= useState({
         name:"",
     })
-
-    console.log("esto es sports",sports)
-
-    console.log("esto es services",services)
 
     const handleChange = (e) => {
         if(e.target.name === "description"){

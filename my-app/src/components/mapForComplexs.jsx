@@ -5,7 +5,6 @@ import { useEffect } from 'react'
 const MapForComplex = ({array}) => {
 
     const [center, setCenter] = useState({})
-    console.log(array)
 
 	const onUbicacionConcedida = ubicacion => {
         const lat = (ubicacion.coords.latitude)
