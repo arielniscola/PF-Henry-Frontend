@@ -125,7 +125,7 @@ const ReservationCourt = () => {
   if(position>1){setPosition(position-1)}
   }
   const handleNext = () => {
-   if(position < Math.ceil(times?.length/cuantity)){setPosition(position+1)}
+   if(position < Math.ceil(times?.length/cuantity))setPosition(position+1)
   }
 
 
@@ -153,10 +153,10 @@ const ReservationCourt = () => {
       </div>
       <div>
         <ul className="max-w-md divide-y">
-          <li className="mb-4">
+          {position>1 && <li className="mb-4">
             <button onClick={handlePrev} className="w-full h-10 ml-1 text-xl font-semibold justify-center text-white transition duration-200 ease-in bg-indigo-600 rounded-md shadow-md hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2">
             <i class="fa-solid fa-caret-up"></i>
-              </button></li>
+              </button></li>}
           {slice?.map((time) => (
               <li className="pb-3 sm:pb-4" key={time.time}>
                 <div className="flex items-center space-x-4">
@@ -192,10 +192,11 @@ const ReservationCourt = () => {
                 </div>
               </li>
             ))}
-            <li>
+            {(position < Math.ceil(times?.length/cuantity)) && <li>
             <button onClick={handleNext} className="w-full h-10 ml-1 text-xl font-semibold justify-center text-white transition duration-200 ease-in bg-indigo-600 rounded-md shadow-md hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2">
             <i class="fa-solid fa-caret-down"></i>
-              </button></li>
+              </button>
+              </li>}
         </ul>
       </div>
     </div>
