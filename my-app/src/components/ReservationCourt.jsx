@@ -112,10 +112,11 @@ const ReservationCourt = () => {
     });
   };
 
+  console.log(times)
 
   const [position,setPosition] = useState(1)
-  const cuantity = 6
-  const finalPosition = position + cuantity
+  const cuantity = 5
+  const finalPosition = position * cuantity
   const fistPosition = finalPosition - cuantity
   
   const slice = times?.slice(fistPosition,finalPosition)
