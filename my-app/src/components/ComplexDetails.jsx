@@ -3,9 +3,8 @@ import { GoogleMap, Marker } from "@react-google-maps/api";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { useLoadScript } from "@react-google-maps/api";
-import { getAllUser, getComplexDetails, updateComplex } from "../redux/actions";
+import { getComplexDetails, updateComplex } from "../redux/actions";
 import Comment from "./Comment";
-import Review from "./Review";
 import CourtCard from "./courtCard";
 
 const ComplexDetails = () => {
@@ -13,7 +12,6 @@ const ComplexDetails = () => {
   const dispatch = useDispatch();
   const complex = useSelector((state) => state.detail);
   const currentUser = useSelector((state) => state.currentUser)
-  console.log("esto es complex",complex?.reviews)
 
   
   const { id } = useParams();
@@ -232,7 +230,7 @@ const find = currentUser?.complejos?.find(e => e.id === id)
           </section>
           <div>
             <h3 className="flex flex-col items-center justify-center mb-5 text-4xl  font-bold text-blue-700">Comments</h3>
-            <div>
+            <div className="flex flex-row gap-4 mb-8">
               {complex?.reviews?.map(rev => <Comment rev={rev}/>)}
             </div>
           </div>

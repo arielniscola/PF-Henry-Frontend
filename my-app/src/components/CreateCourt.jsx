@@ -26,9 +26,7 @@ const CreateCourt = () => {
     // img: "",
     
     const [form, setForm] = useState(initalState);
-    console.log(form)
     const [errors, setErrors] = useState({});
-    console.log(form)
     
     useEffect(()=>{
         dispatch(getAllTypeCourt())
@@ -36,7 +34,6 @@ const CreateCourt = () => {
 
 
     const handleChange = (e) => {
-        console.log(e.target)
         setForm({
             ...form,
             [e.target.name]: e.target.value,
@@ -44,7 +41,6 @@ const CreateCourt = () => {
     };
 
     const handleChangeP = (e) => {
-        console.log(e.target)
         setForm({
             ...form,
             price: parseFloat(e.target.value),
@@ -52,7 +48,6 @@ const CreateCourt = () => {
     };
 
     const handleChangeS = (e) => {
-        console.log(e.target)
         setForm({
             ...form,
             typeCourtId: e.target.value,
@@ -60,7 +55,6 @@ const CreateCourt = () => {
     };
 
     const handleChangeD = (e) => {
-        console.log(e.target)
         setForm({
             ...form,
             duration_turn: parseFloat(e.target.value,)

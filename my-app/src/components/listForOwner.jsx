@@ -11,12 +11,9 @@ const ItemForOwnerList = ({complex}) => {
         const change = {
           ...complex,
           deleted: borrado}
-          console.log("esto es complex",complex)
         setBorrado(!borrado)
         changeStatusComplex(complex.id, change)
        }
-
-       console.log(complex)
 
 
   return (

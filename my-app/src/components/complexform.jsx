@@ -12,7 +12,6 @@ function ComplexForm() {
   
   const {isLoaded} = useLoadScript({googleMapsApiKey:"AIzaSyDsRVQeZOteGF2GRu-VglsSh3w4C4KjmFw"})
   const currentUser = useSelector(state => state.currentUser)
-  console.log(currentUser.complejos)
   const initalState ={
     name:"",
     address:"",
@@ -92,8 +91,6 @@ else return "tu buscador no soporta geolocalizacion"
         setForm(initalState)
         geolocalization()
       }
-      
-      console.log(form)
 
       return (
         <div className='flex flex-col justify-center items-center mt-4'>

@@ -6,12 +6,13 @@ import Review from "./Review";
 import { ModalReview } from "./ModalReview";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { useState } from "react";
 
 const Reservations = (props) => {
   const [turno, setTurno] = React.useState(null);
   const currentUser = useSelector((state) => state.currentUser);
   const id = currentUser && currentUser?.id;
-  const [isOpen, modalOpen] = useModal(false);
+  const [isOpen, modalOpen,modalClose] = useModal(false);
 
   React.useEffect(() => {
     axios
@@ -29,14 +30,12 @@ const Reservations = (props) => {
       alert("Post deleted!");
       setTurno(null);
     });
-    // console.log('borrado:', id)
   }
 
   const location = useLocation();
   useEffect(() => {}, []);
 
   const showAlert = (status) => {
-    console.log(status);
     if (status === "approved") {
       Swal.fire({
         position: "center",
@@ -53,9 +52,25 @@ const Reservations = (props) => {
       //   });
     }
   };
+
+
+  const [position,setPosition] = useState(1)
+  const finalPosition = position * 8
+  const fistPosition = finalPosition - 8
+  
+  const slice = turno?.reverse()?.slice(fistPosition,finalPosition)
+
+  const handlePrev = () => {
+  if(position>1){setPosition(position-1)}
+  }
+  const handleNext = () => {
+   if(position < Math.ceil(turno?.length/8)){setPosition(position+1)}
+  }
+
+
   return (
-    <div>
-      <section className="antialiased bg-gray-100 text-gray-600 h-screen px-4">
+    <div className="flex flex-col items-center justify-center ">
+      <section className="antialiased w-full bg-gray-100 mt-12 mb-4 text-gray-600 h-full px-4">
         <div className="flex flex-col justify-center h-full">
           <div className="w-full max-w-2xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
             <header className="px-5 py-4 border-b border-gray-100">
@@ -80,8 +95,8 @@ const Reservations = (props) => {
                       </th>
                     </tr>
                   </thead>
-                  <tbody className="text-sm divide-y divide-gray-100">
-                    {turno?.map((el, i) => {
+                  <tbody className="text-sm">
+                    {slice?.reverse()?.map((el, i) => {
                       return (
                         <Fragment key={i}>
                           <tr>
@@ -105,12 +120,12 @@ const Reservations = (props) => {
                             <td className="p-2 whitespace-nowrap">
                               <button
                                 onClick={() => modalOpen()}
-                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                className=" bg-indigo-600 rounded-md shadow-md hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 text-white font-bold py-2 px-4 "
                               >
                                 <i className="fa-solid fa-star"></i>
                               </button>
                               <ModalReview isOpen={isOpen}>
-                                <Review id={el.court.complejoId} userId={id} />
+                                <Review id={el.court.complejoId} modalClose={modalClose} userId={id} />
                               </ModalReview>
                             </td>
                           </tr>
@@ -124,6 +139,10 @@ const Reservations = (props) => {
           </div>
         </div>
       </section>
+      <div className="flex gap-4 flex-row mb-12">
+      <button onClick={handlePrev} className="w-16 h-10 ml-1 text-xl font-semibold text-center text-white transition duration-200 ease-in bg-indigo-600 rounded-md shadow-md hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2">Prev</button>
+      <button onClick={handleNext} className="w-16 h-10 ml-1 text-xl font-semibold text-center text-white transition duration-200 ease-in bg-indigo-600 rounded-md shadow-md hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2">Next</button>
+      </div>
     </div>
   );
 };

@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { createReview, getComplexDetails } from '../redux/actions';
 
-const Review = ({id,userId}) => {
+const Review = ({id,userId,modalClose}) => {
     const dispatch = useDispatch()
     const [review, setReview] = useState({
         rating: 0,
@@ -16,7 +16,6 @@ const Review = ({id,userId}) => {
       ...review,
       [e.target.name]: e.target.value,
     });
-    console.log("esto es review", review);
   };
   const handleCreateReview = () => {
     dispatch(createReview(review));

@@ -36,20 +36,15 @@ const ReservationCourt = () => {
     const duration_turno = court.duration_turn * 60;
     const hora = Math.trunc(duration_turno / 60);
     const min = Math.trunc(duration_turno % 60);
-    console.log(hora);
-    console.log(min);
     let fechaHora = new Date(startDate);
     fechaHora.setHours(9, 0, 0, 0);
     let horarios = [];
     for (let i = 10; i < 20; i++) {
       fechaHora.setHours(fechaHora.getHours() + 1, fechaHora.getMinutes() + 30);
       let addFecha = new Date(fechaHora);
-      console.log(addFecha.toTimeString().substring(0, 8));
-      turnsRes && console.log(turnsRes)
       const filterTurns = turnsRes?.find(
         (elem) => addFecha.toTimeString().substring(0, 8) === elem.time_start
       );
-      console.log(filterTurns);
       let available = false;
       if (filterTurns === undefined) {
         available = true;
@@ -59,11 +54,9 @@ const ReservationCourt = () => {
         available: available,
       });
     }
-    console.log(horarios);
     setTimes(horarios);
   };
   const selectedDate = (date) => {
-    console.log(date);
     setStartDate(date);
   };
   const saveTurn = async (time) => {
@@ -84,7 +77,6 @@ const ReservationCourt = () => {
       clientId: currentUser.id,
       state: "reserved",
     };
-    console.log(turnCreate);
     const result = await axios.post(
       "http://localhost:3001/turn/create",
       turnCreate
@@ -102,8 +94,6 @@ const ReservationCourt = () => {
       .then(
         (res) => (window.location.href = res.data.response.body.init_point)
       );
-
-    console.log(result);
   };
   const showAlertReservation = (time) => {
     Swal.fire({
@@ -121,6 +111,24 @@ const ReservationCourt = () => {
       }
     });
   };
+
+  console.log(times)
+
+  const [position,setPosition] = useState(1)
+  const cuantity = 5
+  const finalPosition = position * cuantity
+  const fistPosition = finalPosition - cuantity
+  
+  const slice = times?.slice(fistPosition,finalPosition)
+
+  const handlePrev = () => {
+  if(position>1){setPosition(position-1)}
+  }
+  const handleNext = () => {
+   if(position < Math.ceil(times?.length/cuantity))setPosition(position+1)
+  }
+
+
   return (
     <div
       className="flex flex-col items-center m-12 h-screen border border-black 
@@ -144,9 +152,12 @@ const ReservationCourt = () => {
         Available times:
       </div>
       <div>
-        <ul className="max-w-md divide-y divide-gray-200 dark:divide-gray-700">
-          {times.length > 0 &&
-            times.map((time) => (
+        <ul className="max-w-md divide-y">
+          {position>1 && <li className="mb-4">
+            <button onClick={handlePrev} className="w-full h-10 ml-1 text-xl font-semibold justify-center text-white transition duration-200 ease-in bg-indigo-600 rounded-md shadow-md hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2">
+            <i class="fa-solid fa-caret-up"></i>
+              </button></li>}
+          {slice?.map((time) => (
               <li className="pb-3 sm:pb-4" key={time.time}>
                 <div className="flex items-center space-x-4">
                   <div className="flex-shrink-0"></div>
@@ -170,31 +181,22 @@ const ReservationCourt = () => {
                     <div>
                       <button
                         type="button"
-                        className="text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center mr-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800"
+                        className="w-10 h-10 ml-1 text-xl font-semibold justify-center text-white transition duration-200 ease-in bg-indigo-600 rounded-md shadow-md hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2"
                         onClick={() => {
                           showAlertReservation(time.time);
                         }}
-                      >
-                        <svg
-                          aria-hidden="true"
-                          class="w-5 h-5"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                            clip-rule="evenodd"
-                          ></path>
-                        </svg>
-                        <span class="sr-only">Icon description</span>
+                      ><i class="fa-solid fa-arrow-right"></i>
                       </button>
                     </div>
                   )}
                 </div>
               </li>
             ))}
+            {(position < Math.ceil(times?.length/cuantity)) && <li>
+            <button onClick={handleNext} className="w-full h-10 ml-1 text-xl font-semibold justify-center text-white transition duration-200 ease-in bg-indigo-600 rounded-md shadow-md hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2">
+            <i class="fa-solid fa-caret-down"></i>
+              </button>
+              </li>}
         </ul>
       </div>
     </div>

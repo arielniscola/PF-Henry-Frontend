@@ -28,7 +28,6 @@ const Login = () => {
       localStorage.setItem("token", data.token);
       dispatch(setCurrentUser(data));
     } catch (error) {
-      console.log(error);
       setAlert({ msg: error.response.data, error: true });
     }
   };

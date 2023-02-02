@@ -3,20 +3,16 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getAllTypeCourt } from '../redux/actions'
 
 const CourtCard = ({court}) => {
-    
-    console.log(court)
 
     const dispatch = useDispatch()
 
     const typeCourt = useSelector(state => state.sports)
-    console.log(typeCourt)
 
     useEffect(()=>{
         dispatch(getAllTypeCourt())
     },[])
 
     const name = typeCourt?.filter(e => e?.id === court?.typeCourtId)
-    console.log(name)
     
 
 
